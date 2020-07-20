@@ -1,0 +1,224 @@
+ERROR:root:OME Alert failure at 139 | error in send_ome_alerts_of_user() 2019-12-16 23:04:13.480328
+ERROR:root:argument of type 'builtin_function_or_method' is not iterable | error in get_documents.get_solr_results 2020-01-28 21:24:21.069361
+ERROR:root:argument of type 'builtin_function_or_method' is not iterable | error in get_documents.get_solr_results 2020-01-28 21:24:21.850090
+ERROR:root:argument of type 'builtin_function_or_method' is not iterable | error in get_documents.get_solr_results 2020-01-28 21:24:22.857537
+ERROR:root:argument of type 'builtin_function_or_method' is not iterable | error in get_documents.get_solr_results 2020-01-28 21:24:23.767628
+ERROR:root:argument of type 'builtin_function_or_method' is not iterable | error in get_documents.get_solr_results 2020-01-28 21:24:24.214162
+ERROR:root:argument of type 'builtin_function_or_method' is not iterable | error in get_documents.get_solr_results 2020-01-28 21:24:24.661381
+ERROR:root:argument of type 'builtin_function_or_method' is not iterable | error in get_documents.get_solr_results 2020-01-28 21:24:25.112605
+ERROR:root:argument of type 'builtin_function_or_method' is not iterable | error in get_documents.get_solr_results 2020-01-28 21:24:25.574385
+ERROR:root:argument of type 'builtin_function_or_method' is not iterable | error in get_documents.get_solr_results 2020-01-28 21:24:26.064209
+ERROR:root:argument of type 'builtin_function_or_method' is not iterable | error in get_documents.get_solr_results 2020-01-28 21:24:27.431226
+ERROR:root:argument of type 'builtin_function_or_method' is not iterable | error in get_documents.get_solr_results 2020-01-28 21:24:28.145841
+ERROR:root:argument of type 'builtin_function_or_method' is not iterable | error in get_documents.get_solr_results 2020-01-28 21:24:28.172898
+ERROR:root:argument of type 'builtin_function_or_method' is not iterable | error in get_documents.get_solr_results 2020-01-28 21:24:29.495925
+ERROR:root:argument of type 'builtin_function_or_method' is not iterable | error in get_documents.get_solr_results 2020-01-28 21:24:32.755099
+ERROR:root:argument of type 'builtin_function_or_method' is not iterable | error in get_documents.get_solr_results 2020-01-28 21:24:32.974784
+ERROR:root:argument of type 'builtin_function_or_method' is not iterable | error in get_documents.get_solr_results 2020-01-28 21:24:33.136258
+ERROR:root:argument of type 'builtin_function_or_method' is not iterable | error in get_documents.get_solr_results 2020-01-28 21:24:33.670427
+ERROR:root:argument of type 'builtin_function_or_method' is not iterable | error in get_documents.get_solr_results 2020-01-28 21:24:33.809139
+ERROR:root:argument of type 'builtin_function_or_method' is not iterable | error in get_documents.get_solr_results 2020-01-28 21:27:43.760359
+ERROR:root:argument of type 'builtin_function_or_method' is not iterable | error in get_documents.get_solr_results 2020-01-28 21:27:44.309003
+ERROR:root:argument of type 'builtin_function_or_method' is not iterable | error in get_documents.get_solr_results 2020-01-28 21:27:45.160796
+ERROR:root:argument of type 'builtin_function_or_method' is not iterable | error in get_documents.get_solr_results 2020-01-28 21:27:45.909070
+ERROR:root:argument of type 'builtin_function_or_method' is not iterable | error in get_documents.get_solr_results 2020-01-28 21:27:46.372029
+ERROR:root:argument of type 'builtin_function_or_method' is not iterable | error in get_documents.get_solr_results 2020-01-28 21:27:46.824957
+ERROR:root:argument of type 'builtin_function_or_method' is not iterable | error in get_documents.get_solr_results 2020-01-28 21:27:47.295143
+ERROR:root:argument of type 'builtin_function_or_method' is not iterable | error in get_documents.get_solr_results 2020-01-28 21:27:47.750478
+ERROR:root:argument of type 'builtin_function_or_method' is not iterable | error in get_documents.get_solr_results 2020-01-28 21:27:47.772515
+ERROR:root:argument of type 'builtin_function_or_method' is not iterable | error in get_documents.get_solr_results 2020-01-28 21:27:49.070622
+ERROR:root:argument of type 'builtin_function_or_method' is not iterable | error in get_documents.get_solr_results 2020-01-28 21:27:49.813577
+ERROR:root:argument of type 'builtin_function_or_method' is not iterable | error in get_documents.get_solr_results 2020-01-28 21:27:49.838654
+ERROR:root:argument of type 'builtin_function_or_method' is not iterable | error in get_documents.get_solr_results 2020-01-28 21:27:51.107850
+ERROR:root:argument of type 'builtin_function_or_method' is not iterable | error in get_documents.get_solr_results 2020-01-28 21:27:52.349142
+ERROR:root:argument of type 'builtin_function_or_method' is not iterable | error in get_documents.get_solr_results 2020-01-28 21:27:52.569100
+ERROR:root:argument of type 'builtin_function_or_method' is not iterable | error in get_documents.get_solr_results 2020-01-28 21:27:52.596023
+ERROR:root:argument of type 'builtin_function_or_method' is not iterable | error in get_documents.get_solr_results 2020-01-28 21:27:52.689137
+ERROR:root:argument of type 'builtin_function_or_method' is not iterable | error in get_documents.get_solr_results 2020-01-28 21:27:52.726381
+ERROR:root:'LDA class' | error in get_documents.get_solr_results 2020-01-28 21:29:23.362079
+ERROR:root:'LDA class' | error in get_documents.get_solr_results 2020-01-28 21:29:23.915540
+ERROR:root:'LDA class' | error in get_documents.get_solr_results 2020-01-28 21:29:24.804757
+ERROR:root:'LDA class' | error in get_documents.get_solr_results 2020-01-28 21:29:25.557438
+ERROR:root:'LDA class' | error in get_documents.get_solr_results 2020-01-28 21:29:26.035820
+ERROR:root:'LDA class' | error in get_documents.get_solr_results 2020-01-28 21:29:26.512061
+ERROR:root:'LDA class' | error in get_documents.get_solr_results 2020-01-28 21:29:26.969713
+ERROR:root:'LDA class' | error in get_documents.get_solr_results 2020-01-28 21:29:27.423659
+ERROR:root:'LDA_class' | error in get_documents.get_solr_results 2020-01-28 21:29:27.462251
+ERROR:root:'LDA_class' | error in get_documents.get_solr_results 2020-01-28 21:29:28.761137
+ERROR:root:'LDA_class' | error in get_documents.get_solr_results 2020-01-28 21:29:29.488412
+ERROR:root:'LDA_class' | error in get_documents.get_solr_results 2020-01-28 21:29:29.512867
+ERROR:root:'LDA_class' | error in get_documents.get_solr_results 2020-01-28 21:29:30.814796
+ERROR:root:'LDA_class' | error in get_documents.get_solr_results 2020-01-28 21:29:32.108269
+ERROR:root:'LDA_class' | error in get_documents.get_solr_results 2020-01-28 21:29:32.329911
+ERROR:root:'LDA_class' | error in get_documents.get_solr_results 2020-01-28 21:29:32.359885
+ERROR:root:'LDA_class' | error in get_documents.get_solr_results 2020-01-28 21:29:32.473543
+ERROR:root:'LDA_class' | error in get_documents.get_solr_results 2020-01-28 21:29:32.518054
+ERROR:root:'str' object has no attribute 'append' | error in get_documents.get_solr_results 2020-01-28 21:31:02.893547
+ERROR:root:'str' object has no attribute 'append' | error in get_documents.get_solr_results 2020-01-28 21:31:03.470334
+ERROR:root:'str' object has no attribute 'append' | error in get_documents.get_solr_results 2020-01-28 21:31:04.357028
+ERROR:root:'str' object has no attribute 'append' | error in get_documents.get_solr_results 2020-01-28 21:31:05.126261
+ERROR:root:'str' object has no attribute 'append' | error in get_documents.get_solr_results 2020-01-28 21:31:05.601435
+ERROR:root:'str' object has no attribute 'append' | error in get_documents.get_solr_results 2020-01-28 21:31:06.075294
+ERROR:root:'str' object has no attribute 'append' | error in get_documents.get_solr_results 2020-01-28 21:31:06.543857
+ERROR:root:'str' object has no attribute 'append' | error in get_documents.get_solr_results 2020-01-28 21:31:07.010662
+ERROR:root:'str' object has no attribute 'append' | error in get_documents.get_solr_results 2020-01-28 21:31:07.034322
+ERROR:root:'str' object has no attribute 'append' | error in get_documents.get_solr_results 2020-01-28 21:31:08.357266
+ERROR:root:'str' object has no attribute 'append' | error in get_documents.get_solr_results 2020-01-28 21:31:09.101170
+ERROR:root:'str' object has no attribute 'append' | error in get_documents.get_solr_results 2020-01-28 21:31:09.127573
+ERROR:root:'str' object has no attribute 'append' | error in get_documents.get_solr_results 2020-01-28 21:31:10.555937
+ERROR:root:'str' object has no attribute 'append' | error in get_documents.get_solr_results 2020-01-28 21:31:11.838653
+ERROR:root:'str' object has no attribute 'append' | error in get_documents.get_solr_results 2020-01-28 21:31:12.079155
+ERROR:root:'str' object has no attribute 'append' | error in get_documents.get_solr_results 2020-01-28 21:31:12.106342
+ERROR:root:'str' object has no attribute 'append' | error in get_documents.get_solr_results 2020-01-28 21:31:12.212924
+ERROR:root:'str' object has no attribute 'append' | error in get_documents.get_solr_results 2020-01-28 21:31:12.277200
+ERROR:root:'str' object has no attribute 'append' | error in get_documents.get_solr_results 2020-01-28 21:36:03.659612
+ERROR:root:'str' object has no attribute 'append' | error in get_documents.get_solr_results 2020-01-28 21:36:04.209077
+ERROR:root:'str' object has no attribute 'append' | error in get_documents.get_solr_results 2020-01-28 21:36:05.063237
+ERROR:root:'str' object has no attribute 'append' | error in get_documents.get_solr_results 2020-01-28 21:36:05.813546
+ERROR:root:'str' object has no attribute 'append' | error in get_documents.get_solr_results 2020-01-28 21:36:06.298002
+ERROR:root:'str' object has no attribute 'append' | error in get_documents.get_solr_results 2020-01-28 21:36:06.742092
+ERROR:root:'str' object has no attribute 'append' | error in get_documents.get_solr_results 2020-01-28 21:36:07.185642
+ERROR:root:'str' object has no attribute 'append' | error in get_documents.get_solr_results 2020-01-28 21:36:07.643950
+ERROR:root:'str' object has no attribute 'append' | error in get_documents.get_solr_results 2020-01-28 21:36:07.687265
+ERROR:root:'str' object has no attribute 'append' | error in get_documents.get_solr_results 2020-01-28 21:36:08.958938
+ERROR:root:'str' object has no attribute 'append' | error in get_documents.get_solr_results 2020-01-28 21:36:09.672686
+ERROR:root:'str' object has no attribute 'append' | error in get_documents.get_solr_results 2020-01-28 21:36:09.695225
+ERROR:root:'str' object has no attribute 'append' | error in get_documents.get_solr_results 2020-01-28 21:36:10.981145
+ERROR:root:'str' object has no attribute 'append' | error in get_documents.get_solr_results 2020-01-28 21:36:12.257323
+ERROR:root:'str' object has no attribute 'append' | error in get_documents.get_solr_results 2020-01-28 21:36:12.485195
+ERROR:root:'str' object has no attribute 'append' | error in get_documents.get_solr_results 2020-01-28 21:36:12.514173
+ERROR:root:'str' object has no attribute 'append' | error in get_documents.get_solr_results 2020-01-28 21:36:12.620593
+ERROR:root:'str' object has no attribute 'append' | error in get_documents.get_solr_results 2020-01-28 21:36:12.669621
+ERROR:root:'str' object has no attribute 'append' | error in get_documents.get_solr_results 2020-01-28 21:36:39.391089
+ERROR:root:'str' object has no attribute 'append' | error in get_documents.get_solr_results 2020-01-28 21:36:39.948751
+ERROR:root:'str' object has no attribute 'append' | error in get_documents.get_solr_results 2020-01-28 21:36:40.831579
+ERROR:root:'str' object has no attribute 'append' | error in get_documents.get_solr_results 2020-01-28 21:36:41.553590
+ERROR:root:'str' object has no attribute 'append' | error in get_documents.get_solr_results 2020-01-28 21:36:41.993350
+ERROR:root:'str' object has no attribute 'append' | error in get_documents.get_solr_results 2020-01-28 21:36:42.436196
+ERROR:root:'str' object has no attribute 'append' | error in get_documents.get_solr_results 2020-01-28 21:36:42.886109
+ERROR:root:'str' object has no attribute 'append' | error in get_documents.get_solr_results 2020-01-28 21:36:43.354022
+ERROR:root:'str' object has no attribute 'append' | error in get_documents.get_solr_results 2020-01-28 21:36:43.384043
+ERROR:root:'str' object has no attribute 'append' | error in get_documents.get_solr_results 2020-01-28 21:36:44.639737
+ERROR:root:'str' object has no attribute 'append' | error in get_documents.get_solr_results 2020-01-28 21:36:45.349305
+ERROR:root:'str' object has no attribute 'append' | error in get_documents.get_solr_results 2020-01-28 21:36:45.379068
+ERROR:root:'str' object has no attribute 'append' | error in get_documents.get_solr_results 2020-01-28 21:36:46.653283
+ERROR:root:'str' object has no attribute 'append' | error in get_documents.get_solr_results 2020-01-28 21:36:47.864049
+ERROR:root:'str' object has no attribute 'append' | error in get_documents.get_solr_results 2020-01-28 21:36:48.087135
+ERROR:root:'str' object has no attribute 'append' | error in get_documents.get_solr_results 2020-01-28 21:36:48.127966
+ERROR:root:'str' object has no attribute 'append' | error in get_documents.get_solr_results 2020-01-28 21:36:48.224137
+ERROR:root:'str' object has no attribute 'append' | error in get_documents.get_solr_results 2020-01-28 21:36:48.262493
+ERROR:root:'lda_class_ss' | error in get_documents.get_solr_results 2020-01-28 21:38:57.353417
+ERROR:root:'lda_class_ss' | error in get_documents.get_solr_results 2020-01-28 21:38:57.893610
+ERROR:root:'lda_class_ss' | error in get_documents.get_solr_results 2020-01-28 21:38:58.726902
+ERROR:root:'lda_class_ss' | error in get_documents.get_solr_results 2020-01-28 21:38:59.446395
+ERROR:root:'lda_class_ss' | error in get_documents.get_solr_results 2020-01-28 21:38:59.907044
+ERROR:root:'lda_class_ss' | error in get_documents.get_solr_results 2020-01-28 21:39:00.366020
+ERROR:root:'lda_class_ss' | error in get_documents.get_solr_results 2020-01-28 21:39:00.813867
+ERROR:root:'lda_class_ss' | error in get_documents.get_solr_results 2020-01-28 21:39:01.268974
+ERROR:root:'str' object has no attribute 'append' | error in get_documents.get_solr_results 2020-01-28 21:39:01.291044
+ERROR:root:'str' object has no attribute 'append' | error in get_documents.get_solr_results 2020-01-28 21:39:02.546783
+ERROR:root:'str' object has no attribute 'append' | error in get_documents.get_solr_results 2020-01-28 21:39:03.270964
+ERROR:root:'str' object has no attribute 'append' | error in get_documents.get_solr_results 2020-01-28 21:39:03.293649
+ERROR:root:'str' object has no attribute 'append' | error in get_documents.get_solr_results 2020-01-28 21:39:04.538323
+ERROR:root:'str' object has no attribute 'append' | error in get_documents.get_solr_results 2020-01-28 21:39:05.760534
+ERROR:root:'str' object has no attribute 'append' | error in get_documents.get_solr_results 2020-01-28 21:39:06.007394
+ERROR:root:'str' object has no attribute 'append' | error in get_documents.get_solr_results 2020-01-28 21:39:06.033284
+ERROR:root:'str' object has no attribute 'append' | error in get_documents.get_solr_results 2020-01-28 21:39:06.126383
+ERROR:root:'str' object has no attribute 'append' | error in get_documents.get_solr_results 2020-01-28 21:39:06.163906
+ERROR:root:'lda_class_ss' | error in get_documents.get_solr_results 2020-01-28 21:39:18.390077
+ERROR:root:'lda_class_ss' | error in get_documents.get_solr_results 2020-01-28 21:39:18.934221
+ERROR:root:'lda_class_ss' | error in get_documents.get_solr_results 2020-01-28 21:39:19.766675
+ERROR:root:'lda_class_ss' | error in get_documents.get_solr_results 2020-01-28 21:39:20.497754
+ERROR:root:'lda_class_ss' | error in get_documents.get_solr_results 2020-01-28 21:39:20.957772
+ERROR:root:'lda_class_ss' | error in get_documents.get_solr_results 2020-01-28 21:39:21.401967
+ERROR:root:'lda_class_ss' | error in get_documents.get_solr_results 2020-01-28 21:39:21.847168
+ERROR:root:'lda_class_ss' | error in get_documents.get_solr_results 2020-01-28 21:39:22.300965
+ERROR:root:'str' object has no attribute 'append' | error in get_documents.get_solr_results 2020-01-28 21:39:22.324095
+ERROR:root:'str' object has no attribute 'append' | error in get_documents.get_solr_results 2020-01-28 21:39:23.589919
+ERROR:root:'str' object has no attribute 'append' | error in get_documents.get_solr_results 2020-01-28 21:39:24.292212
+ERROR:root:'str' object has no attribute 'append' | error in get_documents.get_solr_results 2020-01-28 21:39:24.314280
+ERROR:root:'str' object has no attribute 'append' | error in get_documents.get_solr_results 2020-01-28 21:39:25.557543
+ERROR:root:'str' object has no attribute 'append' | error in get_documents.get_solr_results 2020-01-28 21:39:26.784784
+ERROR:root:'str' object has no attribute 'append' | error in get_documents.get_solr_results 2020-01-28 21:39:27.012160
+ERROR:root:'str' object has no attribute 'append' | error in get_documents.get_solr_results 2020-01-28 21:39:27.038320
+ERROR:root:'str' object has no attribute 'append' | error in get_documents.get_solr_results 2020-01-28 21:39:27.132288
+ERROR:root:'str' object has no attribute 'append' | error in get_documents.get_solr_results 2020-01-28 21:39:27.170862
+ERROR:root:'lda_class_ss' | error in get_documents.get_solr_results 2020-01-28 21:50:34.197292
+ERROR:root:'lda_class_ss' | error in get_documents.get_solr_results 2020-01-28 21:50:34.739101
+ERROR:root:'lda_class_ss' | error in get_documents.get_solr_results 2020-01-28 21:50:35.653292
+ERROR:root:'lda_class_ss' | error in get_documents.get_solr_results 2020-01-28 21:50:36.404871
+ERROR:root:'lda_class_ss' | error in get_documents.get_solr_results 2020-01-28 21:50:36.846839
+ERROR:root:'lda_class_ss' | error in get_documents.get_solr_results 2020-01-28 21:50:37.294870
+ERROR:root:'lda_class_ss' | error in get_documents.get_solr_results 2020-01-28 21:50:37.742062
+ERROR:root:'lda_class_ss' | error in get_documents.get_solr_results 2020-01-28 21:50:38.197377
+ERROR:root:'str' object has no attribute 'append' | error in get_documents.get_solr_results 2020-01-28 21:50:38.233993
+ERROR:root:'str' object has no attribute 'append' | error in get_documents.get_solr_results 2020-01-28 21:50:39.525660
+ERROR:root:'str' object has no attribute 'append' | error in get_documents.get_solr_results 2020-01-28 21:50:40.237828
+ERROR:root:'str' object has no attribute 'append' | error in get_documents.get_solr_results 2020-01-28 21:50:40.264622
+ERROR:root:'str' object has no attribute 'append' | error in get_documents.get_solr_results 2020-01-28 21:50:41.563119
+ERROR:root:'str' object has no attribute 'append' | error in get_documents.get_solr_results 2020-01-28 21:50:42.863537
+ERROR:root:'str' object has no attribute 'append' | error in get_documents.get_solr_results 2020-01-28 21:50:43.083652
+ERROR:root:'str' object has no attribute 'append' | error in get_documents.get_solr_results 2020-01-28 21:50:43.111575
+ERROR:root:'str' object has no attribute 'append' | error in get_documents.get_solr_results 2020-01-28 21:50:43.210893
+ERROR:root:'str' object has no attribute 'append' | error in get_documents.get_solr_results 2020-01-28 21:50:43.250184
+ERROR:root:'str' object has no attribute 'append' | error in get_documents.get_solr_results 2020-01-28 21:51:09.279344
+ERROR:root:'str' object has no attribute 'append' | error in get_documents.get_solr_results 2020-01-28 21:51:09.862188
+ERROR:root:'str' object has no attribute 'append' | error in get_documents.get_solr_results 2020-01-28 21:51:10.699814
+ERROR:root:'str' object has no attribute 'append' | error in get_documents.get_solr_results 2020-01-28 21:51:11.416159
+ERROR:root:'str' object has no attribute 'append' | error in get_documents.get_solr_results 2020-01-28 21:51:11.863544
+ERROR:root:'str' object has no attribute 'append' | error in get_documents.get_solr_results 2020-01-28 21:51:12.320509
+ERROR:root:'str' object has no attribute 'append' | error in get_documents.get_solr_results 2020-01-28 21:51:12.789193
+ERROR:root:'str' object has no attribute 'append' | error in get_documents.get_solr_results 2020-01-28 21:51:13.251299
+ERROR:root:'str' object has no attribute 'append' | error in get_documents.get_solr_results 2020-01-28 21:51:13.282730
+ERROR:root:'str' object has no attribute 'append' | error in get_documents.get_solr_results 2020-01-28 21:51:14.573397
+ERROR:root:'str' object has no attribute 'append' | error in get_documents.get_solr_results 2020-01-28 21:51:15.309122
+ERROR:root:'str' object has no attribute 'append' | error in get_documents.get_solr_results 2020-01-28 21:51:15.334810
+ERROR:root:'str' object has no attribute 'append' | error in get_documents.get_solr_results 2020-01-28 21:51:16.614823
+ERROR:root:'str' object has no attribute 'append' | error in get_documents.get_solr_results 2020-01-28 21:51:17.836486
+ERROR:root:'str' object has no attribute 'append' | error in get_documents.get_solr_results 2020-01-28 21:51:18.060909
+ERROR:root:'str' object has no attribute 'append' | error in get_documents.get_solr_results 2020-01-28 21:51:18.088545
+ERROR:root:'str' object has no attribute 'append' | error in get_documents.get_solr_results 2020-01-28 21:51:18.184990
+ERROR:root:'str' object has no attribute 'append' | error in get_documents.get_solr_results 2020-01-28 21:51:18.228872
+ERROR:root:'lda_class_ss' | error in get_documents.get_ome_alert_results 2020-01-28 21:55:50.084576
+ERROR:root:'lda_class_ss' | error in get_documents.get_ome_alert_results 2020-01-28 21:55:51.117459
+ERROR:root:'lda_class_ss' | error in get_documents.get_ome_alert_results 2020-01-28 21:56:04.257787
+ERROR:root:'lda_class_ss' | error in get_documents.get_ome_alert_results 2020-01-28 22:01:28.209348
+ERROR:root:'lda_class_ss' | error in get_documents.get_ome_alert_results 2020-01-28 22:01:29.224376
+ERROR:root:'LDA_class' | error in get_documents.get_ome_alert_results 2020-01-28 22:02:35.724735
+ERROR:root:'LDA_class' | error in get_documents.get_ome_alert_results 2020-01-28 22:02:36.763759
+ERROR:root:'LDA_class' | error in get_documents.get_ome_alert_results 2020-01-28 22:02:49.206434
+ERROR:root:'LDA_class' | error in get_documents.get_ome_alert_results 2020-01-28 22:03:23.887084
+ERROR:root:'LDA_class' | error in get_documents.get_ome_alert_results 2020-01-28 22:03:24.918724
+ERROR:root:'LDA_class' | error in get_documents.get_ome_alert_results 2020-01-28 22:03:41.896747
+ERROR:root:'LDA_class' | error in get_documents.get_ome_alert_results 2020-01-28 22:03:42.914123
+ERROR:root:'LDA_class' | error in get_documents.get_ome_alert_results 2020-01-28 22:03:55.243852
+ERROR:root:object of type 'NoneType' has no len() | error in get_documents.get_search_params_list 2020-01-30 16:22:12.965611
+ERROR:root:object of type 'NoneType' has no len() | error in get_documents.get_search_params_list 2020-02-18 22:32:59.684761
+ERROR:root:object of type 'NoneType' has no len() | error in get_documents.get_search_params_list 2020-03-06 16:04:45.246391
+ERROR:root:object of type 'NoneType' has no len() | error in get_documents.get_search_params_list 2020-03-18 17:00:29.398698
+ERROR:root:object of type 'NoneType' has no len() | error in get_documents.get_search_params_list 2020-03-27 20:33:11.535118
+ERROR:root:object of type 'NoneType' has no len() | error in get_documents.get_search_params_list 2020-04-02 17:47:30.519625
+ERROR:root:'article_title_ss' | error in get_documents.get_solr_results 2020-04-08 15:03:31.023327
+ERROR:root:'article_title_ss' | error in get_documents.get_solr_results 2020-04-08 15:03:38.017935
+ERROR:root:'article_title_ss' | error in get_documents.get_solr_results 2020-04-08 15:03:45.001788
+ERROR:root:'article_title_ss' | error in get_documents.get_solr_results 2020-04-08 15:03:52.004214
+ERROR:root:'article_title_ss' | error in get_documents.get_solr_results 2020-04-08 15:04:13.187755
+ERROR:root:'article_title_ss' | error in get_documents.get_solr_results 2020-04-08 15:09:27.773605
+ERROR:root:'article_title_ss' | error in get_documents.get_solr_results 2020-04-08 15:09:34.758478
+ERROR:root:'article_title_ss' | error in get_documents.get_solr_results 2020-04-08 15:09:41.775350
+ERROR:root:'article_title_ss' | error in get_documents.get_solr_results 2020-04-08 15:09:48.711036
+ERROR:root:'article_title_ss' | error in get_documents.get_solr_results 2020-04-08 15:10:05.011191
+ERROR:root:'article_title_ss' | error in get_documents.get_solr_results 2020-04-08 15:10:53.132722
+ERROR:root:'article_title_ss' | error in get_documents.get_solr_results 2020-04-08 15:11:00.163327
+ERROR:root:'article_title_ss' | error in get_documents.get_solr_results 2020-04-08 15:11:07.184432
+ERROR:root:'article_title_ss' | error in get_documents.get_solr_results 2020-04-08 15:11:14.171564
+ERROR:root:'article_title_ss' | error in get_documents.get_solr_results 2020-04-08 15:11:28.486221
+ERROR:root:object of type 'NoneType' has no len() | error in get_documents.get_search_params_list 2020-04-08 15:11:31.773383
+ERROR:root:'article_title_ss' | error in get_documents.get_solr_results 2020-04-08 15:11:54.862291
+ERROR:root:'article_title_ss' | error in get_documents.get_solr_results 2020-04-08 15:12:01.859684
+ERROR:root:'article_title_ss' | error in get_documents.get_solr_results 2020-04-08 15:12:08.879816
+ERROR:root:'article_title_ss' | error in get_documents.get_solr_results 2020-04-08 15:12:15.961698
+ERROR:root:'article_title_ss' | error in get_documents.get_solr_results 2020-04-08 15:12:33.261469
+ERROR:root:object of type 'NoneType' has no len() | error in get_documents.get_search_params_list 2020-04-13 18:03:23.014518
+ERROR:root:object of type 'NoneType' has no len() | error in get_documents.get_search_params_list 2020-04-22 16:49:26.986157
+ERROR:root:object of type 'NoneType' has no len() | error in get_documents.get_search_params_list 2020-04-29 16:21:54.652414
