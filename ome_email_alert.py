@@ -1,3 +1,4 @@
+
 # -*- coding: utf-8 -*-
 """
 Created on Thu Feb  7 14:51:43 2019
@@ -646,6 +647,32 @@ def headlines_check(ome_alert_results, user):
 
     return ome_alert_results
 
+def source_filter(results):
+    
+    doc_types = results['document_type']
+    
+    doc_lists = ['Cortellis','cortellis']
+    
+    elems_to_rm = []
+    #print(type(doc_types), '--- these are the doc types')
+    for pos, i in enumerate(doc_types):
+        print(i, '--- these are the doc types')
+        if i in doc_lists:
+            #print(i)
+            elems_to_rm.append(pos)
+    
+    elems_to_rm = sorted(elems_to_rm, reverse = True)
+    
+    for key in results.keys():
+        section = results[key]
+        for d in elems_to_rm:
+            print(d, '--- element to remove')
+            del section[d]
+        
+    return results 
+    
+    #print(results, '---- the results in source fitler')
+
     
 def send_ome_alerts_of_user(user):
     #try:
@@ -687,7 +714,7 @@ def send_ome_alerts_of_user(user):
                 if len(ome_alert_results['path']) > 0:
                     if user in sumitovant_list:
                         email_address = user + '@sumitovant.com'
-                        #source_filter(ome_alert_results)
+                        source_filter(ome_alert_results)
                     else:
                         email_address = user + '@roivant.com'
                     #email_address = 'julia.gray@roivant.com'
@@ -836,7 +863,7 @@ def send_successful_search(user):
 #yoanns_alerts = send_ome_alerts_of_user('yoann.randriamihaja')
 #bills_alert_ids = send_ome_alerts_of_user('bill.mcmahon')
 #julias_alert_ids = send_ome_alerts_of_user('julia.gray')
-codys_alert_ids = send_ome_alerts_of_user('cody.schiffer')
+#codys_alert_ids = send_ome_alerts_of_user('cody.schiffer')
 #ryans_alert_ids = send_ome_alerts_of_user('ryan.costa')
 #daniels_alert_ids = send_ome_alerts_of_user('daniel.kwon')
 #archits_alert_ids = send_ome_alerts_of_user('archit.sheth-shah')
@@ -844,8 +871,8 @@ codys_alert_ids = send_ome_alerts_of_user('cody.schiffer')
 #anythonys_alert_ids = send_ome_alerts_of_user('anthony.bogachev')
 # send_ome_alerts()
 # time.sleep(120)
-codys_alert_completion = send_completion_notification('cody.schiffer')
-codys_search_completion = send_successful_search('cody.schiffer')
+#codys_alert_completion = send_completion_notification('cody.schiffer')
+#codys_search_completion = send_successful_search('cody.schiffer')
 # time.sleep(120)
 # yoanns_alert_completion = send_completion_notification('yoann.randriamihaja')
 # time.sleep(120)
@@ -857,20 +884,23 @@ print('done')
 print('second debug')
 
 # DEBUGGING FUNCTIONS --------------
-#from_date = datetime.date(2019,11,3)
-#from_date = datetime.date.today() - datetime.timedelta(days=1)
+#from_date = datetime.date(2020,11,3)
+from_date = datetime.date.today() - datetime.timedelta(days=1)
 #to_date = datetime.date(2020,3,2)
-#to_date = datetime.date.today()
+to_date = datetime.date.today()
 
 
-#test_search_params, test_alert_title = get_documents.get_search_params_list('356')
+test_search_params, test_alert_title = get_documents.get_search_params_list('193')
 #print(test_search_params,'---- these are the test params')
 
 #test_url = construct_solr_search_url(test_search_terms, from_date=from_date)
 
 #test_search_params = [{'search_type': 'standard', 'keyphrase1': 'Trace amine associated receptor 1', 'keyword': 'Trace amine associated receptor 1', 'source_select': 'all', 'alert_title': 'TAAR1_Sunovion_OME_Alert', 'filter_type': 'or', 'journal_select': '', 'author_select': '', 'institution_select': '', 'filter_leeway': 70}, {'search_type': 'standard', 'keyphrase1': 'Trace amine-associated receptor 1', 'keyword': 'Trace amine-associated receptor 1', 'source_select': 'all', 'alert_title': 'TAAR1_Sunovion_OME_Alert', 'filter_type': 'or', 'journal_select': '', 'author_select': '', 'institution_select': '', 'filter_leeway': 70}, {'search_type': 'standard', 'keyphrase1': 'TaR-1', 'keyword': 'TaR-1', 'source_select': 'all', 'alert_title': 'TAAR1_Sunovion_OME_Alert', 'filter_type': 'or', 'journal_select': '', 'author_select': '', 'institution_select': '', 'filter_leeway': 70}, {'search_type': 'standard', 'keyphrase1': 'Trace amine receptor 1', 'keyword': 'Trace amine receptor 1', 'source_select': 'all', 'alert_title': 'TAAR1_Sunovion_OME_Alert', 'filter_type': 'or', 'journal_select': '', 'author_select': '', 'institution_select': '', 'filter_leeway': 70}, {'search_type': 'standard', 'keyphrase1': 'TAAR1', 'keyword': 'TAAR1', 'source_select': 'all', 'alert_title': 'TAAR1_Sunovion_OME_Alert', 'filter_type': 'or', 'journal_select': '', 'author_select': '', 'institution_select': '', 'filter_leeway': 70}, {'search_type': 'standard', 'keyphrase1': 'Taar-1', 'keyword': 'Taar-1', 'source_select': 'all', 'alert_title': 'TAAR1_Sunovion_OME_Alert', 'filter_type': 'or', 'journal_select': '', 'author_select': '', 'institution_select': '', 'filter_leeway': 70}, {'search_type': 'standard', 'keyphrase1': 'TAR-1', 'keyword': 'TAR-1', 'source_select': 'all', 'alert_title': 'TAAR1_Sunovion_OME_Alert', 'filter_type': 'or', 'journal_select': '', 'author_select': '', 'institution_select': '', 'filter_leeway': 70}]
-#ome_alert_results, url_query = get_documents.get_ome_alert_results(test_search_params, from_date=from_date, to_date=to_date, tags='tagged_entities_for_email')
-#print(ome_alert_results)
+ome_alert_results, url_query = get_documents.get_ome_alert_results(test_search_params, from_date=from_date, to_date=to_date, tags='tagged_entities_for_email')
+print(ome_alert_results)
+
+#source_trial = source_filter(ome_alert_results)
+
 #------------------------------------
 
 #julias_alerts, julias_alert_ids = get_documents.get_ome_alerts_of_user('julia.gray')

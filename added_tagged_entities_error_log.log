@@ -222,3 +222,4 @@ ERROR:root:'article_title_ss' | error in get_documents.get_solr_results 2020-04-
 ERROR:root:object of type 'NoneType' has no len() | error in get_documents.get_search_params_list 2020-04-13 18:03:23.014518
 ERROR:root:object of type 'NoneType' has no len() | error in get_documents.get_search_params_list 2020-04-22 16:49:26.986157
 ERROR:root:object of type 'NoneType' has no len() | error in get_documents.get_search_params_list 2020-04-29 16:21:54.652414
+ERROR:root:local variable 'journal_docid_list' referenced before assignment | error in get_documents.get_ome_alert_results 2020-07-20 17:11:25.801835
