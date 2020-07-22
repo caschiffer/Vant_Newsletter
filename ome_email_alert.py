@@ -119,14 +119,17 @@ def table_string_results_internal(results, username, sumitovant_list):
         if results['document_type'][row_index] in table_strings.keys(): #determine if source is in table_strings dictionary
             table_strings[results['document_type'][row_index]].append(row_string)
             table_summary_strings[results['document_type'][row_index]].append(summary_row_string)
+        
         else:# if source does not exist in originally curated table strings dictionary add that source to the dictionary as a key then add text content
             table_strings[str(results['document_type'][row_index])] = []#add key
             table_summary_strings[str(results['document_type'][row_index])] = []#add key
             table_strings[results['document_type'][row_index]].append(row_string)#add content
             table_summary_strings[results['document_type'][row_index]].append(summary_row_string)#add content
-            
+    
+    #print(table_strings,'-----doc type to appropriate row string')
+    
     if username not in sumitovant_list:
-        for key in ['press_release','clinical_trials','pubmed_abstract','pubmed_article','GBD_email', 'Cortellis', 'IPD', 'fda_guidance', 'FDA_Medical_reviews', 'streetaccount', 'newswire', 'pr_newswire', 'google_news', 'SEC_filing']:
+        for key in table_strings.keys():
             if len(table_strings[key]) > 0: 
                 ### Removed table rebolding to accommodate new sections for new sections of table
                 
@@ -149,7 +152,7 @@ def table_string_results_internal(results, username, sumitovant_list):
     #        error_string =     '%s | error in table_string_results %s'%(e, str(datetime.datetime.now()))
     #        logging.error(error_string)
     else:
-        for key in ['press_release','clinical_trials','pubmed_abstract','pubmed_article', 'Cortellis', 'fda_guidance', 'FDA_Medical_reviews', 'newswire', 'pr_newswire', 'google_news', 'SEC_filing']:
+        for key in table_strings.keys()
             if len(table_strings[key]) > 0: 
                 ### Removed table rebolding to accommodate new sections for new sections of table
                 
@@ -171,7 +174,9 @@ def table_string_results_internal(results, username, sumitovant_list):
     #    except Exception as e:
     #        error_string =     '%s | error in table_string_results %s'%(e, str(datetime.datetime.now()))
     #        logging.error(error_string)
-        
+    
+    print(table_string,'---- this is the table string')
+    
     return table_string, summary_table_string
 
 def get_row_string_internal(keyword, keyword_count, document_type, path, title, text, tags_ordered, tags,
@@ -278,7 +283,9 @@ def get_row_string_internal(keyword, keyword_count, document_type, path, title, 
     #except Exception as e:
     #    error_string = '%s | error in get_row_string %s'%(e, str(datetime.datetime.now()))
     #    logging.error(error_string)
-        
+    
+    #print(row_string, '--- this is the row string')
+    
     return row_string, summary_row_string
 
 def table_string_results(results, username,sumitovant_list):
@@ -312,9 +319,11 @@ def table_string_results(results, username,sumitovant_list):
             table_summary_strings[str(results['document_type'][row_index])] = []#add key
             table_strings[results['document_type'][row_index]].append(row_string)#add content
             table_summary_strings[results['document_type'][row_index]].append(summary_row_string)#add content
-            
+    
+    #setting up document keys
+    
     if username not in sumitovant_list:
-        for key in ['press_release','clinical_trials','pubmed_abstract','pubmed_article','GBD_email', 'Cortellis', 'IPD', 'fda_guidance', 'FDA_Medical_reviews', 'streetaccount', 'newswire', 'pr_newswire', 'google_news', 'SEC_filing']:
+        for key in table_strings.keys():
             if len(table_strings[key]) > 0: 
                 #bolder line break between document types  
                 table_strings[key][-1] = table_strings[key][-1].replace('<td style="border-bottom:1px solid #000000;max-width:150px">','<td style="border-bottom:2px solid #000000;max-width:150px">').replace('<td style="border-bottom:1px solid #000000;max-width:300px">', '<td style="border-bottom:2px solid #000000;max-width:300px">') 
@@ -324,7 +333,7 @@ def table_string_results(results, username,sumitovant_list):
                 #print(table_body, '----- this is the table body')
                 summary_table_body += ''.join(table_summary_strings[key])
     else:
-        for key in ['press_release','clinical_trials','pubmed_abstract','pubmed_article', 'Cortellis', 'fda_guidance', 'FDA_Medical_reviews', 'newswire', 'pr_newswire', 'google_news', 'SEC_filing']:
+        for key in table_string.keys():
             if len(table_strings[key]) > 0: 
                 #bolder line break between document types  
                 table_strings[key][-1] = table_strings[key][-1].replace('<td style="border-bottom:1px solid #000000;max-width:150px">','<td style="border-bottom:2px solid #000000;max-width:150px">').replace('<td style="border-bottom:1px solid #000000;max-width:300px">', '<td style="border-bottom:2px solid #000000;max-width:300px">') 
@@ -892,20 +901,59 @@ from_date = datetime.date(2020,7,19)
 #from_date = datetime.date.today() - datetime.timedelta(days=1)
 to_date = datetime.date(2020,7,20)
 #to_date = datetime.date.today()
+internal_users = ['cody.schiffer']
+user = 'cody.schiffer'
+sumitovant_list = ['julia.gray','bill.mcmahon','cody.schiffer',
+                      'isabel.metzger','yoann.randriamihaja', 'samuel.croset', 
+                      'houston.warren', 'rajat.chandra', 'natasha.zalzinyak','justin.dimartino','sam.azoulay','carson.tao']
 
+email_address = 'cody.schiffer@sumitovant.com'
+email_subject = 'DEBUGDEBUGDEBUG'
 
-test_search_params, test_alert_title = get_documents.get_search_params_list('18')
+test_search_params, test_alert_title = get_documents.get_search_params_list('445')
 #print(test_search_params,'---- these are the test params')
 
 #test_url = construct_solr_search_url(test_search_terms, from_date=from_date)
 
-#test_search_params = [{'search_type': 'standard', 'keyphrase1': 'Trace amine associated receptor 1', 'keyword': 'Trace amine associated receptor 1', 'source_select': 'all', 'alert_title': 'TAAR1_Sunovion_OME_Alert', 'filter_type': 'or', 'journal_select': '', 'author_select': '', 'institution_select': '', 'filter_leeway': 70}, {'search_type': 'standard', 'keyphrase1': 'Trace amine-associated receptor 1', 'keyword': 'Trace amine-associated receptor 1', 'source_select': 'all', 'alert_title': 'TAAR1_Sunovion_OME_Alert', 'filter_type': 'or', 'journal_select': '', 'author_select': '', 'institution_select': '', 'filter_leeway': 70}, {'search_type': 'standard', 'keyphrase1': 'TaR-1', 'keyword': 'TaR-1', 'source_select': 'all', 'alert_title': 'TAAR1_Sunovion_OME_Alert', 'filter_type': 'or', 'journal_select': '', 'author_select': '', 'institution_select': '', 'filter_leeway': 70}, {'search_type': 'standard', 'keyphrase1': 'Trace amine receptor 1', 'keyword': 'Trace amine receptor 1', 'source_select': 'all', 'alert_title': 'TAAR1_Sunovion_OME_Alert', 'filter_type': 'or', 'journal_select': '', 'author_select': '', 'institution_select': '', 'filter_leeway': 70}, {'search_type': 'standard', 'keyphrase1': 'TAAR1', 'keyword': 'TAAR1', 'source_select': 'all', 'alert_title': 'TAAR1_Sunovion_OME_Alert', 'filter_type': 'or', 'journal_select': '', 'author_select': '', 'institution_select': '', 'filter_leeway': 70}, {'search_type': 'standard', 'keyphrase1': 'Taar-1', 'keyword': 'Taar-1', 'source_select': 'all', 'alert_title': 'TAAR1_Sunovion_OME_Alert', 'filter_type': 'or', 'journal_select': '', 'author_select': '', 'institution_select': '', 'filter_leeway': 70}, {'search_type': 'standard', 'keyphrase1': 'TAR-1', 'keyword': 'TAR-1', 'source_select': 'all', 'alert_title': 'TAAR1_Sunovion_OME_Alert', 'filter_type': 'or', 'journal_select': '', 'author_select': '', 'institution_select': '', 'filter_leeway': 70}]
-ome_alert_results, url_query = get_documents.get_ome_alert_results(test_search_params, from_date=from_date, to_date=to_date, tags='tagged_entities_for_email')
-print(ome_alert_results)
-
 #source_trial = source_filter(ome_alert_results)
 
-#------------------------------------
+#test_search_params = [{'search_type': 'standard', 'keyphrase1': 'Trace amine associated receptor 1', 'keyword': 'Trace amine associated receptor 1', 'source_select': 'all', 'alert_title': 'TAAR1_Sunovion_OME_Alert', 'filter_type': 'or', 'journal_select': '', 'author_select': '', 'institution_select': '', 'filter_leeway': 70}, {'search_type': 'standard', 'keyphrase1': 'Trace amine-associated receptor 1', 'keyword': 'Trace amine-associated receptor 1', 'source_select': 'all', 'alert_title': 'TAAR1_Sunovion_OME_Alert', 'filter_type': 'or', 'journal_select': '', 'author_select': '', 'institution_select': '', 'filter_leeway': 70}, {'search_type': 'standard', 'keyphrase1': 'TaR-1', 'keyword': 'TaR-1', 'source_select': 'all', 'alert_title': 'TAAR1_Sunovion_OME_Alert', 'filter_type': 'or', 'journal_select': '', 'author_select': '', 'institution_select': '', 'filter_leeway': 70}, {'search_type': 'standard', 'keyphrase1': 'Trace amine receptor 1', 'keyword': 'Trace amine receptor 1', 'source_select': 'all', 'alert_title': 'TAAR1_Sunovion_OME_Alert', 'filter_type': 'or', 'journal_select': '', 'author_select': '', 'institution_select': '', 'filter_leeway': 70}, {'search_type': 'standard', 'keyphrase1': 'TAAR1', 'keyword': 'TAAR1', 'source_select': 'all', 'alert_title': 'TAAR1_Sunovion_OME_Alert', 'filter_type': 'or', 'journal_select': '', 'author_select': '', 'institution_select': '', 'filter_leeway': 70}, {'search_type': 'standard', 'keyphrase1': 'Taar-1', 'keyword': 'Taar-1', 'source_select': 'all', 'alert_title': 'TAAR1_Sunovion_OME_Alert', 'filter_type': 'or', 'journal_select': '', 'author_select': '', 'institution_select': '', 'filter_leeway': 70}, {'search_type': 'standard', 'keyphrase1': 'TAR-1', 'keyword': 'TAR-1', 'source_select': 'all', 'alert_title': 'TAAR1_Sunovion_OME_Alert', 'filter_type': 'or', 'journal_select': '', 'author_select': '', 'institution_select': '', 'filter_leeway': 70}]
+ome_alert_results, url_query = get_documents.get_ome_alert_results(test_search_params, from_date=from_date, to_date=to_date, tags='tagged_entities_for_email')
+
+
+###
+##Internal users
+#if user in internal_users:
+ome_alert_results = headlines_check(ome_alert_results, user)
+table_string_internal, summary_table_string_internal = table_string_results_internal(ome_alert_results, user, sumitovant_list)
+
+#print(ome_alert_results)
+
+email_string_internal = "<html><head></head><body><h4>Summary (" + str(len(ome_alert_results['keyword'])) + " results)</h4>" + summary_table_string_internal + "<br><br><h4>Documents</h4>" + table_string_internal + "</body></html>"
+
+mail = Outlook()
+mail.login('comp.res@sumitovant.com','Sumitovant$cr0220')
+#mail.login('comp.res@roivant.com','Roivant$cr0220!')
+mail.inbox()
+mail.sendEmail(email_address, email_subject, email_string_internal)
+
+
+
+####
+#Non-internal
+
+#else:
+table_string, summary_table_string = table_string_results(ome_alert_results, user, sumitovant_list)
+
+#email_string = "<html><head></head><body><h4>Summary (" + str(len(ome_alert_results['keyword'])) + " results)</h4>" + summary_table_string + "<br><br><h4>Documents</h4>" + table_string + "</body></html>"
+
+# mail = Outlook()
+# mail.login('comp.res@sumitovant.com','Sumitovant$cr0220')
+# #mail.login('comp.res@roivant.com','Roivant$cr0220!')
+# mail.inbox()
+# mail.sendEmail(email_address, email_subject, email_string)
+
+# #------------------------------------
 
 #julias_alerts, julias_alert_ids = get_documents.get_ome_alerts_of_user('julia.gray')
 #clean_keyword_list, keyword_title = get_documents.get_keyword_list_from_ome_alert_id('97')
