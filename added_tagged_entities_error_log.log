@@ -223,3 +223,9 @@ ERROR:root:object of type 'NoneType' has no len() | error in get_documents.get_s
 ERROR:root:object of type 'NoneType' has no len() | error in get_documents.get_search_params_list 2020-04-22 16:49:26.986157
 ERROR:root:object of type 'NoneType' has no len() | error in get_documents.get_search_params_list 2020-04-29 16:21:54.652414
 ERROR:root:local variable 'journal_docid_list' referenced before assignment | error in get_documents.get_ome_alert_results 2020-07-20 17:11:25.801835
+ERROR:root:name 'keywords' is not defined | error in add_tagged_entities_error_log.log 2020-07-21 21:20:20.244088
+ERROR:root:local variable 'shorter_sentence' referenced before assignment | error in get_documents.get_solr_results 2020-07-21 21:20:20.244088
+ERROR:root:name 'keywords' is not defined | error in add_tagged_entities_error_log.log 2020-07-21 21:20:38.986325
+ERROR:root:local variable 'shorter_sentence' referenced before assignment | error in get_documents.get_solr_results 2020-07-21 21:20:38.986325
+ERROR:root:name 'keywords' is not defined | error in add_tagged_entities_error_log.log 2020-07-21 21:26:28.659593
+ERROR:root:local variable 'shorter_sentence' referenced before assignment | error in get_documents.get_solr_results 2020-07-21 21:26:28.659593

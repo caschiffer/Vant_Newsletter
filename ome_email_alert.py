@@ -152,7 +152,7 @@ def table_string_results_internal(results, username, sumitovant_list):
     #        error_string =     '%s | error in table_string_results %s'%(e, str(datetime.datetime.now()))
     #        logging.error(error_string)
     else:
-        for key in table_strings.keys()
+        for key in table_strings.keys():
             if len(table_strings[key]) > 0: 
                 ### Removed table rebolding to accommodate new sections for new sections of table
                 
@@ -175,7 +175,7 @@ def table_string_results_internal(results, username, sumitovant_list):
     #        error_string =     '%s | error in table_string_results %s'%(e, str(datetime.datetime.now()))
     #        logging.error(error_string)
     
-    print(table_string,'---- this is the table string')
+    #print(table_string,'---- this is the table string')
     
     return table_string, summary_table_string
 
@@ -333,7 +333,7 @@ def table_string_results(results, username,sumitovant_list):
                 #print(table_body, '----- this is the table body')
                 summary_table_body += ''.join(table_summary_strings[key])
     else:
-        for key in table_string.keys():
+        for key in table_strings.keys():
             if len(table_strings[key]) > 0: 
                 #bolder line break between document types  
                 table_strings[key][-1] = table_strings[key][-1].replace('<td style="border-bottom:1px solid #000000;max-width:150px">','<td style="border-bottom:2px solid #000000;max-width:150px">').replace('<td style="border-bottom:1px solid #000000;max-width:300px">', '<td style="border-bottom:2px solid #000000;max-width:300px">') 
@@ -897,9 +897,9 @@ print('done')
 print('second debug')
 
 # DEBUGGING FUNCTIONS --------------
-from_date = datetime.date(2020,7,19)
+from_date = datetime.date(2020,6,26)
 #from_date = datetime.date.today() - datetime.timedelta(days=1)
-to_date = datetime.date(2020,7,20)
+to_date = datetime.date(2020,6,27)
 #to_date = datetime.date.today()
 internal_users = ['cody.schiffer']
 user = 'cody.schiffer'
@@ -940,10 +940,10 @@ mail.sendEmail(email_address, email_subject, email_string_internal)
 
 
 ####
-#Non-internal
+##Non-internal
 
-#else:
-table_string, summary_table_string = table_string_results(ome_alert_results, user, sumitovant_list)
+##else:
+#table_string, summary_table_string = table_string_results(ome_alert_results, user, sumitovant_list)
 
 #email_string = "<html><head></head><body><h4>Summary (" + str(len(ome_alert_results['keyword'])) + " results)</h4>" + summary_table_string + "<br><br><h4>Documents</h4>" + table_string + "</body></html>"
 

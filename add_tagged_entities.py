@@ -70,16 +70,27 @@ def solr_clean_special_char(string_to_mask, solr_specialchars='\+-&|!(){}[]^"~*?
 def get_keyword_sentences(document_text, keyword):
     try:
         """Return only sentences with keyword"""
-
+        
+        
         keyword_processor = KeywordProcessor()
         #keyword_fr_process = re.sub('[-/]', ' ', keyword) ## remove keyword special characters using regex
         keyword_fr_process= solr_clean_special_char(keyword)
         keyword_processor.add_keyword(keyword_fr_process.lower())
         #document_text_copy = re.sub('[-/]', ' ', document_text) ## remove keyword special characters using regex
         document_text_copy = solr_clean_special_char(document_text)
+        #print(document_text_copy,'--- cleaned documents')
         keywords_found = keyword_processor.extract_keywords(document_text_copy.lower(), span_info=True) # for counting keywords w/o special characters
-            
         
+        #print(keyword, '--- this is the keyword')
+        
+        # if keyword == 'size-exclusion':# or keyword == 'size exclusion':
+        #     #print(keyword,'---- the keywords found')
+        #     print(keyword_processor,'---- full processor')
+
+        #     print(keywords_found, '---- the keywords found')
+        #     print(document_text_copy,'--- cleaned documents')
+        #     #print(keyword_processor,'---- full processor')
+
         shorter_sentence = ""
     
         sentence_ls = text_to_sentences(document_text)
@@ -90,7 +101,7 @@ def get_keyword_sentences(document_text, keyword):
             #print('this is the keyword --->' + str(keyword))
             #sentence_ls[i] = re.sub('[-/]', ' ', sentence_ls[i])
             #print('this is the sentence --->' + str(sentence_ls[i]))
-            if keyword.lower() in sentence_ls[i].lower(): #<----- replace/remove all special characters
+            if keyword_fr_process.lower() in sentence_ls[i].lower(): #<----- replace/remove all special characters
                 if i == 0:
                     shorter_sentence += sentence_ls[i]
                 elif (i == last_sentence_index + 1) and (len(shorter_sentence) < 500):
