@@ -711,10 +711,14 @@ def send_ome_alerts_of_user(user):
                     ome_alert_results = headlines_check(ome_alert_results, user)
                 #print(ome_alert_results.keys(),'---- this is post ome_alert_results')
                 
+                #Apply cortellis filters to all ome alerts
+                ome_alert_results = source_filter(ome_alert_results)
+                
+                
                 if len(ome_alert_results['path']) > 0:
                     if user in sumitovant_list:
                         email_address = user + '@sumitovant.com'
-                        source_filter(ome_alert_results)
+                        #source_filter(ome_alert_results)
                     else:
                         email_address = user + '@roivant.com'
                     #email_address = 'julia.gray@roivant.com'
@@ -884,13 +888,13 @@ print('done')
 print('second debug')
 
 # DEBUGGING FUNCTIONS --------------
-#from_date = datetime.date(2020,11,3)
-from_date = datetime.date.today() - datetime.timedelta(days=1)
-#to_date = datetime.date(2020,3,2)
-to_date = datetime.date.today()
+from_date = datetime.date(2020,7,19)
+#from_date = datetime.date.today() - datetime.timedelta(days=1)
+to_date = datetime.date(2020,7,20)
+#to_date = datetime.date.today()
 
 
-test_search_params, test_alert_title = get_documents.get_search_params_list('193')
+test_search_params, test_alert_title = get_documents.get_search_params_list('18')
 #print(test_search_params,'---- these are the test params')
 
 #test_url = construct_solr_search_url(test_search_terms, from_date=from_date)
