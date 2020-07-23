@@ -882,60 +882,60 @@ def send_successful_search(user):
 #archits_alert_ids = send_ome_alerts_of_user('archit.sheth-shah')
 #emirs_alert_ids = send_ome_alerts_of_user('emir.haskovic')
 #anythonys_alert_ids = send_ome_alerts_of_user('anthony.bogachev')
-# send_ome_alerts()
-# time.sleep(120)
-#codys_alert_completion = send_completion_notification('cody.schiffer')
-#codys_search_completion = send_successful_search('cody.schiffer')
-# time.sleep(120)
-# yoanns_alert_completion = send_completion_notification('yoann.randriamihaja')
-# time.sleep(120)
-# aymans_search_completion = send_successful_search('ayman.mohammad')
-# time.sleep(120)
-# andrews_search_completion = send_successful_search('andrew.bogorad')
+send_ome_alerts()
+time.sleep(120)
+codys_alert_completion = send_completion_notification('cody.schiffer')
+codys_search_completion = send_successful_search('cody.schiffer')
+time.sleep(120)
+yoanns_alert_completion = send_completion_notification('yoann.randriamihaja')
+time.sleep(120)
+aymans_search_completion = send_successful_search('ayman.mohammad')
+time.sleep(120)
+andrews_search_completion = send_successful_search('andrew.bogorad')
 
 print('done')
-print('second debug')
+3print('second debug')
 
 # DEBUGGING FUNCTIONS --------------
-from_date = datetime.date(2020,6,25)
-#from_date = datetime.date.today() - datetime.timedelta(days=1)
-to_date = datetime.date(2020,6,26)
-#to_date = datetime.date.today()
-internal_users = ['cody.schiffer']
-user = 'cody.schiffer'
-sumitovant_list = ['julia.gray','bill.mcmahon','cody.schiffer',
-                      'isabel.metzger','yoann.randriamihaja', 'samuel.croset', 
-                      'houston.warren', 'rajat.chandra', 'natasha.zalzinyak','justin.dimartino','sam.azoulay','carson.tao']
+# from_date = datetime.date(2020,6,25)
+# #from_date = datetime.date.today() - datetime.timedelta(days=1)
+# to_date = datetime.date(2020,6,26)
+# #to_date = datetime.date.today()
+# internal_users = ['cody.schiffer']
+# user = 'cody.schiffer'
+# sumitovant_list = ['julia.gray','bill.mcmahon','cody.schiffer',
+#                       'isabel.metzger','yoann.randriamihaja', 'samuel.croset', 
+#                       'houston.warren', 'rajat.chandra', 'natasha.zalzinyak','justin.dimartino','sam.azoulay','carson.tao']
 
-email_address = 'cody.schiffer@sumitovant.com'
-email_subject = 'DEBUGDEBUGDEBUG'
+# email_address = 'cody.schiffer@sumitovant.com'
+# email_subject = 'DEBUGDEBUGDEBUG'
 
-test_search_params, test_alert_title = get_documents.get_search_params_list('447')
-#print(test_search_params,'---- these are the test params')
+# test_search_params, test_alert_title = get_documents.get_search_params_list('447')
+# #print(test_search_params,'---- these are the test params')
 
-#test_url = construct_solr_search_url(test_search_terms, from_date=from_date)
+# #test_url = construct_solr_search_url(test_search_terms, from_date=from_date)
 
-#source_trial = source_filter(ome_alert_results)
+# #source_trial = source_filter(ome_alert_results)
 
-#test_search_params = [{'search_type': 'standard', 'keyphrase1': 'Trace amine associated receptor 1', 'keyword': 'Trace amine associated receptor 1', 'source_select': 'all', 'alert_title': 'TAAR1_Sunovion_OME_Alert', 'filter_type': 'or', 'journal_select': '', 'author_select': '', 'institution_select': '', 'filter_leeway': 70}, {'search_type': 'standard', 'keyphrase1': 'Trace amine-associated receptor 1', 'keyword': 'Trace amine-associated receptor 1', 'source_select': 'all', 'alert_title': 'TAAR1_Sunovion_OME_Alert', 'filter_type': 'or', 'journal_select': '', 'author_select': '', 'institution_select': '', 'filter_leeway': 70}, {'search_type': 'standard', 'keyphrase1': 'TaR-1', 'keyword': 'TaR-1', 'source_select': 'all', 'alert_title': 'TAAR1_Sunovion_OME_Alert', 'filter_type': 'or', 'journal_select': '', 'author_select': '', 'institution_select': '', 'filter_leeway': 70}, {'search_type': 'standard', 'keyphrase1': 'Trace amine receptor 1', 'keyword': 'Trace amine receptor 1', 'source_select': 'all', 'alert_title': 'TAAR1_Sunovion_OME_Alert', 'filter_type': 'or', 'journal_select': '', 'author_select': '', 'institution_select': '', 'filter_leeway': 70}, {'search_type': 'standard', 'keyphrase1': 'TAAR1', 'keyword': 'TAAR1', 'source_select': 'all', 'alert_title': 'TAAR1_Sunovion_OME_Alert', 'filter_type': 'or', 'journal_select': '', 'author_select': '', 'institution_select': '', 'filter_leeway': 70}, {'search_type': 'standard', 'keyphrase1': 'Taar-1', 'keyword': 'Taar-1', 'source_select': 'all', 'alert_title': 'TAAR1_Sunovion_OME_Alert', 'filter_type': 'or', 'journal_select': '', 'author_select': '', 'institution_select': '', 'filter_leeway': 70}, {'search_type': 'standard', 'keyphrase1': 'TAR-1', 'keyword': 'TAR-1', 'source_select': 'all', 'alert_title': 'TAAR1_Sunovion_OME_Alert', 'filter_type': 'or', 'journal_select': '', 'author_select': '', 'institution_select': '', 'filter_leeway': 70}]
-ome_alert_results, url_query = get_documents.get_ome_alert_results(test_search_params, from_date=from_date, to_date=to_date, tags='tagged_entities_for_email')
+# #test_search_params = [{'search_type': 'standard', 'keyphrase1': 'Trace amine associated receptor 1', 'keyword': 'Trace amine associated receptor 1', 'source_select': 'all', 'alert_title': 'TAAR1_Sunovion_OME_Alert', 'filter_type': 'or', 'journal_select': '', 'author_select': '', 'institution_select': '', 'filter_leeway': 70}, {'search_type': 'standard', 'keyphrase1': 'Trace amine-associated receptor 1', 'keyword': 'Trace amine-associated receptor 1', 'source_select': 'all', 'alert_title': 'TAAR1_Sunovion_OME_Alert', 'filter_type': 'or', 'journal_select': '', 'author_select': '', 'institution_select': '', 'filter_leeway': 70}, {'search_type': 'standard', 'keyphrase1': 'TaR-1', 'keyword': 'TaR-1', 'source_select': 'all', 'alert_title': 'TAAR1_Sunovion_OME_Alert', 'filter_type': 'or', 'journal_select': '', 'author_select': '', 'institution_select': '', 'filter_leeway': 70}, {'search_type': 'standard', 'keyphrase1': 'Trace amine receptor 1', 'keyword': 'Trace amine receptor 1', 'source_select': 'all', 'alert_title': 'TAAR1_Sunovion_OME_Alert', 'filter_type': 'or', 'journal_select': '', 'author_select': '', 'institution_select': '', 'filter_leeway': 70}, {'search_type': 'standard', 'keyphrase1': 'TAAR1', 'keyword': 'TAAR1', 'source_select': 'all', 'alert_title': 'TAAR1_Sunovion_OME_Alert', 'filter_type': 'or', 'journal_select': '', 'author_select': '', 'institution_select': '', 'filter_leeway': 70}, {'search_type': 'standard', 'keyphrase1': 'Taar-1', 'keyword': 'Taar-1', 'source_select': 'all', 'alert_title': 'TAAR1_Sunovion_OME_Alert', 'filter_type': 'or', 'journal_select': '', 'author_select': '', 'institution_select': '', 'filter_leeway': 70}, {'search_type': 'standard', 'keyphrase1': 'TAR-1', 'keyword': 'TAR-1', 'source_select': 'all', 'alert_title': 'TAAR1_Sunovion_OME_Alert', 'filter_type': 'or', 'journal_select': '', 'author_select': '', 'institution_select': '', 'filter_leeway': 70}]
+# ome_alert_results, url_query = get_documents.get_ome_alert_results(test_search_params, from_date=from_date, to_date=to_date, tags='tagged_entities_for_email')
 
 
-###
-##Internal users
-#if user in internal_users:
-ome_alert_results = headlines_check(ome_alert_results, user)
-table_string_internal, summary_table_string_internal = table_string_results_internal(ome_alert_results, user, sumitovant_list)
+# ###
+# ##Internal users
+# #if user in internal_users:
+# ome_alert_results = headlines_check(ome_alert_results, user)
+# table_string_internal, summary_table_string_internal = table_string_results_internal(ome_alert_results, user, sumitovant_list)
 
-#print(ome_alert_results)
+# #print(ome_alert_results)
 
-email_string_internal = "<html><head></head><body><h4>Summary (" + str(len(ome_alert_results['keyword'])) + " results)</h4>" + summary_table_string_internal + "<br><br><h4>Documents</h4>" + table_string_internal + "</body></html>"
+# email_string_internal = "<html><head></head><body><h4>Summary (" + str(len(ome_alert_results['keyword'])) + " results)</h4>" + summary_table_string_internal + "<br><br><h4>Documents</h4>" + table_string_internal + "</body></html>"
 
-mail = Outlook()
-mail.login('comp.res@sumitovant.com','Sumitovant$cr0220')
-#mail.login('comp.res@roivant.com','Roivant$cr0220!')
-mail.inbox()
-mail.sendEmail(email_address, email_subject, email_string_internal)
+# mail = Outlook()
+# mail.login('comp.res@sumitovant.com','Sumitovant$cr0220')
+# #mail.login('comp.res@roivant.com','Roivant$cr0220!')
+# mail.inbox()
+# mail.sendEmail(email_address, email_subject, email_string_internal)
 
 
 
