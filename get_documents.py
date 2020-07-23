@@ -403,6 +403,8 @@ def get_solr_results(keyword, search_url, journal_select='', author_select='', i
                     else:
                         solr_results['LDA_class'].append('Not Evaluated')
                     solr_results['keyword'].append(keyword.strip())
+                    #print(keyword, '--- this is the keyword')
+                    #print(keyword.strip(),'--- this is the stripped keyword')
                     solr_results['path'].append(file_path)
                     solr_results['file_modified_date'].append(file_modified_date)
                     solr_results['title'].append(document_title)
@@ -715,18 +717,22 @@ def get_search_params_list(ome_alert_id):
                     search_list = [row[1]] + row[2].split(', ')# CS - prevents second, irrelevant + empty search params_list generation
                 elif len(row[2]) < 2:# CS - prevents second, irrelevant + empty search params_list generation
                     search_list = [row[1]]# CS - prevents second, irrelevant + empty search params_list generation
+                search_list = [ix for ix in search_list if ix != '']
                 for i in search_list:
                     search_params_list.append({'search_type':'standard', 'keyphrase1':i, 'keyword':i, 'source_select':row[6], 'alert_title':row[7], 'filter_type':row[9], 'journal_select':row[10], 'author_select':row[11], 'institution_select':row[12], 'filter_leeway':row[13]})
                     #^^^CS adjusted search_params_list to include new filter columns 
                     
             elif row[5] == 'standard_title':
                 search_list = row[2].split(', ')
+                search_list = [ix for ix in search_list if ix != '']
                 for i in search_list:
                     search_params_list.append({'search_type':'standard', 'keyphrase1':i, 'keyword':i, 'source_select':row[6], 'alert_title':row[7], 'filter_type':row[9], 'journal_select':row[10], 'author_select':row[11], 'institution_select':row[12], 'filter_leeway':row[13]})
                     #^^^CS adjusted search_params_list to include new filter columns 
                     
             elif 'cooccurence' in row[5]:
                 search_list = row[2].split(', ')
+                print(search_list, '--- this is the search list')
+                search_list = [ix for ix in search_list if ix != '']
                 for i in search_list:
                     if len(row[5].split('_')) > 1:
                         search_params_list.append({'search_type':'coocurence', 'keyphrase1':row[1], 'keyphrase2':i, 'keyword':i, 'keyphrase_distance':row[5].split('_')[1], 'source_select':row[6], 'alert_title':row[7], 'filter_type':row[9], 'journal_select':row[10], 'author_select':row[11], 'institution_select':row[12], 'filter_leeway':row[13]})

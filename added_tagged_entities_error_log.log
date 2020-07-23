@@ -229,3 +229,10 @@ ERROR:root:name 'keywords' is not defined | error in add_tagged_entities_error_l
 ERROR:root:local variable 'shorter_sentence' referenced before assignment | error in get_documents.get_solr_results 2020-07-21 21:20:38.986325
 ERROR:root:name 'keywords' is not defined | error in add_tagged_entities_error_log.log 2020-07-21 21:26:28.659593
 ERROR:root:local variable 'shorter_sentence' referenced before assignment | error in get_documents.get_solr_results 2020-07-21 21:26:28.659593
+ERROR:root:'str' object has no attribute 'string' | error in get_documents.get_solr_results 2020-07-22 18:49:34.084007
+ERROR:root:'str' object has no attribute 'string' | error in get_documents.get_solr_results 2020-07-22 18:49:34.534633
+ERROR:root:'str' object has no attribute 'string' | error in get_documents.get_solr_results 2020-07-22 18:49:36.064824
+ERROR:root:'str' object has no attribute 'string' | error in get_documents.get_solr_results 2020-07-22 18:49:37.679424
+ERROR:root:'str' object has no attribute 'string' | error in get_documents.get_solr_results 2020-07-22 18:49:38.411326
+ERROR:root:'str' object has no attribute 'string' | error in get_documents.get_solr_results 2020-07-22 18:49:40.711632
+ERROR:root:'str' object has no attribute 'string' | error in get_documents.get_solr_results 2020-07-22 18:49:41.055171
