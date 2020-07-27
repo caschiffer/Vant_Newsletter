@@ -894,7 +894,7 @@ time.sleep(120)
 andrews_search_completion = send_successful_search('andrew.bogorad')
 
 print('done')
-3print('second debug')
+print('second debug')
 
 # DEBUGGING FUNCTIONS --------------
 # from_date = datetime.date(2020,6,25)

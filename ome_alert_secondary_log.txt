@@ -1,75 +1,88 @@
+pubmed_abstract --- these are the doc types
 samuel.croset@sumitovant.com
-OME alert: Eotaxin (2020-07-20)
+OME alert: Eotaxin (2020-07-27)
  > Sign as  [b'LOGIN completed.']
    email replied
+[] ---- keywords in empty email
+empty email
+pubmed_abstract --- these are the doc types
+pubmed_abstract --- these are the doc types
+pubmed_abstract --- these are the doc types
+google_news --- these are the doc types
+google_news --- these are the doc types
+google_news --- these are the doc types
+pubmed_abstract --- these are the doc types
+pubmed_abstract --- these are the doc types
+pubmed_abstract --- these are the doc types
+pubmed_abstract --- these are the doc types
+google_news --- these are the doc types
+Cortellis --- these are the doc types
+google_news --- these are the doc types
+google_news --- these are the doc types
+google_news --- these are the doc types
+Cortellis --- these are the doc types
+SEC_filing --- these are the doc types
+pubmed_abstract --- these are the doc types
+google_news --- these are the doc types
+google_news --- these are the doc types
+press_release --- these are the doc types
+pubmed_abstract --- these are the doc types
+pubmed_abstract --- these are the doc types
+pubmed_abstract --- these are the doc types
+pubmed_abstract --- these are the doc types
+pubmed_abstract --- these are the doc types
+google_news --- these are the doc types
+pubmed_abstract --- these are the doc types
+pubmed_abstract --- these are the doc types
+pubmed_abstract --- these are the doc types
+pubmed_abstract --- these are the doc types
+pubmed_abstract --- these are the doc types
+pubmed_abstract --- these are the doc types
+pubmed_abstract --- these are the doc types
+pubmed_abstract --- these are the doc types
+pubmed_abstract --- these are the doc types
+pubmed_abstract --- these are the doc types
+pubmed_article --- these are the doc types
+pubmed_abstract --- these are the doc types
+google_news --- these are the doc types
+google_news --- these are the doc types
+google_news --- these are the doc types
+15 --- element to remove
+11 --- element to remove
+15 --- element to remove
+11 --- element to remove
+15 --- element to remove
+11 --- element to remove
+15 --- element to remove
+11 --- element to remove
+15 --- element to remove
+11 --- element to remove
+15 --- element to remove
+11 --- element to remove
+15 --- element to remove
+11 --- element to remove
+15 --- element to remove
+11 --- element to remove
+15 --- element to remove
+11 --- element to remove
+15 --- element to remove
+11 --- element to remove
+15 --- element to remove
+11 --- element to remove
+15 --- element to remove
+11 --- element to remove
+15 --- element to remove
+11 --- element to remove
+15 --- element to remove
+11 --- element to remove
+15 --- element to remove
+11 --- element to remove
+15 --- element to remove
+11 --- element to remove
+15 --- element to remove
+11 --- element to remove
 samuel.croset@sumitovant.com
-OME alert: Interleukin-33 (2020-07-20)
-   email replied
-samuel.croset@sumitovant.com
-OME alert: Autoimmune disease (2020-07-20)
-   email replied
-[] ---- keywords in empty email
-empty email
-[] ---- keywords in empty email
-empty email
-samuel.croset@sumitovant.com
-OME alert: anti-FcRn (2020-07-20)
-   email replied
-yoann.randriamihaja@sumitovant.com
-OME alert: Multiple Sclerosis (2020-07-20)
- > Sign as  [b'LOGIN completed.']
-   email replied
-yoann.randriamihaja@sumitovant.com
-OME alert: alzheimer (2020-07-20)
-   email replied
-yoann.randriamihaja@sumitovant.com
-OME alert: JAK-STAT (2020-07-20)
-   email replied
-yoann.randriamihaja@sumitovant.com
-OME alert: Roivant (2020-07-20)
-   email replied
-[] ---- keywords in empty email
-empty email
-yoann.randriamihaja@sumitovant.com
-OME alert: United therapeutics (2020-07-20)
-   email replied
-[] ---- keywords in empty email
-empty email
-yoann.randriamihaja@sumitovant.com
-OME alert: Positive clinical trial results (2020-07-20)
-   email replied
-[] ---- keywords in empty email
-empty email
-yoann.randriamihaja@sumitovant.com
-OME alert: dry eye (2020-07-20)
-   email replied
-[] ---- keywords in empty email
-empty email
-yoann.randriamihaja@sumitovant.com
-OME alert: melatonin (2020-07-20)
-   email replied
-yoann.randriamihaja@sumitovant.com
-OME alert: bridgebio (2020-07-20)
-   email replied
-yoann.randriamihaja@sumitovant.com
-OME alert: Cystic Fibrosis & Gene Therapy Sam A (Cooccurence) (2020-07-20)
-   email replied
-yoann.randriamihaja@sumitovant.com
-OME alert: Women's Health - Sam (standard) (2020-07-20)
-   email replied
-yoann.randriamihaja@sumitovant.com
-OME alert: Prostate Cancer - Sam A (2020-07-20)
-   email replied
-yoann.randriamihaja@sumitovant.com
-OME alert: Women's Health - Sam A (cooccurence) (2020-07-20)
-   email replied
-yoann.randriamihaja@sumitovant.com
-OME alert: Urology Sam A (Cooccurence) (2020-07-20)
-   email replied
-[] ---- keywords in empty email
-empty email
-yoann.randriamihaja@sumitovant.com
-OME alert: PAH - Sam A (Standard) (2020-07-20)
+OME alert: Autoimmune disease (2020-07-27)
    email replied
 [] ---- keywords in empty email
 empty email
@@ -77,135 +90,189 @@ empty email
 empty email
 [] ---- keywords in empty email
 empty email
+press_release --- these are the doc types
 yoann.randriamihaja@sumitovant.com
-OME alert: AAV and purification (2020-07-20)
-   email replied
-yoann.randriamihaja@sumitovant.com
-OME alert: AAV (2020-07-20)
-   email replied
-yoann.randriamihaja@sumitovant.com
-OME alert: AAV and production (2020-07-20)
-   email replied
-jon.kluft@roivant.com
-OME alert: Drugs (2020-07-20)
- > Sign as  [b'LOGIN completed.']
-   email replied
-jon.kluft@roivant.com
-OME alert: anti-FcRn (2020-07-20)
-   email replied
-bill.mcmahon@sumitovant.com
-OME alert: Roivant (2020-07-20)
+OME alert: Multiple Sclerosis (2020-07-27)
  > Sign as  [b'LOGIN completed.']
    email replied
 [] ---- keywords in empty email
 empty email
-[] ---- keywords in empty email
-empty email
-bill.mcmahon@sumitovant.com
-OME alert: Alzheimer (2020-07-20)
+pubmed_abstract --- these are the doc types
+press_release --- these are the doc types
+pubmed_article --- these are the doc types
+yoann.randriamihaja@sumitovant.com
+OME alert: JAK-STAT (2020-07-27)
+   email replied
+SEC_filing --- these are the doc types
+yoann.randriamihaja@sumitovant.com
+OME alert: Roivant (2020-07-27)
    email replied
 [] ---- keywords in empty email
 empty email
-bill.mcmahon@sumitovant.com
-OME alert: Positive clinical trial results (2020-07-20)
-   email replied
 [] ---- keywords in empty email
 empty email
-[] ---- keywords in empty email
-empty email
-bill.mcmahon@sumitovant.com
-OME alert: Women's Health - Sam (standard) (2020-07-20)
-   email replied
-bill.mcmahon@sumitovant.com
-OME alert: Prostate Cancer - Sam A (2020-07-20)
-   email replied
-bill.mcmahon@sumitovant.com
-OME alert: Women's Health - Sam A (cooccurence) (2020-07-20)
-   email replied
-bill.mcmahon@sumitovant.com
-OME alert: Urology Sam A (Cooccurence) (2020-07-20)
-   email replied
-[] ---- keywords in empty email
-empty email
-bill.mcmahon@sumitovant.com
-OME alert: PAH - Sam A (Standard) (2020-07-20)
-   email replied
+['met primary endpoint,\r primary endpoint\r', 'showed efficacy,\r efficacy,\r safety,\r adverse event,\r clinical activity,\r reduce lesions,\r reduction in lesion\rs', 'reduced lesions\r', 'encouraging results,\r proof of concept,\r proof-of-concept\r '] --- this is the search list
 [] ---- keywords in empty email
 empty email
 [] ---- keywords in empty email
 empty email
 [] ---- keywords in empty email
 empty email
-bill.mcmahon@sumitovant.com
-OME alert: AAV and purification (2020-07-20)
+['efficacy'] --- this is the search list
+[] ---- keywords in empty email
+empty email
+google_news --- these are the doc types
+yoann.randriamihaja@sumitovant.com
+OME alert: Sickle Cell Disease and Beta-Thalassemia (2020-07-27)
    email replied
-bill.mcmahon@sumitovant.com
-OME alert: AAV (2020-07-20)
+google_news --- these are the doc types
+yoann.randriamihaja@sumitovant.com
+OME alert: melatonin (2020-07-27)
    email replied
-bill.mcmahon@sumitovant.com
-OME alert: AAV and production (2020-07-20)
+[] ---- keywords in empty email
+empty email
+['gene therapy'] --- this is the search list
+[] ---- keywords in empty email
+empty email
+google_news --- these are the doc types
+yoann.randriamihaja@sumitovant.com
+OME alert: Women's Health - Sam (standard) (2020-07-27)
    email replied
-justin.dimartino@sumitovant.com
-OME alert: anti-FcRn (2020-07-20)
+['GnRh antagonist', 'GnRH', 'GnRh antagonists', 'GnRH', 'GNRH', 'Gonadotropin-releasing hormone', 'Gonadotropin releasing hormone'] --- this is the search list
+[] ---- keywords in empty email
+empty email
+['endometriosis'] --- this is the search list
+[] ---- keywords in empty email
+empty email
+['gene therapy', 'Gene'] --- this is the search list
+[] ---- keywords in empty email
+empty email
+['Farber', 'ceramidase', 'lipogranulomatosis', 'fibrocytic dysmucopolysaccharidosis'] --- this is the search list
+[] ---- keywords in empty email
+empty email
+pubmed_abstract --- these are the doc types
+google_news --- these are the doc types
+yoann.randriamihaja@sumitovant.com
+OME alert: PAH - Sam A (Standard) (2020-07-27)
+   email replied
+['IL-1 inhibitor', 'organ transplants', 'transplants'] --- this is the search list
+[] ---- keywords in empty email
+empty email
+['idiopathic pulmonary fibrosis', 'pulmonary fibrosis', 'IPF'] --- this is the search list
+[] ---- keywords in empty email
+empty email
+[] ---- keywords in empty email
+empty email
+['infectious titer', 'titer', 'yield', 'purification', 'purity', 'dot-blot', 'QC PCR', 'infectious units', 'ICA', 'FCA', 'particle-to-infectivity ratio', 'particles recovery', 'impurity', 'impurities', 'purified', 'polishing', 'ultrafiltration', 'size-exclusion', 'chromatography', 'hollow-fiber', 'precipitation'] --- this is the search list
+[] ---- keywords in empty email
+empty email
+[] ---- keywords in empty email
+empty email
+['production', 'producer', 'cell line', 'cell lines', 'cultivate', 'cultivated', 'cultivating', 'cultivates', 'manufacturing', 'manufacture', 'manufactured', 'generating vector', 'generate', 'produce', 'produces', 'producing', 'replication', 'replicating', 'amplified', 'amplifies', 'amplifying', 'amplification', 'transfection', '', 'infection', 'growth', 'transfected', 'packaging cell lines', 'packaging cell line', 'harvest'] --- this is the search list
+SEC_filing --- these are the doc types
+Cortellis --- these are the doc types
+1 --- element to remove
+1 --- element to remove
+1 --- element to remove
+1 --- element to remove
+1 --- element to remove
+1 --- element to remove
+1 --- element to remove
+1 --- element to remove
+1 --- element to remove
+1 --- element to remove
+1 --- element to remove
+1 --- element to remove
+1 --- element to remove
+1 --- element to remove
+1 --- element to remove
+1 --- element to remove
+1 --- element to remove
+yoann.randriamihaja@sumitovant.com
+OME alert: AAV and production (2020-07-27)
+   email replied
+[] ---- keywords in empty email
+empty email
+[] ---- keywords in empty email
+empty email
+[] ---- keywords in empty email
+empty email
+[] ---- keywords in empty email
+empty email
+[] ---- keywords in empty email
+empty email
+pubmed_article --- these are the doc types
+bill.mcmahon@sumitovant.com
+OME alert: Alzheimer (2020-07-27)
  > Sign as  [b'LOGIN completed.']
    email replied
 [] ---- keywords in empty email
 empty email
+[] ---- keywords in empty email
+empty email
+[] ---- keywords in empty email
+empty email
+google_news --- these are the doc types
+bill.mcmahon@sumitovant.com
+OME alert: Sickle Cell Disease and Beta-Thalassemia (2020-07-27)
+   email replied
+google_news --- these are the doc types
+bill.mcmahon@sumitovant.com
+OME alert: Women's Health - Sam (standard) (2020-07-27)
+   email replied
+['GnRh antagonist', 'GnRH', 'GnRh antagonists', 'GnRH', 'GNRH', 'Gonadotropin-releasing hormone', 'Gonadotropin releasing hormone'] --- this is the search list
+[] ---- keywords in empty email
+empty email
+['endometriosis'] --- this is the search list
+[] ---- keywords in empty email
+empty email
+['gene therapy', 'Gene,'] --- this is the search list
+[] ---- keywords in empty email
+empty email
+['Farber', 'ceramidase', 'lipogranulomatosis', 'fibrocytic dysmucopolysaccharidosis'] --- this is the search list
+[] ---- keywords in empty email
+empty email
+pubmed_abstract --- these are the doc types
+google_news --- these are the doc types
+bill.mcmahon@sumitovant.com
+OME alert: PAH - Sam A (Standard) (2020-07-27)
+   email replied
+['IL-1 inhibitor', 'organ transplants', 'transplants'] --- this is the search list
+[] ---- keywords in empty email
+empty email
+['idiopathic pulmonary fibrosis', 'pulmonary fibrosis', 'IPF'] --- this is the search list
+[] ---- keywords in empty email
+empty email
+[] ---- keywords in empty email
+empty email
+['infectious titer', 'titer', 'yield', 'purification', 'purity', 'dot-blot', 'QC PCR', 'infectious units', 'ICA', 'FCA', 'particle-to-infectivity ratio', 'particles recovery', 'impurity', 'impurities', 'purified', 'polishing', 'ultrafiltration', 'size-exclusion', 'chromatography', 'hollow-fiber', 'precipitation'] --- this is the search list
+[] ---- keywords in empty email
+empty email
+[] ---- keywords in empty email
+empty email
+['production', 'producer', 'cell line', 'cell lines', 'cultivate', 'cultivated', 'cultivating', 'cultivates', 'manufacturing', 'manufacture', 'manufactured', 'generating vector', 'generate', 'produce', 'produces', 'producing', 'replication', 'replicating', 'amplified', 'amplifies', 'amplifying', 'amplification', 'transfection', '', 'infection', 'growth', 'transfected', 'packaging cell lines', 'packaging cell line', 'harvest'] --- this is the search list
+SEC_filing --- these are the doc types
+bill.mcmahon@sumitovant.com
+OME alert: AAV and production (2020-07-27)
+   email replied
+[] ---- keywords in empty email
+empty email
+[] ---- keywords in empty email
+empty email
+[] ---- keywords in empty email
+empty email
+[] ---- keywords in empty email
+empty email
+['artificial intelligence', 'machine learning', 'target prediction', 'computational'] --- this is the search list
+pubmed_article --- these are the doc types
 julia.gray@sumitovant.com
-OME alert: Venture Capital (2020-07-20)
+OME alert: AI Drug Discovery (2020-07-27)
  > Sign as  [b'LOGIN completed.']
    email replied
+['GnRh antagonist', 'GnRH', 'GnRh antagonists', 'GnRH', 'GNRH', 'Gonadotropin-releasing hormone', 'Gonadotropin releasing hormone'] --- this is the search list
+pubmed_article --- these are the doc types
 julia.gray@sumitovant.com
-OME alert: Positive clinical trial results (2020-07-20)
-   email replied
-julia.gray@sumitovant.com
-OME alert: AI Drug Discovery (2020-07-20)
-   email replied
-julia.gray@sumitovant.com
-OME alert: Prostate Cancer - Sam A (2020-07-20)
-   email replied
-mayukh@roivant.com
-OME alert: Myovant (2020-07-20)
- > Sign as  [b'LOGIN completed.']
-   email replied
-isabel.metzger@sumitovant.com
-OME alert: fentanyl (2020-07-20)
- > Sign as  [b'LOGIN completed.']
-   email replied
-[] ---- keywords in empty email
-empty email
-[] ---- keywords in empty email
-empty email
-isabel.metzger@sumitovant.com
-OME alert: anti-FcRn (2020-07-20)
-   email replied
-isabel.metzger@sumitovant.com
-OME alert: Drugs (2020-07-20)
-   email replied
-[] ---- keywords in empty email
-empty email
-isabel.metzger@sumitovant.com
-OME alert: Positive clinical trial results (2020-07-20)
-   email replied
-isabel.metzger@sumitovant.com
-OME alert: Cystic Fibrosis & Gene Therapy Sam A (Cooccurence) (2020-07-20)
-   email replied
-isabel.metzger@sumitovant.com
-OME alert: Women's Health - Sam (standard) (2020-07-20)
-   email replied
-isabel.metzger@sumitovant.com
-OME alert: Prostate Cancer - Sam A (2020-07-20)
-   email replied
-isabel.metzger@sumitovant.com
-OME alert: Women's Health - Sam A (cooccurence) (2020-07-20)
-   email replied
-isabel.metzger@sumitovant.com
-OME alert: Urology Sam A (Cooccurence) (2020-07-20)
-   email replied
-[] ---- keywords in empty email
-empty email
-isabel.metzger@sumitovant.com
-OME alert: PAH - Sam A (Standard) (2020-07-20)
+OME alert: Prostate Cancer - Sam A (2020-07-27)
    email replied
 [] ---- keywords in empty email
 empty email
@@ -213,205 +280,382 @@ empty email
 empty email
 [] ---- keywords in empty email
 empty email
-houston.warren@sumitovant.com
-OME alert: xiidra (2020-07-20)
+pubmed_abstract --- these are the doc types
+press_release --- these are the doc types
+isabel.metzger@sumitovant.com
+OME alert: jak-stat (2020-07-27)
  > Sign as  [b'LOGIN completed.']
    email replied
 [] ---- keywords in empty email
 empty email
 [] ---- keywords in empty email
 empty email
+google_news --- these are the doc types
+isabel.metzger@sumitovant.com
+OME alert: Sickle Cell Disease and Beta-Thalassemia (2020-07-27)
+   email replied
+[] ---- keywords in empty email
+empty email
+['gene therapy'] --- this is the search list
+[] ---- keywords in empty email
+empty email
+pubmed_article --- these are the doc types
+google_news --- these are the doc types
+isabel.metzger@sumitovant.com
+OME alert: Women's Health - Sam (standard) (2020-07-27)
+   email replied
+['GnRh antagonist', 'GnRH', 'GnRh antagonists', 'GnRH', 'GNRH', 'Gonadotropin-releasing hormone', 'Gonadotropin releasing hormone'] --- this is the search list
+pubmed_article --- these are the doc types
+isabel.metzger@sumitovant.com
+OME alert: Prostate Cancer - Sam A (2020-07-27)
+   email replied
+['endometriosis'] --- this is the search list
+pubmed_article --- these are the doc types
+isabel.metzger@sumitovant.com
+OME alert: Women's Health - Sam A (cooccurence) (2020-07-27)
+   email replied
+['gene therapy', 'Gene'] --- this is the search list
+[] ---- keywords in empty email
+empty email
+['Farber', 'ceramidase', 'lipogranulomatosis', 'fibrocytic dysmucopolysaccharidosis'] --- this is the search list
+[] ---- keywords in empty email
+empty email
+pubmed_abstract --- these are the doc types
+google_news --- these are the doc types
+isabel.metzger@sumitovant.com
+OME alert: PAH - Sam A (Standard) (2020-07-27)
+   email replied
+['IL-1 inhibitor', 'organ transplants', 'transplants'] --- this is the search list
+[] ---- keywords in empty email
+empty email
+['idiopathic pulmonary fibrosis', 'pulmonary fibrosis', 'IPF'] --- this is the search list
+[] ---- keywords in empty email
+empty email
+[] ---- keywords in empty email
+empty email
+[] ---- keywords in empty email
+empty email
+[] ---- keywords in empty email
+empty email
+['HbF', 'G16D', 'Punam Malik', 'fetal hemoglobin', 'foetal haemoglobin '] --- this is the search list
+[] ---- keywords in empty email
+empty email
+pubmed_article --- these are the doc types
+pubmed_article --- these are the doc types
+press_release --- these are the doc types
+pubmed_article --- these are the doc types
+pubmed_article --- these are the doc types
+pubmed_article --- these are the doc types
 cody.schiffer@sumitovant.com
-OME alert: Multiple Sclerosis (2020-07-20)
+OME alert: Multiple Sclerosis (2020-07-27)
  > Sign as  [b'LOGIN completed.']
    email replied
+pubmed_article --- these are the doc types
+google_news --- these are the doc types
 cody.schiffer@sumitovant.com
-OME alert: Women's Health - Sam (standard) (2020-07-20)
+OME alert: Women's Health - Sam (standard) (2020-07-27)
    email replied
+['GnRh antagonist', 'GnRH', 'GnRh antagonists', 'GnRH', 'GNRH', 'Gonadotropin-releasing hormone', 'Gonadotropin releasing hormone'] --- this is the search list
+pubmed_article --- these are the doc types
 cody.schiffer@sumitovant.com
-OME alert: Prostate Cancer - Sam A (2020-07-20)
+OME alert: Prostate Cancer - Sam A (2020-07-27)
    email replied
+['endometriosis'] --- this is the search list
+pubmed_article --- these are the doc types
 cody.schiffer@sumitovant.com
-OME alert: Women's Health - Sam A (cooccurence) (2020-07-20)
+OME alert: Women's Health - Sam A (cooccurence) (2020-07-27)
    email replied
+['gene therapy', 'Gene'] --- this is the search list
+[] ---- keywords in empty email
+empty email
+['Farber', 'ceramidase', 'lipogranulomatosis', 'fibrocytic dysmucopolysaccharidosis'] --- this is the search list
+[] ---- keywords in empty email
+empty email
+pubmed_abstract --- these are the doc types
+google_news --- these are the doc types
 cody.schiffer@sumitovant.com
-OME alert: Urology Sam A (Cooccurence) (2020-07-20)
+OME alert: PAH - Sam A (Standard) (2020-07-27)
    email replied
+['IL-1 inhibitor', 'organ transplants', 'transplants'] --- this is the search list
 [] ---- keywords in empty email
 empty email
+['idiopathic pulmonary fibrosis', 'pulmonary fibrosis', 'IPF'] --- this is the search list
+[] ---- keywords in empty email
+empty email
+['gene therapy'] --- this is the search list
+[] ---- keywords in empty email
+empty email
+[] ---- keywords in empty email
+empty email
+[] ---- keywords in empty email
+empty email
+[] ---- keywords in empty email
+empty email
+[] ---- keywords in empty email
+empty email
+[] ---- keywords in empty email
+empty email
+[] ---- keywords in empty email
+empty email
+['BB305'] --- this is the search list
+[] ---- keywords in empty email
+empty email
+['BB305'] --- this is the search list
+[] ---- keywords in empty email
+empty email
+[] ---- keywords in empty email
+empty email
+[] ---- keywords in empty email
+empty email
+[] ---- keywords in empty email
+empty email
+[] ---- keywords in empty email
+empty email
+[] ---- keywords in empty email
+empty email
+[] ---- keywords in empty email
+empty email
+[] ---- keywords in empty email
+empty email
+['CSL200', 'CSL-200'] --- this is the search list
+[] ---- keywords in empty email
+empty email
+['NCT02906202', 'NCT03207009', 'NCT02140554', 'NCT02633943', 'HGB-210', 'HGB-211 '] --- this is the search list
+[] ---- keywords in empty email
+empty email
+['NCT01639690'] --- this is the search list
+[] ---- keywords in empty email
+empty email
+['NCT03282656'] --- this is the search list
+[] ---- keywords in empty email
+empty email
+['NCT03432364'] --- this is the search list
+[] ---- keywords in empty email
+empty email
+['NCT03653247'] --- this is the search list
+[] ---- keywords in empty email
+empty email
+['NCT02453477', 'NCT03275051'] --- this is the search list
+[] ---- keywords in empty email
+empty email
+['NCT03655678', 'NCT03745287'] --- this is the search list
+[] ---- keywords in empty email
+empty email
+['NCT02247843'] --- this is the search list
+[] ---- keywords in empty email
+empty email
+['NCT04188509'] --- this is the search list
+[] ---- keywords in empty email
+empty email
+['NCT04188509'] --- this is the search list
+[] ---- keywords in empty email
+empty email
+['NCT03474965'] --- this is the search list
+[] ---- keywords in empty email
+empty email
+['NCT03719729'] --- this is the search list
+[] ---- keywords in empty email
+empty email
+['NCT04091737'] --- this is the search list
+[] ---- keywords in empty email
+empty email
+press_release --- these are the doc types
+press_release --- these are the doc types
 cody.schiffer@sumitovant.com
-OME alert: PAH - Sam A (Standard) (2020-07-20)
+OME alert: Company_Search_PRs_Subscriptions (2020-07-27)
    email replied
 [] ---- keywords in empty email
 empty email
 [] ---- keywords in empty email
 empty email
+[] ---- keywords in empty email
+empty email
+[] ---- keywords in empty email
+empty email
+[] ---- keywords in empty email
+empty email
+[] ---- keywords in empty email
+empty email
+[] ---- keywords in empty email
+empty email
+['proteolysis-targeting chimera', 'PROTAC', 'protein degrader', 'protein degradation', 'targeted degrader', 'targeted degradation', 'targeted protein degrader', 'targeted protein degradation', 'HaloPROTAC', 'dTAG', 'molecular glue', 'ubiquitin proteasome system', 'hydrophobic tagging', 'HyT', 'heterobifunctional degrader', 'SNIPER', 'targeted ubiquitination', 'degronimids', 'endtacs', 'hydrophobic tag', 'imids', 'lytacs', 'photacs'] --- this is the search list
+SEC_filing --- these are the doc types
 cody.schiffer@sumitovant.com
-OME alert: Cystic Fibrosis & Gene Therapy Sam A (Cooccurence) (2020-07-20)
+OME alert: Boehring Ingelheim Protein Degrader Alert (2020-07-27)
    email replied
+['proteolysis-targeting chimera', 'PROTAC', 'protein degrader', 'protein degradation', 'targeted degrader', 'targeted degradation', 'targeted protein degrader', 'targeted protein degradation', 'HaloPROTAC', 'dTAG', 'molecular glue', 'ubiquitin proteasome system', 'hydrophobic tagging', 'HyT', 'heterobifunctional degrader', 'SNIPER', 'targeted ubiquitination', 'degronimids', 'endtacs', 'hydrophobic tag', 'imids', 'lytacs', 'photacs'] --- this is the search list
 [] ---- keywords in empty email
 empty email
-[] ---- keywords in empty email
-empty email
-[] ---- keywords in empty email
-empty email
-[] ---- keywords in empty email
-empty email
-[] ---- keywords in empty email
-empty email
-[] ---- keywords in empty email
-empty email
-[] ---- keywords in empty email
-empty email
-[] ---- keywords in empty email
-empty email
-[] ---- keywords in empty email
-empty email
-[] ---- keywords in empty email
-empty email
-[] ---- keywords in empty email
-empty email
-[] ---- keywords in empty email
-empty email
-[] ---- keywords in empty email
-empty email
-[] ---- keywords in empty email
-empty email
-[] ---- keywords in empty email
-empty email
-[] ---- keywords in empty email
-empty email
-[] ---- keywords in empty email
-empty email
-[] ---- keywords in empty email
-empty email
-[] ---- keywords in empty email
-empty email
-[] ---- keywords in empty email
-empty email
-[] ---- keywords in empty email
-empty email
-[] ---- keywords in empty email
-empty email
-[] ---- keywords in empty email
-empty email
-[] ---- keywords in empty email
-empty email
-[] ---- keywords in empty email
-empty email
-[] ---- keywords in empty email
-empty email
-[] ---- keywords in empty email
-empty email
-[] ---- keywords in empty email
-empty email
-[] ---- keywords in empty email
-empty email
-[] ---- keywords in empty email
-empty email
-[] ---- keywords in empty email
-empty email
-[] ---- keywords in empty email
-empty email
-[] ---- keywords in empty email
-empty email
-[] ---- keywords in empty email
-empty email
-[] ---- keywords in empty email
-empty email
-[] ---- keywords in empty email
-empty email
+['proteolysis-targeting chimera', 'PROTAC', 'protein degrader', 'protein degradation', 'targeted degrader', 'targeted degradation', 'targeted protein degrader', 'targeted protein degradation', 'HaloPROTAC', 'dTAG', 'molecular glue', 'ubiquitin proteasome system', 'hydrophobic tagging', 'HyT', 'heterobifunctional degrader', 'SNIPER', 'targeted ubiquitination', 'degronimids', 'endtacs', 'hydrophobic tag', 'imids', 'lytacs', 'photacs'] --- this is the search list
+SEC_filing --- these are the doc types
 cody.schiffer@sumitovant.com
-OME alert: DK-Protein Degrader Alert: Companies (2020-07-20)
+OME alert: Pfizer Protein Degrader Alert (2020-07-27)
+   email replied
+['proteolysis-targeting chimera', 'PROTAC', 'protein degrader', 'protein degradation', 'targeted degrader', 'targeted degradation', 'targeted protein degrader', 'targeted protein degradation', 'HaloPROTAC', 'dTAG', 'molecular glue', 'ubiquitin proteasome system', 'hydrophobic tagging', 'HyT', 'heterobifunctional degrader', 'SNIPER', 'targeted ubiquitination', 'degronimids', 'endtacs', 'hydrophobic tag', 'imids', 'lytacs', 'photacs'] --- this is the search list
+SEC_filing --- these are the doc types
+cody.schiffer@sumitovant.com
+OME alert: Bristol Myers Squibb Protein Degrader Alert (2020-07-27)
+   email replied
+['proteolysis-targeting chimera', 'PROTAC', 'protein degrader', 'protein degradation', 'targeted degrader', 'targeted degradation', 'targeted protein degrader', 'targeted protein degradation', 'HaloPROTAC', 'dTAG', 'molecular glue', 'ubiquitin proteasome system', 'hydrophobic tagging', 'HyT', 'heterobifunctional degrader', 'SNIPER', 'targeted ubiquitination', 'degronimids', 'endtacs', 'hydrophobic tag', 'imids', 'lytacs', 'photacs'] --- this is the search list
+[] ---- keywords in empty email
+empty email
+['proteolysis-targeting chimera', 'PROTAC', 'protein degrader', 'protein degradation', 'targeted degrader', 'targeted degradation', 'targeted protein degrader', 'targeted protein degradation', 'HaloPROTAC', 'dTAG', 'molecular glue', 'ubiquitin proteasome system', 'hydrophobic tagging', 'HyT', 'heterobifunctional degrader', 'SNIPER', 'targeted ubiquitination', 'degronimids', 'endtacs', 'hydrophobic tag', 'imids', 'lytacs', 'photacs'] --- this is the search list
+[] ---- keywords in empty email
+empty email
+['proteolysis-targeting chimera', 'PROTAC', 'protein degrader', 'protein degradation', 'targeted degrader', 'targeted degradation', 'targeted protein degrader', 'targeted protein degradation', 'HaloPROTAC', 'dTAG', 'molecular glue', 'ubiquitin proteasome system', 'hydrophobic tagging', 'HyT', 'heterobifunctional degrader', 'SNIPER', 'targeted ubiquitination', 'degronimids', 'endtacs', 'hydrophobic tag', 'imids', 'lytacs', 'photacs'] --- this is the search list
+[] ---- keywords in empty email
+empty email
+['proteolysis-targeting chimera', 'PROTAC', 'protein degrader', 'protein degradation', 'targeted degrader', 'targeted degradation', 'targeted protein degrader', 'targeted protein degradation', 'HaloPROTAC', 'dTAG', 'molecular glue', 'ubiquitin proteasome system', 'hydrophobic tagging', 'HyT', 'heterobifunctional degrader', 'SNIPER', 'targeted ubiquitination', 'degronimids', 'endtacs', 'hydrophobic tag', 'imids', 'lytacs', 'photacs'] --- this is the search list
+[] ---- keywords in empty email
+empty email
+['proteolysis-targeting chimera', 'PROTAC', 'protein degrader', 'protein degradation', 'targeted degrader', 'targeted degradation', 'targeted protein degrader', 'targeted protein degradation', 'HaloPROTAC', 'dTAG', 'molecular glue', 'ubiquitin proteasome system', 'hydrophobic tagging', 'HyT', 'heterobifunctional degrader', 'SNIPER', 'targeted ubiquitination', 'degronimids', 'endtacs', 'hydrophobic tag', 'imids', 'lytacs', 'photacs'] --- this is the search list
+SEC_filing --- these are the doc types
+cody.schiffer@sumitovant.com
+OME alert: Sanofi Protein Degrader Alert (2020-07-27)
+   email replied
+['proteolysis-targeting chimera', 'PROTAC', 'protein degrader', 'protein degradation', 'targeted degrader', 'targeted degradation', 'targeted protein degrader', 'targeted protein degradation', 'HaloPROTAC', 'dTAG', 'molecular glue', 'ubiquitin proteasome system', 'hydrophobic tagging', 'HyT', 'heterobifunctional degrader', 'SNIPER', 'targeted ubiquitination', 'degronimids', 'endtacs', 'hydrophobic tag', 'imids', 'lytacs', 'photacs'] --- this is the search list
+[] ---- keywords in empty email
+empty email
+['proteolysis-targeting chimera', 'PROTAC', 'protein degrader', 'protein degradation', 'targeted degrader', 'targeted degradation', 'targeted protein degrader', 'targeted protein degradation', 'HaloPROTAC', 'dTAG', 'molecular glue', 'ubiquitin proteasome system', 'hydrophobic tagging', 'HyT', 'heterobifunctional degrader', 'SNIPER', 'targeted ubiquitination', 'degronimids', 'endtacs', 'hydrophobic tag', 'imids', 'lytacs', 'photacs'] --- this is the search list
+[] ---- keywords in empty email
+empty email
+['proteolysis-targeting chimera', 'PROTAC', 'protein degrader', 'protein degradation', 'targeted degrader', 'targeted degradation', 'targeted protein degrader', 'targeted protein degradation', 'HaloPROTAC', 'dTAG', 'molecular glue', 'ubiquitin proteasome system', 'hydrophobic tagging', 'HyT', 'heterobifunctional degrader', 'SNIPER', 'targeted ubiquitination', 'degronimids', 'endtacs', 'hydrophobic tag', 'imids', 'lytacs', 'photacs'] --- this is the search list
+SEC_filing --- these are the doc types
+cody.schiffer@sumitovant.com
+OME alert: Bayer Protein Degrader Alert (2020-07-27)
+   email replied
+['proteolysis-targeting chimera', 'PROTAC', 'protein degrader', 'protein degradation', 'targeted degrader', 'targeted degradation', 'targeted protein degrader', 'targeted protein degradation', 'HaloPROTAC', 'dTAG', 'molecular glue', 'ubiquitin proteasome system', 'hydrophobic tagging', 'HyT', 'heterobifunctional degrader', 'SNIPER', 'targeted ubiquitination', 'degronimids', 'endtacs', 'hydrophobic tag', 'imids', 'lytacs', 'photacs'] --- this is the search list
+SEC_filing --- these are the doc types
+cody.schiffer@sumitovant.com
+OME alert: Gilead Protein Degrader Alert (2020-07-27)
+   email replied
+['proteolysis-targeting chimera', 'PROTAC', 'protein degrader', 'protein degradation', 'targeted degrader', 'targeted degradation', 'targeted protein degrader', 'targeted protein degradation', 'HaloPROTAC', 'dTAG', 'molecular glue', 'ubiquitin proteasome system', 'hydrophobic tagging', 'HyT', 'heterobifunctional degrader', 'SNIPER', 'targeted ubiquitination', 'degronimids', 'endtacs', 'hydrophobic tag', 'imids', 'lytacs', 'photacs'] --- this is the search list
+[] ---- keywords in empty email
+empty email
+google_news --- these are the doc types
+calvin.nguyen@roivant.com
+OME alert: Sickle Cell Disease and Beta-thalassemia (2020-07-27)
+ > Sign as  [b'LOGIN completed.']
    email replied
 [] ---- keywords in empty email
 empty email
-[] ---- keywords in empty email
-empty email
-[] ---- keywords in empty email
-empty email
-[] ---- keywords in empty email
-empty email
-[] ---- keywords in empty email
-empty email
-[] ---- keywords in empty email
-empty email
-[] ---- keywords in empty email
-empty email
-[] ---- keywords in empty email
-empty email
-[] ---- keywords in empty email
-empty email
-[] ---- keywords in empty email
-empty email
-[] ---- keywords in empty email
-empty email
-[] ---- keywords in empty email
-empty email
-[] ---- keywords in empty email
-empty email
-[] ---- keywords in empty email
-empty email
-[] ---- keywords in empty email
-empty email
-[] ---- keywords in empty email
-empty email
-[] ---- keywords in empty email
-empty email
+google_news --- these are the doc types
 ryan.costa@roivant.com
-OME alert: Bluebird Alert (2020-07-20)
- > Sign as  [b'LOGIN completed.']
-   email replied
-archit.sheth-shah@roivant.com
-OME alert: Vaccines general (2020-07-20)
+OME alert: Sickle Cell Disease and Beta-thalassemia (2020-07-27)
  > Sign as  [b'LOGIN completed.']
    email replied
 [] ---- keywords in empty email
 empty email
-[] ---- keywords in empty email
-empty email
+SEC_filing --- these are the doc types
 archit.sheth-shah@roivant.com
-OME alert: Protein Degrader Alert: Companies (2020-07-20)
+OME alert: Vaccines general (2020-07-27)
+ > Sign as  [b'LOGIN completed.']
+   email replied
+SEC_filing --- these are the doc types
+google_news --- these are the doc types
+archit.sheth-shah@roivant.com
+OME alert: Protein Degrader Alert: Terms (2020-07-27)
    email replied
 [] ---- keywords in empty email
 empty email
 [] ---- keywords in empty email
 empty email
+['proteolysis-targeting chimera', 'PROTAC', 'protein degrader', 'protein degradation', 'targeted degrader', 'targeted degradation', 'targeted protein degrader', 'targeted protein degradation', 'HaloPROTAC', 'dTAG', 'molecular glue', 'ubiquitin proteasome system', 'hydrophobic tagging', 'HyT', 'heterobifunctional degrader', 'SNIPER', 'targeted ubiquitination', 'degronimids', 'endtacs', 'hydrophobic tag', 'imids', 'lytacs', 'photacs'] --- this is the search list
+SEC_filing --- these are the doc types
+archit.sheth-shah@roivant.com
+OME alert: Boehring Ingelheim Protein Degrader Alert (2020-07-27)
+   email replied
+['proteolysis-targeting chimera', 'PROTAC', 'protein degrader', 'protein degradation', 'targeted degrader', 'targeted degradation', 'targeted protein degrader', 'targeted protein degradation', 'HaloPROTAC', 'dTAG', 'molecular glue', 'ubiquitin proteasome system', 'hydrophobic tagging', 'HyT', 'heterobifunctional degrader', 'SNIPER', 'targeted ubiquitination', 'degronimids', 'endtacs', 'hydrophobic tag', 'imids', 'lytacs', 'photacs'] --- this is the search list
 [] ---- keywords in empty email
 empty email
+['proteolysis-targeting chimera', 'PROTAC', 'protein degrader', 'protein degradation', 'targeted degrader', 'targeted degradation', 'targeted protein degrader', 'targeted protein degradation', 'HaloPROTAC', 'dTAG', 'molecular glue', 'ubiquitin proteasome system', 'hydrophobic tagging', 'HyT', 'heterobifunctional degrader', 'SNIPER', 'targeted ubiquitination', 'degronimids', 'endtacs', 'hydrophobic tag', 'imids', 'lytacs', 'photacs'] --- this is the search list
+SEC_filing --- these are the doc types
+archit.sheth-shah@roivant.com
+OME alert: Pfizer Protein Degrader Alert (2020-07-27)
+   email replied
+['proteolysis-targeting chimera', 'PROTAC', 'protein degrader', 'protein degradation', 'targeted degrader', 'targeted degradation', 'targeted protein degrader', 'targeted protein degradation', 'HaloPROTAC', 'dTAG', 'molecular glue', 'ubiquitin proteasome system', 'hydrophobic tagging', 'HyT', 'heterobifunctional degrader', 'SNIPER', 'targeted ubiquitination', 'degronimids', 'endtacs', 'hydrophobic tag', 'imids', 'lytacs', 'photacs'] --- this is the search list
+SEC_filing --- these are the doc types
+archit.sheth-shah@roivant.com
+OME alert: Bristol Myers Squibb Protein Degrader Alert (2020-07-27)
+   email replied
+['proteolysis-targeting chimera', 'PROTAC', 'protein degrader', 'protein degradation', 'targeted degrader', 'targeted degradation', 'targeted protein degrader', 'targeted protein degradation', 'HaloPROTAC', 'dTAG', 'molecular glue', 'ubiquitin proteasome system', 'hydrophobic tagging', 'HyT', 'heterobifunctional degrader', 'SNIPER', 'targeted ubiquitination', 'degronimids', 'endtacs', 'hydrophobic tag', 'imids', 'lytacs', 'photacs'] --- this is the search list
 [] ---- keywords in empty email
 empty email
+['proteolysis-targeting chimera', 'PROTAC', 'protein degrader', 'protein degradation', 'targeted degrader', 'targeted degradation', 'targeted protein degrader', 'targeted protein degradation', 'HaloPROTAC', 'dTAG', 'molecular glue', 'ubiquitin proteasome system', 'hydrophobic tagging', 'HyT', 'heterobifunctional degrader', 'SNIPER', 'targeted ubiquitination', 'degronimids', 'endtacs', 'hydrophobic tag', 'imids', 'lytacs', 'photacs'] --- this is the search list
 [] ---- keywords in empty email
 empty email
+['proteolysis-targeting chimera', 'PROTAC', 'protein degrader', 'protein degradation', 'targeted degrader', 'targeted degradation', 'targeted protein degrader', 'targeted protein degradation', 'HaloPROTAC', 'dTAG', 'molecular glue', 'ubiquitin proteasome system', 'hydrophobic tagging', 'HyT', 'heterobifunctional degrader', 'SNIPER', 'targeted ubiquitination', 'degronimids', 'endtacs', 'hydrophobic tag', 'imids', 'lytacs', 'photacs'] --- this is the search list
 [] ---- keywords in empty email
 empty email
+['proteolysis-targeting chimera', 'PROTAC', 'protein degrader', 'protein degradation', 'targeted degrader', 'targeted degradation', 'targeted protein degrader', 'targeted protein degradation', 'HaloPROTAC', 'dTAG', 'molecular glue', 'ubiquitin proteasome system', 'hydrophobic tagging', 'HyT', 'heterobifunctional degrader', 'SNIPER', 'targeted ubiquitination', 'degronimids', 'endtacs', 'hydrophobic tag', 'imids', 'lytacs', 'photacs'] --- this is the search list
 [] ---- keywords in empty email
 empty email
+['proteolysis-targeting chimera', 'PROTAC', 'protein degrader', 'protein degradation', 'targeted degrader', 'targeted degradation', 'targeted protein degrader', 'targeted protein degradation', 'HaloPROTAC', 'dTAG', 'molecular glue', 'ubiquitin proteasome system', 'hydrophobic tagging', 'HyT', 'heterobifunctional degrader', 'SNIPER', 'targeted ubiquitination', 'degronimids', 'endtacs', 'hydrophobic tag', 'imids', 'lytacs', 'photacs'] --- this is the search list
+SEC_filing --- these are the doc types
+archit.sheth-shah@roivant.com
+OME alert: Sanofi Protein Degrader Alert (2020-07-27)
+   email replied
+['proteolysis-targeting chimera', 'PROTAC', 'protein degrader', 'protein degradation', 'targeted degrader', 'targeted degradation', 'targeted protein degrader', 'targeted protein degradation', 'HaloPROTAC', 'dTAG', 'molecular glue', 'ubiquitin proteasome system', 'hydrophobic tagging', 'HyT', 'heterobifunctional degrader', 'SNIPER', 'targeted ubiquitination', 'degronimids', 'endtacs', 'hydrophobic tag', 'imids', 'lytacs', 'photacs'] --- this is the search list
 [] ---- keywords in empty email
 empty email
+['proteolysis-targeting chimera', 'PROTAC', 'protein degrader', 'protein degradation', 'targeted degrader', 'targeted degradation', 'targeted protein degrader', 'targeted protein degradation', 'HaloPROTAC', 'dTAG', 'molecular glue', 'ubiquitin proteasome system', 'hydrophobic tagging', 'HyT', 'heterobifunctional degrader', 'SNIPER', 'targeted ubiquitination', 'degronimids', 'endtacs', 'hydrophobic tag', 'imids', 'lytacs', 'photacs'] --- this is the search list
 [] ---- keywords in empty email
 empty email
+['proteolysis-targeting chimera', 'PROTAC', 'protein degrader', 'protein degradation', 'targeted degrader', 'targeted degradation', 'targeted protein degrader', 'targeted protein degradation', 'HaloPROTAC', 'dTAG', 'molecular glue', 'ubiquitin proteasome system', 'hydrophobic tagging', 'HyT', 'heterobifunctional degrader', 'SNIPER', 'targeted ubiquitination', 'degronimids', 'endtacs', 'hydrophobic tag', 'imids', 'lytacs', 'photacs'] --- this is the search list
+SEC_filing --- these are the doc types
+archit.sheth-shah@roivant.com
+OME alert: Bayer Protein Degrader Alert (2020-07-27)
+   email replied
+['proteolysis-targeting chimera', 'PROTAC', 'protein degrader', 'protein degradation', 'targeted degrader', 'targeted degradation', 'targeted protein degrader', 'targeted protein degradation', 'HaloPROTAC', 'dTAG', 'molecular glue', 'ubiquitin proteasome system', 'hydrophobic tagging', 'HyT', 'heterobifunctional degrader', 'SNIPER', 'targeted ubiquitination', 'degronimids', 'endtacs', 'hydrophobic tag', 'imids', 'lytacs', 'photacs'] --- this is the search list
+SEC_filing --- these are the doc types
+archit.sheth-shah@roivant.com
+OME alert: Gilead Protein Degrader Alert (2020-07-27)
+   email replied
+['proteolysis-targeting chimera', 'PROTAC', 'protein degrader', 'protein degradation', 'targeted degrader', 'targeted degradation', 'targeted protein degrader', 'targeted protein degradation', 'HaloPROTAC', 'dTAG', 'molecular glue', 'ubiquitin proteasome system', 'hydrophobic tagging', 'HyT', 'heterobifunctional degrader', 'SNIPER', 'targeted ubiquitination', 'degronimids', 'endtacs', 'hydrophobic tag', 'imids', 'lytacs', 'photacs'] --- this is the search list
 [] ---- keywords in empty email
 empty email
-[] ---- keywords in empty email
-empty email
-[] ---- keywords in empty email
-empty email
-[] ---- keywords in empty email
-empty email
-[] ---- keywords in empty email
-empty email
+pubmed_article --- these are the doc types
+google_news --- these are the doc types
 emir.haskovic@roivant.com
-OME alert: endometriosis (2020-07-20)
+OME alert: endometriosis (2020-07-27)
  > Sign as  [b'LOGIN completed.']
    email replied
+pubmed_abstract --- these are the doc types
 anthony.bogachev@roivant.com
-OME alert: CF GT (2020-07-20)
+OME alert: CF GT (2020-07-27)
  > Sign as  [b'LOGIN completed.']
    email replied
-anthony.bogachev@roivant.com
-OME alert: Lung Bio GT Companies (2020-07-20)
-   email replied
+Cortellis --- these are the doc types
+0 --- element to remove
+0 --- element to remove
+0 --- element to remove
+0 --- element to remove
+0 --- element to remove
+0 --- element to remove
+0 --- element to remove
+0 --- element to remove
+0 --- element to remove
+0 --- element to remove
+0 --- element to remove
+0 --- element to remove
+0 --- element to remove
+0 --- element to remove
+[] ---- keywords in empty email
+empty email
+[] ---- keywords in empty email
+empty email
+['FDA'] --- this is the search list
+[] ---- keywords in empty email
+empty email
+['GDF15', 'GFRAL'] --- this is the search list
+[] ---- keywords in empty email
+empty email
+['staph'] --- this is the search list
+[] ---- keywords in empty email
+empty email
+[] ---- keywords in empty email
+empty email
+['FDA'] --- this is the search list
 [] ---- keywords in empty email
 empty email
 [] ---- keywords in empty email
@@ -420,27 +664,85 @@ empty email
 empty email
 [] ---- keywords in empty email
 empty email
-simon.lowry@roivant.com
-OME alert: GMCSF (2020-07-20)
- > Sign as  [b'LOGIN completed.']
-   email replied
 [] ---- keywords in empty email
 empty email
-raheleh.hatami@roivant.com
-OME alert: RSV Antivirals (2020-07-20)
- > Sign as  [b'LOGIN completed.']
-   email replied
-raheleh.hatami@roivant.com
-OME alert: Polycystic Kidney Disease (2020-07-20)
-   email replied
-raheleh.hatami@roivant.com
-OME alert: Congenital Adrenal Hyperplasia (2020-07-20)
-   email replied
-raheleh.hatami@roivant.com
-OME alert: IgaN assets (2020-07-20)
-   email replied
+[] ---- keywords in empty email
+empty email
+[] ---- keywords in empty email
+empty email
+[] ---- keywords in empty email
+empty email
+[] ---- keywords in empty email
+empty email
+[] ---- keywords in empty email
+empty email
+[] ---- keywords in empty email
+empty email
+[] ---- keywords in empty email
+empty email
+['BB305'] --- this is the search list
+[] ---- keywords in empty email
+empty email
+['BB305'] --- this is the search list
+[] ---- keywords in empty email
+empty email
+[] ---- keywords in empty email
+empty email
+[] ---- keywords in empty email
+empty email
+[] ---- keywords in empty email
+empty email
+[] ---- keywords in empty email
+empty email
+[] ---- keywords in empty email
+empty email
+[] ---- keywords in empty email
+empty email
+[] ---- keywords in empty email
+empty email
+['CSL200', 'CSL-200'] --- this is the search list
+[] ---- keywords in empty email
+empty email
+['NCT02906202', 'NCT03207009', 'NCT02140554', 'NCT02633943', 'HGB-210', 'HGB-211 '] --- this is the search list
+[] ---- keywords in empty email
+empty email
+['NCT01639690'] --- this is the search list
+[] ---- keywords in empty email
+empty email
+['NCT03282656'] --- this is the search list
+[] ---- keywords in empty email
+empty email
+['NCT03432364'] --- this is the search list
+[] ---- keywords in empty email
+empty email
+['NCT03653247'] --- this is the search list
+[] ---- keywords in empty email
+empty email
+['NCT02453477', 'NCT03275051'] --- this is the search list
+[] ---- keywords in empty email
+empty email
+['NCT03655678', 'NCT03745287'] --- this is the search list
+[] ---- keywords in empty email
+empty email
+['NCT02247843'] --- this is the search list
+[] ---- keywords in empty email
+empty email
+['NCT04188509'] --- this is the search list
+[] ---- keywords in empty email
+empty email
+['NCT03474965'] --- this is the search list
+[] ---- keywords in empty email
+empty email
+['NCT03719729'] --- this is the search list
+[] ---- keywords in empty email
+empty email
+['NCT04091737'] --- this is the search list
+[] ---- keywords in empty email
+empty email
+press_release --- these are the doc types
+press_release --- these are the doc types
 andrew.bogorad@roivant.com
-OME alert: Positive clinical trial results (2020-07-20)
+OME alert: Company_Search_PRs_Subscriptions (2020-07-27)
  > Sign as  [b'LOGIN completed.']
    email replied
 [] ---- keywords in empty email
@@ -455,87 +757,30 @@ empty email
 empty email
 [] ---- keywords in empty email
 empty email
-[] ---- keywords in empty email
-empty email
-[] ---- keywords in empty email
-empty email
-[] ---- keywords in empty email
-empty email
-[] ---- keywords in empty email
-empty email
-[] ---- keywords in empty email
-empty email
-[] ---- keywords in empty email
-empty email
-[] ---- keywords in empty email
-empty email
-[] ---- keywords in empty email
-empty email
-[] ---- keywords in empty email
-empty email
-[] ---- keywords in empty email
-empty email
-[] ---- keywords in empty email
-empty email
-[] ---- keywords in empty email
-empty email
-[] ---- keywords in empty email
-empty email
-[] ---- keywords in empty email
-empty email
-[] ---- keywords in empty email
-empty email
-[] ---- keywords in empty email
-empty email
-[] ---- keywords in empty email
-empty email
-[] ---- keywords in empty email
-empty email
-[] ---- keywords in empty email
-empty email
-[] ---- keywords in empty email
-empty email
-[] ---- keywords in empty email
-empty email
-[] ---- keywords in empty email
-empty email
-[] ---- keywords in empty email
-empty email
-[] ---- keywords in empty email
-empty email
-[] ---- keywords in empty email
-empty email
-[] ---- keywords in empty email
-empty email
-jillian.lindsey@roivant.com
-OME alert: Positive clinical trial results (2020-07-20)
- > Sign as  [b'LOGIN completed.']
-   email replied
-[] ---- keywords in empty email
-empty email
-jonathan.jones@roivant.com
-OME alert: Positive clinical trial results (2020-07-20)
- > Sign as  [b'LOGIN completed.']
-   email replied
+['endometriosis'] --- this is the search list
+pubmed_article --- these are the doc types
 sam.azoulay@sumitovant.com
-OME alert: Women's Health (2020-07-20)
+OME alert: Women's Health (2020-07-27)
  > Sign as  [b'LOGIN completed.']
    email replied
+['gene therapy', 'Gene'] --- this is the search list
+[] ---- keywords in empty email
+empty email
+['Farber', 'ceramidase', 'lipogranulomatosis', 'fibrocytic dysmucopolysaccharidosis'] --- this is the search list
+[] ---- keywords in empty email
+empty email
+pubmed_abstract --- these are the doc types
+google_news --- these are the doc types
 sam.azoulay@sumitovant.com
-OME alert: Urology (2020-07-20)
+OME alert: PAH (2020-07-27)
    email replied
+['IL-1 inhibitor', 'organ transplants', 'transplants'] --- this is the search list
 [] ---- keywords in empty email
 empty email
-sam.azoulay@sumitovant.com
-OME alert: PAH (2020-07-20)
-   email replied
+['idiopathic pulmonary fibrosis', 'pulmonary fibrosis', 'IPF'] --- this is the search list
 [] ---- keywords in empty email
 empty email
-[] ---- keywords in empty email
-empty email
-sam.azoulay@sumitovant.com
-OME alert: Cystic Fibrosis & Gene Therapy (2020-07-20)
-   email replied
+['gene therapy'] --- this is the search list
 [] ---- keywords in empty email
 empty email
 [] ---- keywords in empty email
@@ -550,8 +795,10 @@ empty email
 empty email
 [] ---- keywords in empty email
 empty email
+['BB305'] --- this is the search list
 [] ---- keywords in empty email
 empty email
+['BB305'] --- this is the search list
 [] ---- keywords in empty email
 empty email
 [] ---- keywords in empty email
@@ -568,175 +815,287 @@ empty email
 empty email
 [] ---- keywords in empty email
 empty email
+['CSL200', 'CSL-200'] --- this is the search list
 [] ---- keywords in empty email
 empty email
+['NCT02906202', 'NCT03207009', 'NCT02140554', 'NCT02633943', 'HGB-210', 'HGB-211 '] --- this is the search list
 [] ---- keywords in empty email
 empty email
+['NCT01639690'] --- this is the search list
 [] ---- keywords in empty email
 empty email
+['NCT03282656'] --- this is the search list
 [] ---- keywords in empty email
 empty email
+['NCT03432364'] --- this is the search list
 [] ---- keywords in empty email
 empty email
+['NCT03653247'] --- this is the search list
 [] ---- keywords in empty email
 empty email
+['NCT02453477', 'NCT03275051'] --- this is the search list
 [] ---- keywords in empty email
 empty email
+['NCT03655678', 'NCT03745287'] --- this is the search list
 [] ---- keywords in empty email
 empty email
+['NCT02247843'] --- this is the search list
 [] ---- keywords in empty email
 empty email
+['NCT04188509'] --- this is the search list
 [] ---- keywords in empty email
 empty email
+['NCT03474965'] --- this is the search list
 [] ---- keywords in empty email
 empty email
+['NCT03719729'] --- this is the search list
 [] ---- keywords in empty email
 empty email
+['NCT04091737'] --- this is the search list
 [] ---- keywords in empty email
 empty email
-[] ---- keywords in empty email
-empty email
-[] ---- keywords in empty email
-empty email
-[] ---- keywords in empty email
-empty email
-benjamin.dorner@roivant.com
-OME alert: GM-CSF (2020-07-20)
+press_release --- these are the doc types
+press_release --- these are the doc types
+ayman.mohammad@roivant.com
+OME alert: Company_Search_PRs_Subscriptions (2020-07-27)
  > Sign as  [b'LOGIN completed.']
    email replied
-benjamin.dorner@roivant.com
-OME alert: GM-CSF Competitors (2020-07-20)
-   email replied
-benjamin.dorner@roivant.com
-OME alert: otilimab (2020-07-20)
-   email replied
-benjamin.dorner@roivant.com
-OME alert: Mavrilimumab (Kiniksa) (2020-07-20)
-   email replied
-benjamin.dorner@roivant.com
-OME alert: lenzilumab (Humanigen) (2020-07-20)
-   email replied
-benjamin.dorner@roivant.com
-OME alert: otilimab (GSK) (2020-07-20)
-   email replied
 [] ---- keywords in empty email
 empty email
 [] ---- keywords in empty email
 empty email
 [] ---- keywords in empty email
 empty email
+[] ---- keywords in empty email
+empty email
+Cortellis --- these are the doc types
+0 --- element to remove
+0 --- element to remove
+0 --- element to remove
+0 --- element to remove
+0 --- element to remove
+0 --- element to remove
+0 --- element to remove
+0 --- element to remove
+0 --- element to remove
+0 --- element to remove
+0 --- element to remove
+0 --- element to remove
+0 --- element to remove
+0 --- element to remove
+[] ---- keywords in empty email
+empty email
+[] ---- keywords in empty email
+empty email
+[] ---- keywords in empty email
+empty email
+Cortellis --- these are the doc types
+0 --- element to remove
+0 --- element to remove
+0 --- element to remove
+0 --- element to remove
+0 --- element to remove
+0 --- element to remove
+0 --- element to remove
+0 --- element to remove
+0 --- element to remove
+0 --- element to remove
+0 --- element to remove
+0 --- element to remove
+0 --- element to remove
+0 --- element to remove
+[] ---- keywords in empty email
+empty email
+[] ---- keywords in empty email
+empty email
+[] ---- keywords in empty email
+empty email
+SEC_filing --- these are the doc types
+google_news --- these are the doc types
 daniel.kwon@roivant.com
-OME alert: Protein Degrader Alert: Companies (2020-07-20)
+OME alert: Protein Degrader Alert: Terms (2020-07-27)
  > Sign as  [b'LOGIN completed.']
    email replied
 [] ---- keywords in empty email
 empty email
 [] ---- keywords in empty email
 empty email
+['proteolysis-targeting chimera', 'PROTAC', 'protein degrader', 'protein degradation', 'targeted degrader', 'targeted degradation', 'targeted protein degrader', 'targeted protein degradation', 'HaloPROTAC', 'dTAG', 'molecular glue', 'ubiquitin proteasome system', 'hydrophobic tagging', 'HyT', 'heterobifunctional degrader', 'SNIPER', 'targeted ubiquitination', 'degronimids', 'endtacs', 'hydrophobic tag', 'imids', 'lytacs', 'photacs'] --- this is the search list
+SEC_filing --- these are the doc types
+daniel.kwon@roivant.com
+OME alert: Boehring Ingelheim Protein Degrader Alert (2020-07-27)
+   email replied
+['proteolysis-targeting chimera', 'PROTAC', 'protein degrader', 'protein degradation', 'targeted degrader', 'targeted degradation', 'targeted protein degrader', 'targeted protein degradation', 'HaloPROTAC', 'dTAG', 'molecular glue', 'ubiquitin proteasome system', 'hydrophobic tagging', 'HyT', 'heterobifunctional degrader', 'SNIPER', 'targeted ubiquitination', 'degronimids', 'endtacs', 'hydrophobic tag', 'imids', 'lytacs', 'photacs'] --- this is the search list
 [] ---- keywords in empty email
 empty email
+['proteolysis-targeting chimera', 'PROTAC', 'protein degrader', 'protein degradation', 'targeted degrader', 'targeted degradation', 'targeted protein degrader', 'targeted protein degradation', 'HaloPROTAC', 'dTAG', 'molecular glue', 'ubiquitin proteasome system', 'hydrophobic tagging', 'HyT', 'heterobifunctional degrader', 'SNIPER', 'targeted ubiquitination', 'degronimids', 'endtacs', 'hydrophobic tag', 'imids', 'lytacs', 'photacs'] --- this is the search list
+SEC_filing --- these are the doc types
+daniel.kwon@roivant.com
+OME alert: Pfizer Protein Degrader Alert (2020-07-27)
+   email replied
+['proteolysis-targeting chimera', 'PROTAC', 'protein degrader', 'protein degradation', 'targeted degrader', 'targeted degradation', 'targeted protein degrader', 'targeted protein degradation', 'HaloPROTAC', 'dTAG', 'molecular glue', 'ubiquitin proteasome system', 'hydrophobic tagging', 'HyT', 'heterobifunctional degrader', 'SNIPER', 'targeted ubiquitination', 'degronimids', 'endtacs', 'hydrophobic tag', 'imids', 'lytacs', 'photacs'] --- this is the search list
+SEC_filing --- these are the doc types
+daniel.kwon@roivant.com
+OME alert: Bristol Myers Squibb Protein Degrader Alert (2020-07-27)
+   email replied
+['proteolysis-targeting chimera', 'PROTAC', 'protein degrader', 'protein degradation', 'targeted degrader', 'targeted degradation', 'targeted protein degrader', 'targeted protein degradation', 'HaloPROTAC', 'dTAG', 'molecular glue', 'ubiquitin proteasome system', 'hydrophobic tagging', 'HyT', 'heterobifunctional degrader', 'SNIPER', 'targeted ubiquitination', 'degronimids', 'endtacs', 'hydrophobic tag', 'imids', 'lytacs', 'photacs'] --- this is the search list
 [] ---- keywords in empty email
 empty email
+['proteolysis-targeting chimera', 'PROTAC', 'protein degrader', 'protein degradation', 'targeted degrader', 'targeted degradation', 'targeted protein degrader', 'targeted protein degradation', 'HaloPROTAC', 'dTAG', 'molecular glue', 'ubiquitin proteasome system', 'hydrophobic tagging', 'HyT', 'heterobifunctional degrader', 'SNIPER', 'targeted ubiquitination', 'degronimids', 'endtacs', 'hydrophobic tag', 'imids', 'lytacs', 'photacs'] --- this is the search list
 [] ---- keywords in empty email
 empty email
+['proteolysis-targeting chimera', 'PROTAC', 'protein degrader', 'protein degradation', 'targeted degrader', 'targeted degradation', 'targeted protein degrader', 'targeted protein degradation', 'HaloPROTAC', 'dTAG', 'molecular glue', 'ubiquitin proteasome system', 'hydrophobic tagging', 'HyT', 'heterobifunctional degrader', 'SNIPER', 'targeted ubiquitination', 'degronimids', 'endtacs', 'hydrophobic tag', 'imids', 'lytacs', 'photacs'] --- this is the search list
 [] ---- keywords in empty email
 empty email
+['proteolysis-targeting chimera', 'PROTAC', 'protein degrader', 'protein degradation', 'targeted degrader', 'targeted degradation', 'targeted protein degrader', 'targeted protein degradation', 'HaloPROTAC', 'dTAG', 'molecular glue', 'ubiquitin proteasome system', 'hydrophobic tagging', 'HyT', 'heterobifunctional degrader', 'SNIPER', 'targeted ubiquitination', 'degronimids', 'endtacs', 'hydrophobic tag', 'imids', 'lytacs', 'photacs'] --- this is the search list
 [] ---- keywords in empty email
 empty email
+['proteolysis-targeting chimera', 'PROTAC', 'protein degrader', 'protein degradation', 'targeted degrader', 'targeted degradation', 'targeted protein degrader', 'targeted protein degradation', 'HaloPROTAC', 'dTAG', 'molecular glue', 'ubiquitin proteasome system', 'hydrophobic tagging', 'HyT', 'heterobifunctional degrader', 'SNIPER', 'targeted ubiquitination', 'degronimids', 'endtacs', 'hydrophobic tag', 'imids', 'lytacs', 'photacs'] --- this is the search list
+SEC_filing --- these are the doc types
+daniel.kwon@roivant.com
+OME alert: Sanofi Protein Degrader Alert (2020-07-27)
+   email replied
+['proteolysis-targeting chimera', 'PROTAC', 'protein degrader', 'protein degradation', 'targeted degrader', 'targeted degradation', 'targeted protein degrader', 'targeted protein degradation', 'HaloPROTAC', 'dTAG', 'molecular glue', 'ubiquitin proteasome system', 'hydrophobic tagging', 'HyT', 'heterobifunctional degrader', 'SNIPER', 'targeted ubiquitination', 'degronimids', 'endtacs', 'hydrophobic tag', 'imids', 'lytacs', 'photacs'] --- this is the search list
 [] ---- keywords in empty email
 empty email
+['proteolysis-targeting chimera', 'PROTAC', 'protein degrader', 'protein degradation', 'targeted degrader', 'targeted degradation', 'targeted protein degrader', 'targeted protein degradation', 'HaloPROTAC', 'dTAG', 'molecular glue', 'ubiquitin proteasome system', 'hydrophobic tagging', 'HyT', 'heterobifunctional degrader', 'SNIPER', 'targeted ubiquitination', 'degronimids', 'endtacs', 'hydrophobic tag', 'imids', 'lytacs', 'photacs'] --- this is the search list
 [] ---- keywords in empty email
 empty email
+['proteolysis-targeting chimera', 'PROTAC', 'protein degrader', 'protein degradation', 'targeted degrader', 'targeted degradation', 'targeted protein degrader', 'targeted protein degradation', 'HaloPROTAC', 'dTAG', 'molecular glue', 'ubiquitin proteasome system', 'hydrophobic tagging', 'HyT', 'heterobifunctional degrader', 'SNIPER', 'targeted ubiquitination', 'degronimids', 'endtacs', 'hydrophobic tag', 'imids', 'lytacs', 'photacs'] --- this is the search list
+SEC_filing --- these are the doc types
+daniel.kwon@roivant.com
+OME alert: Bayer Protein Degrader Alert (2020-07-27)
+   email replied
+['proteolysis-targeting chimera', 'PROTAC', 'protein degrader', 'protein degradation', 'targeted degrader', 'targeted degradation', 'targeted protein degrader', 'targeted protein degradation', 'HaloPROTAC', 'dTAG', 'molecular glue', 'ubiquitin proteasome system', 'hydrophobic tagging', 'HyT', 'heterobifunctional degrader', 'SNIPER', 'targeted ubiquitination', 'degronimids', 'endtacs', 'hydrophobic tag', 'imids', 'lytacs', 'photacs'] --- this is the search list
+SEC_filing --- these are the doc types
+daniel.kwon@roivant.com
+OME alert: Gilead Protein Degrader Alert (2020-07-27)
+   email replied
+['proteolysis-targeting chimera', 'PROTAC', 'protein degrader', 'protein degradation', 'targeted degrader', 'targeted degradation', 'targeted protein degrader', 'targeted protein degradation', 'HaloPROTAC', 'dTAG', 'molecular glue', 'ubiquitin proteasome system', 'hydrophobic tagging', 'HyT', 'heterobifunctional degrader', 'SNIPER', 'targeted ubiquitination', 'degronimids', 'endtacs', 'hydrophobic tag', 'imids', 'lytacs', 'photacs'] --- this is the search list
 [] ---- keywords in empty email
 empty email
-[] ---- keywords in empty email
-empty email
-[] ---- keywords in empty email
-empty email
-[] ---- keywords in empty email
-empty email
-[] ---- keywords in empty email
-empty email
-[] ---- keywords in empty email
-empty email
-[] ---- keywords in empty email
-empty email
+SEC_filing --- these are the doc types
+google_news --- these are the doc types
 dylan.wile@roivant.com
-OME alert: Protein Degrader Alert: Companies (2020-07-20)
+OME alert: Protein Degrader Alert: Terms (2020-07-27)
  > Sign as  [b'LOGIN completed.']
    email replied
 [] ---- keywords in empty email
 empty email
 [] ---- keywords in empty email
 empty email
+['proteolysis-targeting chimera', 'PROTAC', 'protein degrader', 'protein degradation', 'targeted degrader', 'targeted degradation', 'targeted protein degrader', 'targeted protein degradation', 'HaloPROTAC', 'dTAG', 'molecular glue', 'ubiquitin proteasome system', 'hydrophobic tagging', 'HyT', 'heterobifunctional degrader', 'SNIPER', 'targeted ubiquitination', 'degronimids', 'endtacs', 'hydrophobic tag', 'imids', 'lytacs', 'photacs'] --- this is the search list
+SEC_filing --- these are the doc types
+dylan.wile@roivant.com
+OME alert: Boehring Ingelheim Protein Degrader Alert (2020-07-27)
+   email replied
+['proteolysis-targeting chimera', 'PROTAC', 'protein degrader', 'protein degradation', 'targeted degrader', 'targeted degradation', 'targeted protein degrader', 'targeted protein degradation', 'HaloPROTAC', 'dTAG', 'molecular glue', 'ubiquitin proteasome system', 'hydrophobic tagging', 'HyT', 'heterobifunctional degrader', 'SNIPER', 'targeted ubiquitination', 'degronimids', 'endtacs', 'hydrophobic tag', 'imids', 'lytacs', 'photacs'] --- this is the search list
 [] ---- keywords in empty email
 empty email
+['proteolysis-targeting chimera', 'PROTAC', 'protein degrader', 'protein degradation', 'targeted degrader', 'targeted degradation', 'targeted protein degrader', 'targeted protein degradation', 'HaloPROTAC', 'dTAG', 'molecular glue', 'ubiquitin proteasome system', 'hydrophobic tagging', 'HyT', 'heterobifunctional degrader', 'SNIPER', 'targeted ubiquitination', 'degronimids', 'endtacs', 'hydrophobic tag', 'imids', 'lytacs', 'photacs'] --- this is the search list
+SEC_filing --- these are the doc types
+dylan.wile@roivant.com
+OME alert: Pfizer Protein Degrader Alert (2020-07-27)
+   email replied
+['proteolysis-targeting chimera', 'PROTAC', 'protein degrader', 'protein degradation', 'targeted degrader', 'targeted degradation', 'targeted protein degrader', 'targeted protein degradation', 'HaloPROTAC', 'dTAG', 'molecular glue', 'ubiquitin proteasome system', 'hydrophobic tagging', 'HyT', 'heterobifunctional degrader', 'SNIPER', 'targeted ubiquitination', 'degronimids', 'endtacs', 'hydrophobic tag', 'imids', 'lytacs', 'photacs'] --- this is the search list
+SEC_filing --- these are the doc types
+dylan.wile@roivant.com
+OME alert: Bristol Myers Squibb Protein Degrader Alert (2020-07-27)
+   email replied
+['proteolysis-targeting chimera', 'PROTAC', 'protein degrader', 'protein degradation', 'targeted degrader', 'targeted degradation', 'targeted protein degrader', 'targeted protein degradation', 'HaloPROTAC', 'dTAG', 'molecular glue', 'ubiquitin proteasome system', 'hydrophobic tagging', 'HyT', 'heterobifunctional degrader', 'SNIPER', 'targeted ubiquitination', 'degronimids', 'endtacs', 'hydrophobic tag', 'imids', 'lytacs', 'photacs'] --- this is the search list
 [] ---- keywords in empty email
 empty email
+['proteolysis-targeting chimera', 'PROTAC', 'protein degrader', 'protein degradation', 'targeted degrader', 'targeted degradation', 'targeted protein degrader', 'targeted protein degradation', 'HaloPROTAC', 'dTAG', 'molecular glue', 'ubiquitin proteasome system', 'hydrophobic tagging', 'HyT', 'heterobifunctional degrader', 'SNIPER', 'targeted ubiquitination', 'degronimids', 'endtacs', 'hydrophobic tag', 'imids', 'lytacs', 'photacs'] --- this is the search list
 [] ---- keywords in empty email
 empty email
+['proteolysis-targeting chimera', 'PROTAC', 'protein degrader', 'protein degradation', 'targeted degrader', 'targeted degradation', 'targeted protein degrader', 'targeted protein degradation', 'HaloPROTAC', 'dTAG', 'molecular glue', 'ubiquitin proteasome system', 'hydrophobic tagging', 'HyT', 'heterobifunctional degrader', 'SNIPER', 'targeted ubiquitination', 'degronimids', 'endtacs', 'hydrophobic tag', 'imids', 'lytacs', 'photacs'] --- this is the search list
 [] ---- keywords in empty email
 empty email
+['proteolysis-targeting chimera', 'PROTAC', 'protein degrader', 'protein degradation', 'targeted degrader', 'targeted degradation', 'targeted protein degrader', 'targeted protein degradation', 'HaloPROTAC', 'dTAG', 'molecular glue', 'ubiquitin proteasome system', 'hydrophobic tagging', 'HyT', 'heterobifunctional degrader', 'SNIPER', 'targeted ubiquitination', 'degronimids', 'endtacs', 'hydrophobic tag', 'imids', 'lytacs', 'photacs'] --- this is the search list
 [] ---- keywords in empty email
 empty email
+['proteolysis-targeting chimera', 'PROTAC', 'protein degrader', 'protein degradation', 'targeted degrader', 'targeted degradation', 'targeted protein degrader', 'targeted protein degradation', 'HaloPROTAC', 'dTAG', 'molecular glue', 'ubiquitin proteasome system', 'hydrophobic tagging', 'HyT', 'heterobifunctional degrader', 'SNIPER', 'targeted ubiquitination', 'degronimids', 'endtacs', 'hydrophobic tag', 'imids', 'lytacs', 'photacs'] --- this is the search list
+SEC_filing --- these are the doc types
+dylan.wile@roivant.com
+OME alert: Sanofi Protein Degrader Alert (2020-07-27)
+   email replied
+['proteolysis-targeting chimera', 'PROTAC', 'protein degrader', 'protein degradation', 'targeted degrader', 'targeted degradation', 'targeted protein degrader', 'targeted protein degradation', 'HaloPROTAC', 'dTAG', 'molecular glue', 'ubiquitin proteasome system', 'hydrophobic tagging', 'HyT', 'heterobifunctional degrader', 'SNIPER', 'targeted ubiquitination', 'degronimids', 'endtacs', 'hydrophobic tag', 'imids', 'lytacs', 'photacs'] --- this is the search list
 [] ---- keywords in empty email
 empty email
+['proteolysis-targeting chimera', 'PROTAC', 'protein degrader', 'protein degradation', 'targeted degrader', 'targeted degradation', 'targeted protein degrader', 'targeted protein degradation', 'HaloPROTAC', 'dTAG', 'molecular glue', 'ubiquitin proteasome system', 'hydrophobic tagging', 'HyT', 'heterobifunctional degrader', 'SNIPER', 'targeted ubiquitination', 'degronimids', 'endtacs', 'hydrophobic tag', 'imids', 'lytacs', 'photacs'] --- this is the search list
 [] ---- keywords in empty email
 empty email
+['proteolysis-targeting chimera', 'PROTAC', 'protein degrader', 'protein degradation', 'targeted degrader', 'targeted degradation', 'targeted protein degrader', 'targeted protein degradation', 'HaloPROTAC', 'dTAG', 'molecular glue', 'ubiquitin proteasome system', 'hydrophobic tagging', 'HyT', 'heterobifunctional degrader', 'SNIPER', 'targeted ubiquitination', 'degronimids', 'endtacs', 'hydrophobic tag', 'imids', 'lytacs', 'photacs'] --- this is the search list
+SEC_filing --- these are the doc types
+dylan.wile@roivant.com
+OME alert: Bayer Protein Degrader Alert (2020-07-27)
+   email replied
+['proteolysis-targeting chimera', 'PROTAC', 'protein degrader', 'protein degradation', 'targeted degrader', 'targeted degradation', 'targeted protein degrader', 'targeted protein degradation', 'HaloPROTAC', 'dTAG', 'molecular glue', 'ubiquitin proteasome system', 'hydrophobic tagging', 'HyT', 'heterobifunctional degrader', 'SNIPER', 'targeted ubiquitination', 'degronimids', 'endtacs', 'hydrophobic tag', 'imids', 'lytacs', 'photacs'] --- this is the search list
+SEC_filing --- these are the doc types
+dylan.wile@roivant.com
+OME alert: Gilead Protein Degrader Alert (2020-07-27)
+   email replied
+['proteolysis-targeting chimera', 'PROTAC', 'protein degrader', 'protein degradation', 'targeted degrader', 'targeted degradation', 'targeted protein degrader', 'targeted protein degradation', 'HaloPROTAC', 'dTAG', 'molecular glue', 'ubiquitin proteasome system', 'hydrophobic tagging', 'HyT', 'heterobifunctional degrader', 'SNIPER', 'targeted ubiquitination', 'degronimids', 'endtacs', 'hydrophobic tag', 'imids', 'lytacs', 'photacs'] --- this is the search list
 [] ---- keywords in empty email
 empty email
+['proteolysis-targeting chimera', 'PROTAC', 'protein degrader', 'protein degradation', 'targeted degrader', 'targeted degradation', 'targeted protein degrader', 'targeted protein degradation', 'HaloPROTAC', 'dTAG', 'molecular glue', 'ubiquitin proteasome system', 'hydrophobic tagging', 'HyT', 'heterobifunctional degrader', 'SNIPER', 'targeted ubiquitination', 'degronimids', 'endtacs', 'hydrophobic tag', 'imids', 'lytacs', 'photacs'] --- this is the search list
 [] ---- keywords in empty email
 empty email
+['proteolysis-targeting chimera', 'PROTAC', 'protein degrader', 'protein degradation', 'targeted degrader', 'targeted degradation', 'targeted protein degrader', 'targeted protein degradation', 'HaloPROTAC', 'dTAG', 'molecular glue', 'ubiquitin proteasome system', 'hydrophobic tagging', 'HyT', 'heterobifunctional degrader', 'SNIPER', 'targeted ubiquitination', 'degronimids', 'endtacs', 'hydrophobic tag', 'imids', 'lytacs', 'photacs'] --- this is the search list
 [] ---- keywords in empty email
 empty email
-[] ---- keywords in empty email
-empty email
-[] ---- keywords in empty email
-empty email
-[] ---- keywords in empty email
-empty email
-[] ---- keywords in empty email
-empty email
-[] ---- keywords in empty email
-empty email
-[] ---- keywords in empty email
-empty email
-[] ---- keywords in empty email
-empty email
+['proteolysis-targeting chimera', 'PROTAC', 'protein degrader', 'protein degradation', 'targeted degrader', 'targeted degradation', 'targeted protein degrader', 'targeted protein degradation', 'HaloPROTAC', 'dTAG', 'molecular glue', 'ubiquitin proteasome system', 'hydrophobic tagging', 'HyT', 'heterobifunctional degrader', 'SNIPER', 'targeted ubiquitination', 'degronimids', 'endtacs', 'hydrophobic tag', 'imids', 'lytacs', 'photacs'] --- this is the search list
+SEC_filing --- these are the doc types
 carson.tao@sumitovant.com
-OME alert: Women's Health - Sam A (cooccurence) (2020-07-20)
+OME alert: Bayer Protein Degrader Alert (2020-07-27)
  > Sign as  [b'LOGIN completed.']
    email replied
+['proteolysis-targeting chimera', 'PROTAC', 'protein degrader', 'protein degradation', 'targeted degrader', 'targeted degradation', 'targeted protein degrader', 'targeted protein degradation', 'HaloPROTAC', 'dTAG', 'molecular glue', 'ubiquitin proteasome system', 'hydrophobic tagging', 'HyT', 'heterobifunctional degrader', 'SNIPER', 'targeted ubiquitination', 'degronimids', 'endtacs', 'hydrophobic tag', 'imids', 'lytacs', 'photacs'] --- this is the search list
+SEC_filing --- these are the doc types
 carson.tao@sumitovant.com
-OME alert: Prostate Cancer - Sam A (2020-07-20)
+OME alert: Gilead Protein Degrader Alert (2020-07-27)
    email replied
+['proteolysis-targeting chimera', 'PROTAC', 'protein degrader', 'protein degradation', 'targeted degrader', 'targeted degradation', 'targeted protein degrader', 'targeted protein degradation', 'HaloPROTAC', 'dTAG', 'molecular glue', 'ubiquitin proteasome system', 'hydrophobic tagging', 'HyT', 'heterobifunctional degrader', 'SNIPER', 'targeted ubiquitination', 'degronimids', 'endtacs', 'hydrophobic tag', 'imids', 'lytacs', 'photacs'] --- this is the search list
+[] ---- keywords in empty email
+empty email
+['endometriosis'] --- this is the search list
+pubmed_article --- these are the doc types
 carson.tao@sumitovant.com
-OME alert: AAV and purification (2020-07-20)
+OME alert: Women's Health - Sam A (cooccurence) (2020-07-27)
    email replied
+['GnRh antagonist', 'GnRH', 'GnRh antagonists', 'GnRH', 'GNRH', 'Gonadotropin-releasing hormone', 'Gonadotropin releasing hormone'] --- this is the search list
+pubmed_article --- these are the doc types
 carson.tao@sumitovant.com
-OME alert: AAV (2020-07-20)
+OME alert: Prostate Cancer - Sam A (2020-07-27)
    email replied
+['infectious titer', 'titer', 'yield', 'purification', 'purity', 'dot-blot', 'QC PCR', 'infectious units', 'ICA', 'FCA', 'particle-to-infectivity ratio', 'particles recovery', 'impurity', 'impurities', 'purified', 'polishing', 'ultrafiltration', 'size-exclusion', 'chromatography', 'hollow-fiber', 'precipitation'] --- this is the search list
+[] ---- keywords in empty email
+empty email
+[] ---- keywords in empty email
+empty email
+['production', 'producer', 'cell line', 'cell lines', 'cultivate', 'cultivated', 'cultivating', 'cultivates', 'manufacturing', 'manufacture', 'manufactured', 'generating vector', 'generate', 'produce', 'produces', 'producing', 'replication', 'replicating', 'amplified', 'amplifies', 'amplifying', 'amplification', 'transfection', '', 'infection', 'growth', 'transfected', 'packaging cell lines', 'packaging cell line', 'harvest'] --- this is the search list
+SEC_filing --- these are the doc types
 carson.tao@sumitovant.com
-OME alert: AAV and production (2020-07-20)
+OME alert: AAV and production (2020-07-27)
    email replied
 cody.schiffer@sumitovant.com
-OME Alerts Completion  (2020-07-19)
+OME Alerts Completion  (2020-07-26)
  > Sign as  [b'LOGIN completed.']
    email replied
 cody.schiffer@roivant.com
-Search Completion  (2020-07-19)
+Search Completion  (2020-07-26)
  > Sign as  [b'LOGIN completed.']
    email replied
 yoann.randriamihaja@sumitovant.com
-OME Alerts Completion  (2020-07-19)
+OME Alerts Completion  (2020-07-26)
  > Sign as  [b'LOGIN completed.']
    email replied
 ayman.mohammad@roivant.com
-Search Completion  (2020-07-19)
+Search Completion  (2020-07-26)
  > Sign as  [b'LOGIN completed.']
    email replied
 andrew.bogorad@roivant.com
-Search Completion  (2020-07-19)
+Search Completion  (2020-07-26)
  > Sign as  [b'LOGIN completed.']
    email replied
 done
