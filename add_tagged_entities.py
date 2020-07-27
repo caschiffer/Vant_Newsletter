@@ -83,13 +83,13 @@ def get_keyword_sentences(document_text, keyword):
         
         #print(keyword, '--- this is the keyword')
         
-        if keyword == 'Gonadotropin-releasing hormone':# or keyword == 'size exclusion':
-            #print(keyword,'---- the keywords found')
-            print(keyword_processor,'---- full processor')
+        # if keyword == 'Gonadotropin-releasing hormone':# or keyword == 'size exclusion':
+        #     #print(keyword,'---- the keywords found')
+        #     print(keyword_processor,'---- full processor')
 
-            print(keywords_found, '---- the keywords found')
-            #print(document_text_copy,'--- cleaned documents')
-            #print(keyword_processor,'---- full processor')
+        #     print(keywords_found, '---- the keywords found')
+        #     #print(document_text_copy,'--- cleaned documents')
+        #     #print(keyword_processor,'---- full processor')
 
         shorter_sentence = ""
     
