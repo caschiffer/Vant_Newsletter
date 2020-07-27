@@ -74,7 +74,7 @@ def get_keyword_sentences(document_text, keyword):
         
         keyword_processor = KeywordProcessor()
         #keyword_fr_process = re.sub('[-/]', ' ', keyword) ## remove keyword special characters using regex
-        keyword_fr_process= solr_clean_special_char(keyword)
+        keyword_fr_process = solr_clean_special_char(keyword)
         keyword_processor.add_keyword(keyword_fr_process.lower())
         #document_text_copy = re.sub('[-/]', ' ', document_text) ## remove keyword special characters using regex
         document_text_copy = solr_clean_special_char(document_text)
@@ -83,17 +83,17 @@ def get_keyword_sentences(document_text, keyword):
         
         #print(keyword, '--- this is the keyword')
         
-        # if keyword == 'size-exclusion':# or keyword == 'size exclusion':
-        #     #print(keyword,'---- the keywords found')
-        #     print(keyword_processor,'---- full processor')
+        if keyword == 'Gonadotropin-releasing hormone':# or keyword == 'size exclusion':
+            #print(keyword,'---- the keywords found')
+            print(keyword_processor,'---- full processor')
 
-        #     print(keywords_found, '---- the keywords found')
-        #     print(document_text_copy,'--- cleaned documents')
-        #     #print(keyword_processor,'---- full processor')
+            print(keywords_found, '---- the keywords found')
+            #print(document_text_copy,'--- cleaned documents')
+            #print(keyword_processor,'---- full processor')
 
         shorter_sentence = ""
     
-        sentence_ls = text_to_sentences(document_text)
+        sentence_ls = text_to_sentences(document_text_copy)
         last_sentence_index = 0    
         
         for i in range(0, len(sentence_ls)):

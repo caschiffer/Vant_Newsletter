@@ -893,13 +893,13 @@ aymans_search_completion = send_successful_search('ayman.mohammad')
 time.sleep(120)
 andrews_search_completion = send_successful_search('andrew.bogorad')
 
-print('done')
-print('second debug')
+#print('done')
+#print('second debug')
 
 # DEBUGGING FUNCTIONS --------------
-# from_date = datetime.date(2020,6,25)
+# from_date = datetime.date(2020,6,26)
 # #from_date = datetime.date.today() - datetime.timedelta(days=1)
-# to_date = datetime.date(2020,6,26)
+# to_date = datetime.date(2020,6,27)
 # #to_date = datetime.date.today()
 # internal_users = ['cody.schiffer']
 # user = 'cody.schiffer'
@@ -910,7 +910,7 @@ print('second debug')
 # email_address = 'cody.schiffer@sumitovant.com'
 # email_subject = 'DEBUGDEBUGDEBUG'
 
-# test_search_params, test_alert_title = get_documents.get_search_params_list('447')
+# test_search_params, test_alert_title = get_documents.get_search_params_list('445')
 # #print(test_search_params,'---- these are the test params')
 
 # #test_url = construct_solr_search_url(test_search_terms, from_date=from_date)
@@ -936,7 +936,7 @@ print('second debug')
 # #mail.login('comp.res@roivant.com','Roivant$cr0220!')
 # mail.inbox()
 # mail.sendEmail(email_address, email_subject, email_string_internal)
-
+ 
 
 
 ####
