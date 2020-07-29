@@ -883,16 +883,16 @@ def send_successful_search(user):
 #archits_alert_ids = send_ome_alerts_of_user('archit.sheth-shah')
 #emirs_alert_ids = send_ome_alerts_of_user('emir.haskovic')
 #anythonys_alert_ids = send_ome_alerts_of_user('anthony.bogachev')
-# send_ome_alerts()
-# time.sleep(120)
-# codys_alert_completion = send_completion_notification('cody.schiffer')
-# codys_search_completion = send_successful_search('cody.schiffer')
-# time.sleep(120)
-# yoanns_alert_completion = send_completion_notification('yoann.randriamihaja')
-# time.sleep(120)
-# aymans_search_completion = send_successful_search('ayman.mohammad')
-# time.sleep(120)
-# andrews_search_completion = send_successful_search('andrew.bogorad')
+send_ome_alerts()
+time.sleep(120)
+codys_alert_completion = send_completion_notification('cody.schiffer')
+codys_search_completion = send_successful_search('cody.schiffer')
+time.sleep(120)
+yoanns_alert_completion = send_completion_notification('yoann.randriamihaja')
+time.sleep(120)
+aymans_search_completion = send_successful_search('ayman.mohammad')
+time.sleep(120)
+andrews_search_completion = send_successful_search('andrew.bogorad')
 
 #print('done')
 #print('second debug')
@@ -911,7 +911,7 @@ def send_successful_search(user):
 # email_address = 'cody.schiffer@sumitovant.com'
 # email_subject = 'DEBUGDEBUGDEBUG'
 
-# test_search_params, test_alert_title = get_documents.get_search_params_list('462')
+# test_search_params, test_alert_title = get_documents.get_search_params_list('463')
 # #print(test_search_params,'---- these are the test params')
 
 # ##test_url = construct_solr_search_url(test_search_terms, from_date=from_date)
