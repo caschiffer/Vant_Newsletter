@@ -896,7 +896,7 @@ andrews_search_completion = send_successful_search('andrew.bogorad')
 #print('done')
 #print('second debug')
 
-# DEBUGGING FUNCTIONS --------------
+#DEBUGGING FUNCTIONS --------------
 # from_date = datetime.date(2020,6,26)
 # #from_date = datetime.date.today() - datetime.timedelta(days=1)
 # to_date = datetime.date(2020,6,27)
@@ -910,14 +910,14 @@ andrews_search_completion = send_successful_search('andrew.bogorad')
 # email_address = 'cody.schiffer@sumitovant.com'
 # email_subject = 'DEBUGDEBUGDEBUG'
 
-# test_search_params, test_alert_title = get_documents.get_search_params_list('445')
+# test_search_params, test_alert_title = get_documents.get_search_params_list('455')
 # #print(test_search_params,'---- these are the test params')
 
-# #test_url = construct_solr_search_url(test_search_terms, from_date=from_date)
+# ##test_url = construct_solr_search_url(test_search_terms, from_date=from_date)
 
-# #source_trial = source_filter(ome_alert_results)
+# ##source_trial = source_filter(ome_alert_results)
 
-# #test_search_params = [{'search_type': 'standard', 'keyphrase1': 'Trace amine associated receptor 1', 'keyword': 'Trace amine associated receptor 1', 'source_select': 'all', 'alert_title': 'TAAR1_Sunovion_OME_Alert', 'filter_type': 'or', 'journal_select': '', 'author_select': '', 'institution_select': '', 'filter_leeway': 70}, {'search_type': 'standard', 'keyphrase1': 'Trace amine-associated receptor 1', 'keyword': 'Trace amine-associated receptor 1', 'source_select': 'all', 'alert_title': 'TAAR1_Sunovion_OME_Alert', 'filter_type': 'or', 'journal_select': '', 'author_select': '', 'institution_select': '', 'filter_leeway': 70}, {'search_type': 'standard', 'keyphrase1': 'TaR-1', 'keyword': 'TaR-1', 'source_select': 'all', 'alert_title': 'TAAR1_Sunovion_OME_Alert', 'filter_type': 'or', 'journal_select': '', 'author_select': '', 'institution_select': '', 'filter_leeway': 70}, {'search_type': 'standard', 'keyphrase1': 'Trace amine receptor 1', 'keyword': 'Trace amine receptor 1', 'source_select': 'all', 'alert_title': 'TAAR1_Sunovion_OME_Alert', 'filter_type': 'or', 'journal_select': '', 'author_select': '', 'institution_select': '', 'filter_leeway': 70}, {'search_type': 'standard', 'keyphrase1': 'TAAR1', 'keyword': 'TAAR1', 'source_select': 'all', 'alert_title': 'TAAR1_Sunovion_OME_Alert', 'filter_type': 'or', 'journal_select': '', 'author_select': '', 'institution_select': '', 'filter_leeway': 70}, {'search_type': 'standard', 'keyphrase1': 'Taar-1', 'keyword': 'Taar-1', 'source_select': 'all', 'alert_title': 'TAAR1_Sunovion_OME_Alert', 'filter_type': 'or', 'journal_select': '', 'author_select': '', 'institution_select': '', 'filter_leeway': 70}, {'search_type': 'standard', 'keyphrase1': 'TAR-1', 'keyword': 'TAR-1', 'source_select': 'all', 'alert_title': 'TAAR1_Sunovion_OME_Alert', 'filter_type': 'or', 'journal_select': '', 'author_select': '', 'institution_select': '', 'filter_leeway': 70}]
+# ##test_search_params = [{'search_type': 'standard', 'keyphrase1': 'Trace amine associated receptor 1', 'keyword': 'Trace amine associated receptor 1', 'source_select': 'all', 'alert_title': 'TAAR1_Sunovion_OME_Alert', 'filter_type': 'or', 'journal_select': '', 'author_select': '', 'institution_select': '', 'filter_leeway': 70}, {'search_type': 'standard', 'keyphrase1': 'Trace amine-associated receptor 1', 'keyword': 'Trace amine-associated receptor 1', 'source_select': 'all', 'alert_title': 'TAAR1_Sunovion_OME_Alert', 'filter_type': 'or', 'journal_select': '', 'author_select': '', 'institution_select': '', 'filter_leeway': 70}, {'search_type': 'standard', 'keyphrase1': 'TaR-1', 'keyword': 'TaR-1', 'source_select': 'all', 'alert_title': 'TAAR1_Sunovion_OME_Alert', 'filter_type': 'or', 'journal_select': '', 'author_select': '', 'institution_select': '', 'filter_leeway': 70}, {'search_type': 'standard', 'keyphrase1': 'Trace amine receptor 1', 'keyword': 'Trace amine receptor 1', 'source_select': 'all', 'alert_title': 'TAAR1_Sunovion_OME_Alert', 'filter_type': 'or', 'journal_select': '', 'author_select': '', 'institution_select': '', 'filter_leeway': 70}, {'search_type': 'standard', 'keyphrase1': 'TAAR1', 'keyword': 'TAAR1', 'source_select': 'all', 'alert_title': 'TAAR1_Sunovion_OME_Alert', 'filter_type': 'or', 'journal_select': '', 'author_select': '', 'institution_select': '', 'filter_leeway': 70}, {'search_type': 'standard', 'keyphrase1': 'Taar-1', 'keyword': 'Taar-1', 'source_select': 'all', 'alert_title': 'TAAR1_Sunovion_OME_Alert', 'filter_type': 'or', 'journal_select': '', 'author_select': '', 'institution_select': '', 'filter_leeway': 70}, {'search_type': 'standard', 'keyphrase1': 'TAR-1', 'keyword': 'TAR-1', 'source_select': 'all', 'alert_title': 'TAAR1_Sunovion_OME_Alert', 'filter_type': 'or', 'journal_select': '', 'author_select': '', 'institution_select': '', 'filter_leeway': 70}]
 # ome_alert_results, url_query = get_documents.get_ome_alert_results(test_search_params, from_date=from_date, to_date=to_date, tags='tagged_entities_for_email')
 
 

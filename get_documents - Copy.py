@@ -718,8 +718,6 @@ def get_search_params_list(ome_alert_id):
                 elif len(row[2]) < 2:# CS - prevents second, irrelevant + empty search params_list generation
                     search_list = [row[1]]# CS - prevents second, irrelevant + empty search params_list generation
                 search_list = [ix for ix in search_list if ix != '']
-                search_list = list(set(search_list))  #CS removing duplicate terms
-                print(search_list, '--- this is the search list')
                 for i in search_list:
                     search_params_list.append({'search_type':'standard', 'keyphrase1':i, 'keyword':i, 'source_select':row[6], 'alert_title':row[7], 'filter_type':row[9], 'journal_select':row[10], 'author_select':row[11], 'institution_select':row[12], 'filter_leeway':row[13]})
                     #^^^CS adjusted search_params_list to include new filter columns 
@@ -727,18 +725,14 @@ def get_search_params_list(ome_alert_id):
             elif row[5] == 'standard_title':
                 search_list = row[2].split(', ')
                 search_list = [ix for ix in search_list if ix != '']
-                search_list = list(set(search_list))  #CS removing duplicate terms
-                print(search_list, '---- this is the search list')
                 for i in search_list:
                     search_params_list.append({'search_type':'standard', 'keyphrase1':i, 'keyword':i, 'source_select':row[6], 'alert_title':row[7], 'filter_type':row[9], 'journal_select':row[10], 'author_select':row[11], 'institution_select':row[12], 'filter_leeway':row[13]})
                     #^^^CS adjusted search_params_list to include new filter columns 
                     
             elif 'cooccurence' in row[5]:
                 search_list = row[2].split(', ')
-                #print(search_list, '--- this is the search list')
-                search_list = [ix for ix in search_list if ix != '']
-                search_list = list(set(search_list))  #CS removing duplicate terms
                 print(search_list, '--- this is the search list')
+                search_list = [ix for ix in search_list if ix != '']
                 for i in search_list:
                     if len(row[5].split('_')) > 1:
                         search_params_list.append({'search_type':'coocurence', 'keyphrase1':row[1], 'keyphrase2':i, 'keyword':i, 'keyphrase_distance':row[5].split('_')[1], 'source_select':row[6], 'alert_title':row[7], 'filter_type':row[9], 'journal_select':row[10], 'author_select':row[11], 'institution_select':row[12], 'filter_leeway':row[13]})
