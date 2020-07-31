@@ -14,7 +14,8 @@ import pickle
 import logging
 import time
 from fuzzywuzzy import fuzz
-
+import os
+import codecs
 
 
 from google.modules.utils import get_html
@@ -180,7 +181,15 @@ def get_solr_results(keyword, search_url, journal_select='', author_select='', i
                     #if any(s in doc['id'] for s in ct_paths):
                     #if doc['title'][0] not in clinical_trials['title']:
                     document_type, detailed_type = get_document_type(doc['id'])
+                    print(document_type, '--- this is the document type')
                                     
+                    # document_text extraction should be contingent on tocument type for 
+                    #if (document_type == 'Cortellis') and ('Drug_Status_Changes_alert' in doc['id']):
+                    #    print(doc['id'] , '---- this is the doc id')
+                    #    file_to_read = doc['id']
+                    #    = codecs.open(file_to_read, "r", "utf-8")
+                    
+                    
                     #document_text = text_to_sentences(doc['content'][0])
                     document_text = ' '.join(add_tagged_entities.text_to_sentences(doc['cleaned_html_content_txt'][0]))
                     #hs = highlight_sentences(t, keyword)
@@ -728,7 +737,7 @@ def get_search_params_list(ome_alert_id):
                 search_list = row[2].split(', ')
                 search_list = [ix for ix in search_list if ix != '']
                 search_list = list(set(search_list))  #CS removing duplicate terms
-                print(search_list, '---- this is the search list')
+                print(search_list, '--- this is the search list')
                 for i in search_list:
                     search_params_list.append({'search_type':'standard', 'keyphrase1':i, 'keyword':i, 'source_select':row[6], 'alert_title':row[7], 'filter_type':row[9], 'journal_select':row[10], 'author_select':row[11], 'institution_select':row[12], 'filter_leeway':row[13]})
                     #^^^CS adjusted search_params_list to include new filter columns 

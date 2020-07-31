@@ -236,3 +236,62 @@ ERROR:root:'str' object has no attribute 'string' | error in get_documents.get_s
 ERROR:root:'str' object has no attribute 'string' | error in get_documents.get_solr_results 2020-07-22 18:49:38.411326
 ERROR:root:'str' object has no attribute 'string' | error in get_documents.get_solr_results 2020-07-22 18:49:40.711632
 ERROR:root:'str' object has no attribute 'string' | error in get_documents.get_solr_results 2020-07-22 18:49:41.055171
+ERROR:root:'article_title_ss' | error in get_documents.get_solr_results 2020-07-29 08:20:25.621263
+ERROR:root:'article_title_ss' | error in get_documents.get_solr_results 2020-07-29 08:20:40.439660
+ERROR:root:'article_title_ss' | error in get_documents.get_solr_results 2020-07-29 08:20:43.412196
+ERROR:root:'article_title_ss' | error in get_documents.get_solr_results 2020-07-29 08:21:00.915508
+ERROR:root:'article_title_ss' | error in get_documents.get_solr_results 2020-07-29 08:21:09.522382
+ERROR:root:'article_title_ss' | error in get_documents.get_solr_results 2020-07-29 08:21:10.901364
+ERROR:root:'article_title_ss' | error in get_documents.get_solr_results 2020-07-29 08:21:11.971226
+ERROR:root:'article_title_ss' | error in get_documents.get_solr_results 2020-07-29 08:21:30.005122
+ERROR:root:'article_title_ss' | error in get_documents.get_solr_results 2020-07-29 08:21:32.413649
+ERROR:root:'article_title_ss' | error in get_documents.get_solr_results 2020-07-29 08:21:40.953358
+ERROR:root:'article_title_ss' | error in get_documents.get_solr_results 2020-07-29 08:21:42.602641
+ERROR:root:'article_title_ss' | error in get_documents.get_solr_results 2020-07-29 08:21:43.982566
+ERROR:root:'article_title_ss' | error in get_documents.get_solr_results 2020-07-29 08:21:51.389167
+ERROR:root:'article_title_ss' | error in get_documents.get_solr_results 2020-07-29 08:22:03.286491
+ERROR:root:'article_title_ss' | error in get_documents.get_solr_results 2020-07-29 08:22:09.766626
+ERROR:root:'article_title_ss' | error in get_documents.get_solr_results 2020-07-29 08:22:26.663228
+ERROR:root:'article_title_ss' | error in get_documents.get_solr_results 2020-07-29 08:22:42.257032
+ERROR:root:'article_title_ss' | error in get_documents.get_solr_results 2020-07-29 08:22:58.128692
+ERROR:root:'title_txt' | error in get_documents.get_solr_results 2020-07-29 08:24:05.128909
+ERROR:root:'article_title_ss' | error in get_documents.get_solr_results 2020-07-29 08:24:22.133414
+ERROR:root:'article_title_ss' | error in get_documents.get_solr_results 2020-07-29 08:24:27.262827
+ERROR:root:'article_title_ss' | error in get_documents.get_solr_results 2020-07-29 08:24:31.895517
+ERROR:root:'article_title_ss' | error in get_documents.get_solr_results 2020-07-29 08:24:41.389453
+ERROR:root:'article_title_ss' | error in get_documents.get_solr_results 2020-07-29 08:24:43.110672
+ERROR:root:'article_title_ss' | error in get_documents.get_solr_results 2020-07-29 08:24:56.480261
+ERROR:root:'article_title_ss' | error in get_documents.get_solr_results 2020-07-29 08:25:07.749888
+ERROR:root:'article_title_ss' | error in get_documents.get_solr_results 2020-07-29 08:25:51.874658
+ERROR:root:'article_title_ss' | error in get_documents.get_solr_results 2020-07-29 08:26:00.017025
+ERROR:root:'article_title_ss' | error in get_documents.get_solr_results 2020-07-29 08:26:01.048689
+ERROR:root:'title_txt' | error in get_documents.get_solr_results 2020-07-29 08:26:31.302011
+ERROR:root:'title_txt' | error in get_documents.get_solr_results 2020-07-29 08:26:31.844739
+ERROR:root:'title_txt' | error in get_documents.get_solr_results 2020-07-29 08:26:33.174564
+ERROR:root:'title_txt' | error in get_documents.get_solr_results 2020-07-29 08:26:37.850515
+ERROR:root:'title_txt' | error in get_documents.get_solr_results 2020-07-29 08:27:38.385598
+ERROR:root:'title_txt' | error in get_documents.get_solr_results 2020-07-29 08:27:47.222772
+ERROR:root:'title_txt' | error in get_documents.get_solr_results 2020-07-29 08:27:58.160477
+ERROR:root:'title_txt' | error in get_documents.get_solr_results 2020-07-29 08:28:46.130195
+ERROR:root:'title_txt' | error in get_documents.get_solr_results 2020-07-29 08:28:47.189605
+ERROR:root:'title_txt' | error in get_documents.get_solr_results 2020-07-29 08:29:07.442755
+ERROR:root:'title_txt' | error in get_documents.get_solr_results 2020-07-29 08:29:12.549358
+ERROR:root:object of type 'NoneType' has no len() | error in get_documents.get_search_params_list 2020-07-29 16:08:39.426012
+ERROR:root:object of type 'NoneType' has no len() | error in get_documents.get_search_params_list 2020-07-29 16:11:04.130169
+ERROR:root:'str' object has no attribute 'str' | error in get_documents.get_solr_results 2020-07-29 16:11:44.650172
+ERROR:root:'article_title_ss' | error in get_documents.get_solr_results 2020-07-30 18:45:42.616636
+ERROR:root:'article_title_ss' | error in get_documents.get_solr_results 2020-07-30 18:45:50.715782
+ERROR:root:'article_title_ss' | error in get_documents.get_solr_results 2020-07-30 18:45:51.987584
+ERROR:root:'article_title_ss' | error in get_documents.get_solr_results 2020-07-30 18:45:56.641288
+ERROR:root:'article_title_ss' | error in get_documents.get_solr_results 2020-07-30 18:45:57.716654
+ERROR:root:'article_title_ss' | error in get_documents.get_solr_results 2020-07-30 18:46:01.657180
+ERROR:root:'article_title_ss' | error in get_documents.get_solr_results 2020-07-30 18:46:04.435701
+ERROR:root:'article_title_ss' | error in get_documents.get_solr_results 2020-07-30 18:46:05.077296
+ERROR:root:'article_title_ss' | error in get_documents.get_solr_results 2020-07-30 18:46:35.565067
+ERROR:root:'article_title_ss' | error in get_documents.get_solr_results 2020-07-30 18:47:18.922865
+ERROR:root:'article_title_ss' | error in get_documents.get_solr_results 2020-07-30 18:47:36.661459
+ERROR:root:'article_title_ss' | error in get_documents.get_solr_results 2020-07-30 18:47:55.551925
+ERROR:root:'article_title_ss' | error in get_documents.get_solr_results 2020-07-30 18:50:07.540146
+ERROR:root:'article_title_ss' | error in get_documents.get_solr_results 2020-07-30 18:50:17.383626
+ERROR:root:'article_title_ss' | error in get_documents.get_solr_results 2020-07-30 18:50:24.957613
+ERROR:root:'article_title_ss' | error in get_documents.get_solr_results 2020-07-30 18:51:40.665787
