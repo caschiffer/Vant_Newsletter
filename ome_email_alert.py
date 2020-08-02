@@ -662,15 +662,26 @@ def source_filter(results):
     
     doc_lists = ['Cortellis','cortellis']
     
+    #print('we are in source filter')
+    
     elems_to_rm = []
     #print(type(doc_types), '--- these are the doc types')
     for pos, i in enumerate(doc_types):
         print(i, '--- these are the doc types')
-        cond1 = i in doc_lists #generic cortellis filter
-        cond2 = "Drug_Status_Changes_alert" not in i # we don't want the non drug status changes alerts in the ome alert now
-        cond3 = "full_html" in i  #We only want the non full htmls from the new improved cortellis parsing
-        if cond1 == True and cond2 == True and cond3 == True:
-            #print(i)
+        #print(type(i))
+        cond1 = (len([x for x in doc_lists if x in i]) > 0) and ("Drug_Status_Changes_alert" in i) and ("full_email" in i) #generic cortellis filter but we don't want the non drug status changes alerts in the ome alert now
+        cond1a = len([x for x in doc_lists if x in i]) > 0
+        cond2 = "Drug_Status_Changes_alert" in i # we don't want the non drug status changes alerts in the ome alert now
+        cond3 = "full_email" in i  #We only want the non full htmls from the new improved cortellis parsing
+        
+        #print(cond1a, '--- is it a cortellis document')
+        #print(cond2, 'condition2 ')
+        #print(cond3, 'condition3')
+        
+        print(cond1, '---- did all conditions pass?')
+        
+        if cond1 == True: #and cond3 == True:
+            print(i, '--- conditional allows this')
             elems_to_rm.append(pos)
     
     elems_to_rm = sorted(elems_to_rm, reverse = True)
@@ -901,9 +912,9 @@ andrews_search_completion = send_successful_search('andrew.bogorad')
 #print('second debug')
 
 #DEBUGGING FUNCTIONS --------------
-# from_date = datetime.date(2020,7,29)
+# from_date = datetime.date(2020,7,31)
 # #from_date = datetime.date.today() - datetime.timedelta(days=1)
-# to_date = datetime.date(2020,7,30)
+# to_date = datetime.date(2020,7,31)
 # #to_date = datetime.date.today()
 # internal_users = ['cody.schiffer']
 # user = 'cody.schiffer'
@@ -914,17 +925,18 @@ andrews_search_completion = send_successful_search('andrew.bogorad')
 # email_address = 'cody.schiffer@sumitovant.com'
 # email_subject = 'DEBUGDEBUGDEBUG'
 
-# test_search_params, test_alert_title = get_documents.get_search_params_list('463')
+# test_search_params, test_alert_title = get_documents.get_search_params_list('496')
 # #print(test_search_params,'---- these are the test params')
 
 
 # ##test_url = get_documents.construct_solr_search_url(test_search_params, from_date=from_date)
-
-# # ##source_trial = source_filter(ome_alert_results)
+# #ome_alert_results = source_filter(ome_alert_results)
 
 # # ##test_search_params = [{'search_type': 'standard', 'keyphrase1': 'Trace amine associated receptor 1', 'keyword': 'Trace amine associated receptor 1', 'source_select': 'all', 'alert_title': 'TAAR1_Sunovion_OME_Alert', 'filter_type': 'or', 'journal_select': '', 'author_select': '', 'institution_select': '', 'filter_leeway': 70}, {'search_type': 'standard', 'keyphrase1': 'Trace amine-associated receptor 1', 'keyword': 'Trace amine-associated receptor 1', 'source_select': 'all', 'alert_title': 'TAAR1_Sunovion_OME_Alert', 'filter_type': 'or', 'journal_select': '', 'author_select': '', 'institution_select': '', 'filter_leeway': 70}, {'search_type': 'standard', 'keyphrase1': 'TaR-1', 'keyword': 'TaR-1', 'source_select': 'all', 'alert_title': 'TAAR1_Sunovion_OME_Alert', 'filter_type': 'or', 'journal_select': '', 'author_select': '', 'institution_select': '', 'filter_leeway': 70}, {'search_type': 'standard', 'keyphrase1': 'Trace amine receptor 1', 'keyword': 'Trace amine receptor 1', 'source_select': 'all', 'alert_title': 'TAAR1_Sunovion_OME_Alert', 'filter_type': 'or', 'journal_select': '', 'author_select': '', 'institution_select': '', 'filter_leeway': 70}, {'search_type': 'standard', 'keyphrase1': 'TAAR1', 'keyword': 'TAAR1', 'source_select': 'all', 'alert_title': 'TAAR1_Sunovion_OME_Alert', 'filter_type': 'or', 'journal_select': '', 'author_select': '', 'institution_select': '', 'filter_leeway': 70}, {'search_type': 'standard', 'keyphrase1': 'Taar-1', 'keyword': 'Taar-1', 'source_select': 'all', 'alert_title': 'TAAR1_Sunovion_OME_Alert', 'filter_type': 'or', 'journal_select': '', 'author_select': '', 'institution_select': '', 'filter_leeway': 70}, {'search_type': 'standard', 'keyphrase1': 'TAR-1', 'keyword': 'TAR-1', 'source_select': 'all', 'alert_title': 'TAAR1_Sunovion_OME_Alert', 'filter_type': 'or', 'journal_select': '', 'author_select': '', 'institution_select': '', 'filter_leeway': 70}]
 # ome_alert_results, url_query = get_documents.get_ome_alert_results(test_search_params, from_date=from_date, to_date=to_date, tags='tagged_entities_for_email')
 
+# #Source filtering
+# ome_alert_results = source_filter(ome_alert_results)
 
 # ###
 # ##Internal users
