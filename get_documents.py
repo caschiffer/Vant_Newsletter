@@ -16,7 +16,7 @@ import time
 from fuzzywuzzy import fuzz
 import os
 import codecs
-
+import pandas as pd
 
 from google.modules.utils import get_html
 
@@ -552,98 +552,132 @@ def get_document_type(doc_id):
 
 def get_ome_alert_results(search_params_list,from_date=datetime.date.today(), to_date=datetime.date.today(), tags='tagged_entities_for_web'):
     """Execute multiple SOLR searches and return result as dictionary"""
-    try:
-        ome_alert_results = {'keyword':[], 'path':[], 'file_modified_date':[], 'title':[], 'tagged_document_text':[], 'document_text':[], 'document_type':[], 'document_tags':[], 'normalized_tags':[], 'normalized_tags_ordered':[], 'document_id':[], 'shorter_sentences':[], 'keyword_count':[],'LDA_class':[]}
-        url_query = ''
-        
-        
-        for params in search_params_list:
-            
-            ##CS filter_leeway parameter must always be set to be an integer, 
-            ##CS hide on front end until filters selected and edited. Then allow filter leeway editing
-            filter_type = params['filter_type']
-            filter_leeway = int(params['filter_leeway'])
- 
+    #try:
+    ome_alert_results = {'keyword':[], 'full_keyword_list':[] ,'path':[], 'file_modified_date':[], 'title':[], 'tagged_document_text':[], 'document_text':[], 'document_type':[], 'document_tags':[], 'normalized_tags':[], 'normalized_tags_ordered':[], 'document_id':[], 'shorter_sentences':[], 'keyword_count':[],'LDA_class':[]}
+    url_query = ''
     
-            ##CS Create and execute solr_query, print statements to help with debugging
-            ##CS note new returns from get_solr_results function
-            url_query = construct_solr_search_url(params, from_date, to_date)
-            #print('complete with url_query')
-            solr_results, journal_docid_list, author_docid_list, institution_docid_list = get_solr_results(params['keyword'], url_query, params['journal_select'], params['author_select'], params['institution_select'], filter_leeway, tags=tags, from_date=from_date, to_date=to_date) #CS included params['journal select]
-            #print('complete with getting solr_results')            
-            #print(journal_docid_list,'---- this is the journal docid list')
-            #print(author_docid_list, '---- this is the author docid list')
-            #print(institution_docid_list, '----- this is the institution_docid_list')
+    all_keywords_per_document = []
+    kw_storage_list = []
+    path_full_dict = {}
+    for params in search_params_list:
+        
+        ##CS filter_leeway parameter must always be set to be an integer, 
+        ##CS hide on front end until filters selected and edited. Then allow filter leeway editing
+        filter_type = params['filter_type']
+        filter_leeway = int(params['filter_leeway'])
+ 
+
+        ##CS Create and execute solr_query, print statements to help with debugging
+        ##CS note new returns from get_solr_results function
+        url_query = construct_solr_search_url(params, from_date, to_date)
+        #print('complete with url_query')
+        solr_results, journal_docid_list, author_docid_list, institution_docid_list = get_solr_results(params['keyword'], url_query, params['journal_select'], params['author_select'], params['institution_select'], filter_leeway, tags=tags, from_date=from_date, to_date=to_date) #CS included params['journal select]
+        #print('complete with getting solr_results')            
+        #print(journal_docid_list,'---- this is the journal docid list')
+        #print(author_docid_list, '---- this is the author docid list')
+        #print(institution_docid_list, '----- this is the institution_docid_list')
+        
+        
+        ##CS union or intersection parameters for filter type. Determined by user input
+        if filter_type == 'and':
+            journal_set = journal_set = set(journal_docid_list)
+            author_set = set(author_docid_list)
+            institution_set = set(institution_docid_list)
+            jr_au_ins_filter_set = journal_set & author_set & institution_set
+            jr_au_ins_filter_list = list(jr_au_ins_filter_set)
+        
+        else:
+            journal_set = set(journal_docid_list)
+            author_set = set(author_docid_list)
+            institution_set = set(institution_docid_list)
+            jr_au_ins_filter_set = journal_set | author_set | institution_set
+            jr_au_ins_filter_list = list(jr_au_ins_filter_set)
             
-            
-            ##CS union or intersection parameters for filter type. Determined by user input
-            if filter_type == 'and':
-                journal_set = journal_set = set(journal_docid_list)
-                author_set = set(author_docid_list)
-                institution_set = set(institution_docid_list)
-                jr_au_ins_filter_set = journal_set & author_set & institution_set
-                jr_au_ins_filter_list = list(jr_au_ins_filter_set)
-            
-            else:
-                journal_set = set(journal_docid_list)
-                author_set = set(author_docid_list)
-                institution_set = set(institution_docid_list)
-                jr_au_ins_filter_set = journal_set | author_set | institution_set
-                jr_au_ins_filter_list = list(jr_au_ins_filter_set)
+        
+        #print(jr_au_ins_filter_list, '------this is the final filtered list')
+        #print(solr_results.keys())
+    
+        #print('we made it')
+
+        ##Create if statement to handle granular filter parameters
+        if (params['journal_select'] != '') or (params['author_select'] != '') or (params['institution_select'] != ''):
+            #print('we entered the filtering stage')
+            for j in range(0, len(solr_results['path'])):
+                if (solr_results['path'][j] not in ome_alert_results['path']) & (solr_results['document_id'][j] in jr_au_ins_filter_list):
+                    print('success for filters!!!!!!!')
+                    ome_alert_results['keyword'].append(solr_results['keyword'][j])
+                    ome_alert_results['path'].append(solr_results['path'][j])
+                    ome_alert_results['file_modified_date'].append(solr_results['file_modified_date'][j])
+                    ome_alert_results['title'].append(solr_results['title'][j])
+                    ome_alert_results['tagged_document_text'].append(solr_results['tagged_document_text'][j])
+                    ome_alert_results['document_text'].append(solr_results['document_text'][j])
+                    ome_alert_results['document_type'].append(solr_results['document_type'][j])
+                    ome_alert_results['document_tags'].append(solr_results['document_tags'][j])
+                    ome_alert_results['normalized_tags'].append(solr_results['normalized_tags'][j])
+                    ome_alert_results['normalized_tags_ordered'].append(solr_results['normalized_tags_ordered'][j])
+                    ome_alert_results['LDA_class'].append(solr_results['LDA_class'][j])
+                    #REMOVE AFTER CLEAWNED NORMALIZED TAGS
+                    #ome_alert_results['normalized_tags2'].append(solr_results['normalized_tags2'][j])
+                    #ome_alert_results['normalized_tags_ordered2'].append(solr_results['normalized_tags_ordered2'][j])
+                    ome_alert_results['document_id'].append(solr_results['document_id'][j])
+                    ome_alert_results['shorter_sentences'].append(solr_results['shorter_sentences'][j])
+                    ome_alert_results['keyword_count'].append(solr_results['keyword_count'][j])
+        
+        ##CS alternative to filter statement where no granular filters in place (source select still functional though)
+        ##This function removes redundant documents ---  to adjust listing for keywords make adjustments here
+        else:
+            for j in range(0, len(solr_results['path'])):
+                kw = solr_results['keyword'][j]
+                path = solr_results['path'][j]
                 
-            
-            #print(jr_au_ins_filter_list, '------this is the final filtered list')
-            #print(solr_results.keys())
-            
-            
-            ##Create if statement to handle granular filter parameters
-            if (params['journal_select'] != '') or (params['author_select'] != '') or (params['institution_select'] != ''):
-                #print('we entered the filtering stage')
-                for j in range(0, len(solr_results['path'])):
-                    if (solr_results['path'][j] not in ome_alert_results['path']) & (solr_results['document_id'][j] in jr_au_ins_filter_list):
-                        print('success for filters!!!!!!!')
-                        ome_alert_results['keyword'].append(solr_results['keyword'][j])
-                        ome_alert_results['path'].append(solr_results['path'][j])
-                        ome_alert_results['file_modified_date'].append(solr_results['file_modified_date'][j])
-                        ome_alert_results['title'].append(solr_results['title'][j])
-                        ome_alert_results['tagged_document_text'].append(solr_results['tagged_document_text'][j])
-                        ome_alert_results['document_text'].append(solr_results['document_text'][j])
-                        ome_alert_results['document_type'].append(solr_results['document_type'][j])
-                        ome_alert_results['document_tags'].append(solr_results['document_tags'][j])
-                        ome_alert_results['normalized_tags'].append(solr_results['normalized_tags'][j])
-                        ome_alert_results['normalized_tags_ordered'].append(solr_results['normalized_tags_ordered'][j])
-                        ome_alert_results['LDA_class'].append(solr_results['LDA_class'][j])
-                        #REMOVE AFTER CLEAWNED NORMALIZED TAGS
-                        #ome_alert_results['normalized_tags2'].append(solr_results['normalized_tags2'][j])
-                        #ome_alert_results['normalized_tags_ordered2'].append(solr_results['normalized_tags_ordered2'][j])
-                        ome_alert_results['document_id'].append(solr_results['document_id'][j])
-                        ome_alert_results['shorter_sentences'].append(solr_results['shorter_sentences'][j])
-                        ome_alert_results['keyword_count'].append(solr_results['keyword_count'][j])
-            
-            ##CS alternative to filter statement where no granular filters in place (source select still functional though)
-            else:
-                for j in range(0, len(solr_results['path'])):
-                    if (solr_results['path'][j] not in ome_alert_results['path']):
-                        ome_alert_results['keyword'].append(solr_results['keyword'][j])
-                        ome_alert_results['path'].append(solr_results['path'][j])
-                        ome_alert_results['file_modified_date'].append(solr_results['file_modified_date'][j])
-                        ome_alert_results['title'].append(solr_results['title'][j])
-                        ome_alert_results['tagged_document_text'].append(solr_results['tagged_document_text'][j])
-                        ome_alert_results['document_text'].append(solr_results['document_text'][j])
-                        ome_alert_results['document_type'].append(solr_results['document_type'][j])
-                        ome_alert_results['document_tags'].append(solr_results['document_tags'][j])
-                        ome_alert_results['normalized_tags'].append(solr_results['normalized_tags'][j])
-                        ome_alert_results['normalized_tags_ordered'].append(solr_results['normalized_tags_ordered'][j])
-                        #REMOVE AFTER CLEAWNED NORMALIZED TAGS
-                        #ome_alert_results['normalized_tags2'].append(solr_results['normalized_tags2'][j])
-                        #ome_alert_results['normalized_tags_ordered2'].append(solr_results['normalized_tags_ordered2'][j])
-                        ome_alert_results['document_id'].append(solr_results['document_id'][j])
-                        ome_alert_results['shorter_sentences'].append(solr_results['shorter_sentences'][j])
-                        ome_alert_results['keyword_count'].append(solr_results['keyword_count'][j])
-                        ome_alert_results['LDA_class'].append(solr_results['LDA_class'][j])
+                #Kw_cnt comes out as a list of tuples. The tuple describes keyword mentions in the text
+                #Take the length to find the number of mentions for that keyword
+                kw_cnt = len(solr_results['keyword_count'][j])
+                
+                #print(kw, '---- this is the kw')
+                #print(path, '--- this is the path')
+                
+                if path not in path_full_dict.keys():
+                    path_full_dict[path] = [(kw, kw_cnt)]
+                elif path in path_full_dict.keys():
+                    path_full_dict[path].append((kw, kw_cnt))
+                else:
+                    print('problem investigate line 644')
+                    pass
+                
+                if (solr_results['path'][j] not in ome_alert_results['path']):
+                    ome_alert_results['keyword'].append(solr_results['keyword'][j])
+                    ome_alert_results['path'].append(solr_results['path'][j])
+                    ome_alert_results['file_modified_date'].append(solr_results['file_modified_date'][j])
+                    ome_alert_results['title'].append(solr_results['title'][j])
+                    ome_alert_results['tagged_document_text'].append(solr_results['tagged_document_text'][j])
+                    ome_alert_results['document_text'].append(solr_results['document_text'][j])
+                    ome_alert_results['document_type'].append(solr_results['document_type'][j])
+                    ome_alert_results['document_tags'].append(solr_results['document_tags'][j])
+                    ome_alert_results['normalized_tags'].append(solr_results['normalized_tags'][j])
+                    ome_alert_results['normalized_tags_ordered'].append(solr_results['normalized_tags_ordered'][j])
+                    #REMOVE AFTER CLEAWNED NORMALIZED TAGS
+                    #ome_alert_results['normalized_tags2'].append(solr_results['normalized_tags2'][j])
+                    #ome_alert_results['normalized_tags_ordered2'].append(solr_results['normalized_tags_ordered2'][j])
+                    ome_alert_results['document_id'].append(solr_results['document_id'][j])
+                    ome_alert_results['shorter_sentences'].append(solr_results['shorter_sentences'][j])
+                    ome_alert_results['keyword_count'].append(solr_results['keyword_count'][j])
+                    ome_alert_results['LDA_class'].append(solr_results['LDA_class'][j])
+        
+        
+    #Create new for loop to include the full keyword list per path. 
+    print(path_full_dict,'--- this is the path to full dict')
+    for p in range(0, len(ome_alert_results['path'])):
+        path_to_inv = ome_alert_results['path'][p]
+        ome_alert_results['full_keyword_list'].append(path_full_dict[path_to_inv])
+    
+    #Order list of tuples in ome_alert_results['full_keyword_list']
+    ome_alert_results['full_keyword_list'] = [sorted(ome_alert_results['full_keyword_list'][0], key= lambda x:x[1], reverse = True)]
+    
+
                     
-    except Exception as e:                
-        logging.error('%s | error in get_documents.get_ome_alert_results %s'%(e, str(datetime.datetime.now())))      
+    #except Exception as e:                
+    #    logging.error('%s | error in get_documents.get_ome_alert_results %s'%(e, str(datetime.datetime.now())))      
                 
     return ome_alert_results, url_query
         
@@ -728,7 +762,7 @@ def get_search_params_list(ome_alert_id):
                     search_list = [row[1]]# CS - prevents second, irrelevant + empty search params_list generation
                 search_list = [ix for ix in search_list if ix != '']
                 search_list = list(set(search_list))  #CS removing duplicate terms
-                print(search_list, '--- this is the search list')
+                #print(search_list, '--- this is the search list')
                 for i in search_list:
                     search_params_list.append({'search_type':'standard', 'keyphrase1':i, 'keyword':i, 'source_select':row[6], 'alert_title':row[7], 'filter_type':row[9], 'journal_select':row[10], 'author_select':row[11], 'institution_select':row[12], 'filter_leeway':row[13]})
                     #^^^CS adjusted search_params_list to include new filter columns 
@@ -737,7 +771,7 @@ def get_search_params_list(ome_alert_id):
                 search_list = row[2].split(', ')
                 search_list = [ix for ix in search_list if ix != '']
                 search_list = list(set(search_list))  #CS removing duplicate terms
-                print(search_list, '--- this is the search list')
+                #print(search_list, '--- this is the search list')
                 for i in search_list:
                     search_params_list.append({'search_type':'standard', 'keyphrase1':i, 'keyword':i, 'source_select':row[6], 'alert_title':row[7], 'filter_type':row[9], 'journal_select':row[10], 'author_select':row[11], 'institution_select':row[12], 'filter_leeway':row[13]})
                     #^^^CS adjusted search_params_list to include new filter columns 
@@ -747,7 +781,7 @@ def get_search_params_list(ome_alert_id):
                 #print(search_list, '--- this is the search list')
                 search_list = [ix for ix in search_list if ix != '']
                 search_list = list(set(search_list))  #CS removing duplicate terms
-                print(search_list, '--- this is the search list')
+                #print(search_list, '--- this is the search list')
                 for i in search_list:
                     if len(row[5].split('_')) > 1:
                         search_params_list.append({'search_type':'coocurence', 'keyphrase1':row[1], 'keyphrase2':i, 'keyword':i, 'keyphrase_distance':row[5].split('_')[1], 'source_select':row[6], 'alert_title':row[7], 'filter_type':row[9], 'journal_select':row[10], 'author_select':row[11], 'institution_select':row[12], 'filter_leeway':row[13]})

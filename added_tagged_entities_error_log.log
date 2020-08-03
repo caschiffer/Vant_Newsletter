@@ -295,3 +295,13 @@ ERROR:root:'article_title_ss' | error in get_documents.get_solr_results 2020-07-
 ERROR:root:'article_title_ss' | error in get_documents.get_solr_results 2020-07-30 18:50:17.383626
 ERROR:root:'article_title_ss' | error in get_documents.get_solr_results 2020-07-30 18:50:24.957613
 ERROR:root:'article_title_ss' | error in get_documents.get_solr_results 2020-07-30 18:51:40.665787
+ERROR:root:name 'pd' is not defined | error in get_documents.get_ome_alert_results 2020-08-02 17:06:07.721036
+ERROR:root:name 'pd' is not defined | error in get_documents.get_ome_alert_results 2020-08-02 17:07:07.759196
+ERROR:root:name 'pd' is not defined | error in get_documents.get_ome_alert_results 2020-08-02 17:07:36.733088
+ERROR:root:name 'pd' is not defined | error in get_documents.get_ome_alert_results 2020-08-02 17:09:26.907224
+ERROR:root:name 'pd' is not defined | error in get_documents.get_ome_alert_results 2020-08-02 17:11:21.603424
+ERROR:root:name 'pd' is not defined | error in get_documents.get_ome_alert_results 2020-08-02 17:12:05.894617
+ERROR:root:name 'pd' is not defined | error in get_documents.get_ome_alert_results 2020-08-02 17:13:18.477713
+ERROR:root:name 'pd' is not defined | error in get_documents.get_ome_alert_results 2020-08-02 17:13:46.142773
+ERROR:root:name 'pd' is not defined | error in get_documents.get_ome_alert_results 2020-08-02 17:15:36.436940
+ERROR:root:name 'pd' is not defined | error in get_documents.get_ome_alert_results 2020-08-02 17:16:25.506991
