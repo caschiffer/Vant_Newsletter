@@ -795,69 +795,6 @@ def get_search_params_list(ome_alert_id):
         
                 
                 
-
-def get_daily_stats(from_date):
-    try:    
-        daily_stats = {'date':str(from_date), 'indexed_article_count':0, 'by_source':{}, 'by_source_detail':{}, 'tagged_entity_count_repeat':{}, 'tagged_entity_count':{}, 'new_moa_indication_pairs':[], 'new_moas':[]}
-        
-        yy = str(from_date).split('-')[0]
-        mm = str(from_date).split('-')[1]
-        dd = str(from_date).split('-')[2]
-        
-        url_query = "http://10.115.1.195:8983/solr/opensemanticsearch/select?fq=file_modified_dt:[" + yy + "-" + mm + "-" + dd + "T00:00:00Z%20TO%20" + yy + "-" + mm + "-" + dd + "T23:59:59Z]&q=*&rows=10000"
-        
-        
-        #url_query = "http://10.115.1.195:8983/solr/core1/select?indent=on&q=%22NLRP3_google_news_search_PR5_03-02-2019_20_45.html%22&wt=json"
-        
-        solr_results = get_solr_results('', url_query, tags='tagged_entities_indication_moa_pairs', from_date=from_date, to_date=datetime.date.today())
-        
-        daily_stats['indexed_article_count'] = len(solr_results['path'])
-        
-        
-        for i in range(0, len(solr_results['path'])):
-            if solr_results['document_type'][i] not in daily_stats['by_source']:
-                daily_stats['by_source'][solr_results['document_type'][i]] = 1
-            else:
-                daily_stats['by_source'][solr_results['document_type'][i]] += 1
-                
-            if solr_results['detailed_type'][i] not in daily_stats['by_source_detail']:
-                daily_stats['by_source_detail'][solr_results['detailed_type'][i]] = 1
-            else:
-                daily_stats['by_source_detail'][solr_results['detailed_type'][i]] += 1
-            
-            if len(solr_results['new_moa_indication_pairs'][i]) > 0:
-                for m in solr_results['new_moa_indication_pairs'][i]:
-                    daily_stats['new_moa_indication_pairs'].append([m[0], m[1], solr_results['path'][i].replace('ome_alert_document', 'curate_ome_alert_document')])
-            if len(solr_results['new_moas'][i]) > 0:
-                for m in solr_results['new_moas'][i]:
-                    daily_stats['new_moas'].append([m[0], m[1], solr_results['path'][i].replace('ome_alert_document', 'curate_ome_alert_document')])
-            
-            for tag in solr_results['normalized_tags'][i]:
-                if True in solr_results['normalized_tags'][i][tag]['result']['valid_match']:
-                    if tag not in daily_stats['tagged_entity_count']:
-                        daily_stats['tagged_entity_count'][tag] = 1
-                        daily_stats['tagged_entity_count_repeat'][tag] = 0
-                    else:
-                        daily_stats['tagged_entity_count'][tag] += 1
-                    
-                    for j in range(0, len(solr_results['normalized_tags'][i][tag]['result']['valid_match'])):
-                        if solr_results['normalized_tags'][i][tag]['result']['valid_match'][j] == True:
-                            daily_stats['tagged_entity_count_repeat'][tag] += 1
-    except Exception as e:
-        logging.error('%s | error in get_documents.get_daily_stats %s', (e, str(datetime.datetime.now())))        
-    return solr_results, daily_stats, url_query
-
-
-def save_daily_stats(daily_stats):
-    try:
-        path = '//rs-ny-nas/Roivant Sciences/Business Development/Computational Research/OME alerts/output data/daily_stats_' + daily_stats['date'] + '.json'
-        
-        with open(path, 'w') as fp:
-            json.dump(daily_stats, fp)
-    except Exception as e:    
-        logging.error('%s | error in get_documents.save_daily_stats %s', (e, str(datetime.datetime.now())))        
-
-
 def get_company_pr_solr_url(company_string, from_date=None, to_date=None):
 	company_path = 'path_basename_s:*' + '\ '.join(company_string.split(' ')) + '*'
 	params_solr = {'q':company_path.encode('utf8')}
