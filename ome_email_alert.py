@@ -108,15 +108,16 @@ def table_string_results_internal(results, username, sumitovant_list):
     table_strings = {'press_release':[], 'clinical_trials':[], 'pubmed_abstract':[], 'pubmed_article':[], 'GBD_email': [], 'Cortellis': [], 'IPD':[], 'fda_guidance':[], 'FDA_Medical_reviews':[], 'newswire':[], 'pr_newswire':[], 'streetaccount':[], 'google_news':[], 'SEC_filing':[]}
     table_summary_strings = {'press_release':[], 'clinical_trials':[], 'pubmed_abstract':[], 'pubmed_article':[], 'GBD_email': [], 'Cortellis': [], 'IPD':[], 'fda_guidance':[], 'FDA_Medical_reviews':[] ,'newswire':[], 'pr_newswire':[], 'streetaccount':[], 'google_news':[], 'SEC_filing':[]}
     
-    for row_index in range(0, len(results['keyword'])):
+    for row_index in range(0, len(results['path'])):
         # row_string, summary_row_string = get_row_string_internal(results['keyword'][row_index], len(results['keyword_count'][row_index]), 
         #                                     results['document_type'][row_index], results['path'][row_index], results['title'][row_index],
         #                                     results['shorter_sentences'][row_index], results['normalized_tags_ordered'][row_index],
         #                                     results['normalized_tags'][row_index],results['Relevant_Check'][row_index],
         #                                     results['LDA_class'][row_index],results['correct_button_list'][row_index],
         #                                     results['wrong_button_list'][row_index] ,username)
-        row_string, summary_row_string = get_row_string_internal(results['keyword'][row_index], len(results['keyword_count'][row_index]), 
-                                            results['document_type'][row_index], results['path'][row_index], results['title'][row_index],
+        row_string, summary_row_string = get_row_string_internal(results['keyword'][row_index], len(results['keyword_count'][row_index]),
+                                            results['full_keyword_list'][row_index], results['document_type'][row_index],
+                                            results['path'][row_index], results['title'][row_index],
                                             results['shorter_sentences'][row_index], results['normalized_tags_ordered'][row_index],
                                             results['normalized_tags'][row_index],results['Relevant_Check'][row_index],
                                             results['LDA_class'][row_index],results['correct_button_list'][row_index],
@@ -185,7 +186,7 @@ def table_string_results_internal(results, username, sumitovant_list):
     
     return table_string, summary_table_string
 
-def get_row_string_internal(keyword, keyword_count, document_type, path, title, text, tags_ordered, tags,
+def get_row_string_internal(keyword, keyword_count, full_keyword_list, document_type, path, title, text, tags_ordered, tags,
                              relevant_check, lda_class, correct_button, wrong_button,  username):
     #print(relevant_check ,'----- this is the relevant check')
     #try:
@@ -218,8 +219,17 @@ def get_row_string_internal(keyword, keyword_count, document_type, path, title, 
     else:
         row_string += ('<td style="border-right:1px solid #000000;border-bottom:1px solid #000000;max-width:300px"><b>' + lda_class +  '</b></td>')
 
+    #Format new one liner for all keywords  rather than previous single keyword
+    full_kw_string = ''
+    for pos, kw_tuple in enumerate(full_keyword_list):
+        if pos != len(full_keyword_list)-1: #if statement necessary to ensure proper pipe placement
+            full_kw_string +=  kw_tuple[0]  + ' (' +str( kw_tuple[1]) +')' + ' || '
+        else:
+            full_kw_string +=  kw_tuple[0]  + ' (' +str( kw_tuple[1]) +')'
     
-    row_string += ('<td style="border-bottom:1px solid #000000;max-width:150px">' + keyword + " (" + str(keyword_count) + ")" + '</td>')
+    #row_string += ('<td style="border-bottom:1px solid #000000;max-width:150px">' + keyword + " (" + str(keyword_count) + ")" + '</td>')
+    row_string += ('<td style="border-bottom:1px solid #000000;max-width:150px"><u>' + full_kw_string + '</u></td>')
+    
     row_string += ('<td style="border-bottom:1px solid #000000;max-width:300px"><b>' + document_type.replace('_',' ').title() + '</b> | <a href="' +path.replace(" ", "%20").replace('ome_alert_document', 'curate_ome_alert_document_v2').replace('<user_name>', username) + '">' + str(title.encode('ascii','ignore').decode('utf-8')).strip("b\'").strip("\'").replace("\\", "").replace("\'", "").replace("xe2x80x99", "").replace("xc2xae", "").replace("``", "").replace("//", "").replace("’", '"').strip('"') + '</a><br><br>' + text[:1000]  +'<br><br>') # CS added character limit, currently testing improvements
         
     ##Summary row string formatting
@@ -246,8 +256,9 @@ def get_row_string_internal(keyword, keyword_count, document_type, path, title, 
     else:
         summary_row_string += ('<td style="border-right:1px solid #000000;border-bottom:1px solid #000000;max-width:300px"><b>' + lda_class +  '</b></td>')
 
-    
-    summary_row_string += ('<td style="border-bottom:1px solid #000000;max-width:150px">' + keyword + " (" + str(keyword_count) + ")" + '</td>')
+    #Use previously formatted one liner for all keywords rather than previous single keyword one use
+    #summary_row_string += ('<td style="border-bottom:1px solid #000000;max-width:150px">' + keyword + " (" + str(keyword_count) + ")" + '</td>')
+    summary_row_string += ('<td style="border-bottom:1px solid #000000;max-width:150px"><u>' + full_kw_string + '</u></td>')
     summary_row_string += ('<td style="border-bottom:1px solid #000000;max-width:300px"><b>' + document_type.replace('_',' ').title() + '</b> | <a href="' +path.replace(" ", "%20").replace('ome_alert_document', 'curate_ome_alert_document_v2').replace('<user_name>', username) + '">' + str(title.encode('ascii','ignore').decode('utf-8')).strip("b\'").strip("\'").replace("\\", "").replace("\'", "").replace("xe2x80x99", "").replace("xc2xae", "").replace("``", "").replace("//", "").replace("’", '"').strip('"') +'</a>')
     
     ## Add in annotation option. If statement controls appearance of linked correct or wrong statement
@@ -316,7 +327,7 @@ def table_string_results(results, username,sumitovant_list):
     table_summary_strings = {'press_release':[], 'clinical_trials':[], 'pubmed_abstract':[], 'pubmed_article':[], 'GBD_email': [], 'Cortellis': [], 'IPD':[], 'fda_guidance':[], 'FDA_Medical_reviews':[] ,'newswire':[], 'pr_newswire':[], 'streetaccount':[], 'google_news':[], 'SEC_filing':[]}
     
     for row_index in range(0, len(results['keyword'])):
-        row_string, summary_row_string = get_row_string(results['keyword'][row_index], len(results['keyword_count'][row_index]), results['document_type'][row_index], results['path'][row_index], results['title'][row_index], results['shorter_sentences'][row_index], results['normalized_tags_ordered'][row_index], results['normalized_tags'][row_index], username)
+        row_string, summary_row_string = get_row_string(results['keyword'][row_index], len(results['keyword_count'][row_index]),results['full_keyword_list'][row_index] ,results['document_type'][row_index], results['path'][row_index], results['title'][row_index], results['shorter_sentences'][row_index], results['normalized_tags_ordered'][row_index], results['normalized_tags'][row_index], username)
         #print(row_string, '---- row string with fixed shorter_sentences list')
         if results['document_type'][row_index] in table_strings.keys(): #determine if source is in table_strings dictionary
             table_strings[results['document_type'][row_index]].append(row_string)
@@ -360,7 +371,7 @@ def table_string_results(results, username,sumitovant_list):
     
     return table_string, summary_table_string
 
-def get_row_string(keyword, keyword_count, document_type, path, title, text, tags_ordered, tags, username):
+def get_row_string(keyword, keyword_count, full_keyword_list ,document_type, path, title, text, tags_ordered, tags, username):
 
     color_dictionary = {'company_OME_txt_ss':'237, 249, 213', 'drug_OME_txt_ss':'217, 244, 255', 'indication_MeSH_txt_ss':'213, 241, 238', 'indication_OME_txt_ss':'213, 241, 238', 'indication_OME2_txt_ss':'213, 241, 238', 'indication_MeSH_orpha_txt_ss':'213, 241, 238', 'indication_MeSH_suppl_txt_ss':'213, 241, 238',
                              'indication_Treato_txt_ss':'213, 241, 238', 'target_ChemBL_txt_ss':'249, 204, 230', 'target_OME_txt_ss':'249, 204, 230', 'target_MeSH_txt_ss':'249, 204, 230'}
@@ -368,6 +379,13 @@ def get_row_string(keyword, keyword_count, document_type, path, title, text, tag
     border_color_dictionary = {'company_OME_txt_ss':'166, 226, 45', 'drug_OME_txt_ss':'67, 198, 252', 'indication_MeSH_txt_ss':'47, 187, 171', 'indication_OME_txt_ss':'47, 187, 171', 'indication_OME2_txt_ss':'47, 187, 171', 'indication_MeSH_orpha_txt_ss':'47, 187, 171', 'indication_MeSH_suppl_txt_ss':'47, 187, 171',
                              'indication_Treato_txt_ss':'47, 187, 171', 'target_ChemBL_txt_ss':'224, 0, 132', 'target_OME_txt_ss':'224, 0, 132', 'target_MeSH_txt_ss':'224, 0, 132'}
     
+    #Format new one liner for all keywords  rather than previous single keyword
+    full_kw_string = ''
+    for pos, kw_tuple in enumerate(full_keyword_list):
+        if pos != len(full_keyword_list)-1: #if statement necessary to ensure proper pipe placement
+            full_kw_string +=  kw_tuple[0]  + ' (' +str( kw_tuple[1]) +')' + ' || '
+        else:
+            full_kw_string +=  kw_tuple[0]  + ' (' +str( kw_tuple[1]) +')'
 
     row_string = '<tr>'
     row_string += ('<td style="border-bottom:1px solid #000000;max-width:150px">' + keyword + " (" + str(keyword_count) + ")" + '</td>')
@@ -923,7 +941,8 @@ from_date = datetime.date(2020,7,31)
 #from_date = datetime.date.today() - datetime.timedelta(days=1)
 to_date = datetime.date(2020,7,31)
 #to_date = datetime.date.today()
-internal_users = ['cody.schiffer']
+#internal_users = ['cody.schiffer']
+internal_users = ['']
 user = 'cody.schiffer'
 sumitovant_list = ['julia.gray','bill.mcmahon','cody.schiffer',
                       'isabel.metzger','yoann.randriamihaja', 'samuel.croset', 
@@ -953,13 +972,13 @@ table_string_internal, summary_table_string_internal = table_string_results_inte
 
 # #print(ome_alert_results)
 
-# email_string_internal = "<html><head></head><body><h4>Summary (" + str(len(ome_alert_results['keyword'])) + " results)</h4>" + summary_table_string_internal + "<br><br><h4>Documents</h4>" + table_string_internal + "</body></html>"
+email_string_internal = "<html><head></head><body><h4>Summary (" + str(len(ome_alert_results['keyword'])) + " results)</h4>" + summary_table_string_internal + "<br><br><h4>Documents</h4>" + table_string_internal + "</body></html>"
 
-# mail = Outlook()
-# mail.login('comp.res@sumitovant.com','Sumitovant$cr0220')
-# #mail.login('comp.res@roivant.com','Roivant$cr0220!')
-# mail.inbox()
-# mail.sendEmail(email_address, email_subject, email_string_internal)
+mail = Outlook()
+mail.login('comp.res@sumitovant.com','Sumitovant$cr0220')
+#mail.login('comp.res@roivant.com','Roivant$cr0220!')
+mail.inbox()
+mail.sendEmail(email_address, email_subject, email_string_internal)
  
 
 
