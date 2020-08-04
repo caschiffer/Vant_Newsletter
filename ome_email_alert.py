@@ -80,7 +80,7 @@ def split_into_sentences(text):
    
     return sentences
 
-def table_string_results_internal(results, username, sumitovant_list):
+def table_string_results_internal(results, username, sumitovant_list, link_exclusion):
     table_string = ''
     summary_table_string = ''
     #try:
@@ -121,7 +121,7 @@ def table_string_results_internal(results, username, sumitovant_list):
                                             results['shorter_sentences'][row_index], results['normalized_tags_ordered'][row_index],
                                             results['normalized_tags'][row_index],results['Relevant_Check'][row_index],
                                             results['LDA_class'][row_index],results['correct_button_list'][row_index],
-                                            results['wrong_button_list'][row_index] ,username)
+                                            results['wrong_button_list'][row_index] ,username, link_exclusion)
         #print(row_string, '---- row string with fixed shorter_sentences list')
         if results['document_type'][row_index] in table_strings.keys(): #determine if source is in table_strings dictionary
             table_strings[results['document_type'][row_index]].append(row_string)
@@ -187,7 +187,7 @@ def table_string_results_internal(results, username, sumitovant_list):
     return table_string, summary_table_string
 
 def get_row_string_internal(keyword, keyword_count, full_keyword_list, document_type, path, title, text, tags_ordered, tags,
-                             relevant_check, lda_class, correct_button, wrong_button,  username):
+                             relevant_check, lda_class, correct_button, wrong_button,  username, link_exclusion):
     #print(relevant_check ,'----- this is the relevant check')
     #try:
     color_dictionary = {'company_OME_txt_ss':'237, 249, 213', 'drug_OME_txt_ss':'217, 244, 255', 'indication_MeSH_txt_ss':'213, 241, 238', 'indication_OME_txt_ss':'213, 241, 238', 'indication_OME2_txt_ss':'213, 241, 238', 'indication_MeSH_orpha_txt_ss':'213, 241, 238', 'indication_MeSH_suppl_txt_ss':'213, 241, 238',
@@ -230,7 +230,11 @@ def get_row_string_internal(keyword, keyword_count, full_keyword_list, document_
     #row_string += ('<td style="border-bottom:1px solid #000000;max-width:150px">' + keyword + " (" + str(keyword_count) + ")" + '</td>')
     row_string += ('<td style="border-bottom:1px solid #000000;max-width:150px"><u>' + full_kw_string + '</u></td>')
     
-    row_string += ('<td style="border-bottom:1px solid #000000;max-width:300px"><b>' + document_type.replace('_',' ').title() + '</b> | <a href="' +path.replace(" ", "%20").replace('ome_alert_document', 'curate_ome_alert_document_v2').replace('<user_name>', username) + '">' + str(title.encode('ascii','ignore').decode('utf-8')).strip("b\'").strip("\'").replace("\\", "").replace("\'", "").replace("xe2x80x99", "").replace("xc2xae", "").replace("``", "").replace("//", "").replace("’", '"').strip('"') + '</a><br><br>' + text[:1000]  +'<br><br>') # CS added character limit, currently testing improvements
+    #Exclude redirect links based on document type exclusion
+    if document_type not in link_exclusion:
+        row_string += ('<td style="border-bottom:1px solid #000000;max-width:300px"><b>' + document_type.replace('_',' ').title() + '</b> | <a href="' +path.replace(" ", "%20").replace('ome_alert_document', 'curate_ome_alert_document_v2').replace('<user_name>', username) + '">' + str(title.encode('ascii','ignore').decode('utf-8')).strip("b\'").strip("\'").replace("\\", "").replace("\'", "").replace("xe2x80x99", "").replace("xc2xae", "").replace("``", "").replace("//", "").replace("’", '"').strip('"') + '</a><br><br>' + text[:1000]  +'<br><br>') # CS added character limit, currently testing improvements
+    else:
+        row_string += ('<td style="border-bottom:1px solid #000000;max-width:300px"><b>' + document_type.replace('_',' ').title() + '</b> | <a>' + str(title.encode('ascii','ignore').decode('utf-8')).strip("b\'").strip("\'").replace("\\", "").replace("\'", "").replace("xe2x80x99", "").replace("xc2xae", "").replace("``", "").replace("//", "").replace("’", '"').strip('"') + '</a><br><br>' + text[:1000]  +'<br><br>') # CS added character limit, currently testing improvements
         
     ##Summary row string formatting
     summary_row_string = '<tr>'
@@ -259,7 +263,12 @@ def get_row_string_internal(keyword, keyword_count, full_keyword_list, document_
     #Use previously formatted one liner for all keywords rather than previous single keyword one use
     #summary_row_string += ('<td style="border-bottom:1px solid #000000;max-width:150px">' + keyword + " (" + str(keyword_count) + ")" + '</td>')
     summary_row_string += ('<td style="border-bottom:1px solid #000000;max-width:150px"><u>' + full_kw_string + '</u></td>')
-    summary_row_string += ('<td style="border-bottom:1px solid #000000;max-width:300px"><b>' + document_type.replace('_',' ').title() + '</b> | <a href="' +path.replace(" ", "%20").replace('ome_alert_document', 'curate_ome_alert_document_v2').replace('<user_name>', username) + '">' + str(title.encode('ascii','ignore').decode('utf-8')).strip("b\'").strip("\'").replace("\\", "").replace("\'", "").replace("xe2x80x99", "").replace("xc2xae", "").replace("``", "").replace("//", "").replace("’", '"').strip('"') +'</a>')
+    
+    #Exclude redirect links based on document type exclusion
+    if document_type not in link_exclusion:
+        summary_row_string += ('<td style="border-bottom:1px solid #000000;max-width:300px"><b>' + document_type.replace('_',' ').title() + '</b> | <a href="' +path.replace(" ", "%20").replace('ome_alert_document', 'curate_ome_alert_document_v2').replace('<user_name>', username) + '">' + str(title.encode('ascii','ignore').decode('utf-8')).strip("b\'").strip("\'").replace("\\", "").replace("\'", "").replace("xe2x80x99", "").replace("xc2xae", "").replace("``", "").replace("//", "").replace("’", '"').strip('"') +'</a>')
+    else:
+        summary_row_string += ('<td style="border-bottom:1px solid #000000;max-width:300px"><b>' + document_type.replace('_',' ').title() + '</b> | <a>' + str(title.encode('ascii','ignore').decode('utf-8')).strip("b\'").strip("\'").replace("\\", "").replace("\'", "").replace("xe2x80x99", "").replace("xc2xae", "").replace("``", "").replace("//", "").replace("’", '"').strip('"') +'</a>')
     
     ## Add in annotation option. If statement controls appearance of linked correct or wrong statement
     if correct_button != '':
@@ -306,7 +315,7 @@ def get_row_string_internal(keyword, keyword_count, full_keyword_list, document_
     
     return row_string, summary_row_string
 
-def table_string_results(results, username,sumitovant_list):
+def table_string_results(results, username,sumitovant_list, link_exclusion):
     table_string = ''
     summary_table_string = ''
     """Format dictionary of results as html string"""
@@ -327,7 +336,7 @@ def table_string_results(results, username,sumitovant_list):
     table_summary_strings = {'press_release':[], 'clinical_trials':[], 'pubmed_abstract':[], 'pubmed_article':[], 'GBD_email': [], 'Cortellis': [], 'IPD':[], 'fda_guidance':[], 'FDA_Medical_reviews':[] ,'newswire':[], 'pr_newswire':[], 'streetaccount':[], 'google_news':[], 'SEC_filing':[]}
     
     for row_index in range(0, len(results['keyword'])):
-        row_string, summary_row_string = get_row_string(results['keyword'][row_index], len(results['keyword_count'][row_index]),results['full_keyword_list'][row_index] ,results['document_type'][row_index], results['path'][row_index], results['title'][row_index], results['shorter_sentences'][row_index], results['normalized_tags_ordered'][row_index], results['normalized_tags'][row_index], username)
+        row_string, summary_row_string = get_row_string(results['keyword'][row_index], len(results['keyword_count'][row_index]),results['full_keyword_list'][row_index] ,results['document_type'][row_index], results['path'][row_index], results['title'][row_index], results['shorter_sentences'][row_index], results['normalized_tags_ordered'][row_index], results['normalized_tags'][row_index], username, link_exclusion)
         #print(row_string, '---- row string with fixed shorter_sentences list')
         if results['document_type'][row_index] in table_strings.keys(): #determine if source is in table_strings dictionary
             table_strings[results['document_type'][row_index]].append(row_string)
@@ -371,7 +380,7 @@ def table_string_results(results, username,sumitovant_list):
     
     return table_string, summary_table_string
 
-def get_row_string(keyword, keyword_count, full_keyword_list ,document_type, path, title, text, tags_ordered, tags, username):
+def get_row_string(keyword, keyword_count, full_keyword_list ,document_type, path, title, text, tags_ordered, tags, username, link_exclusion):
 
     color_dictionary = {'company_OME_txt_ss':'237, 249, 213', 'drug_OME_txt_ss':'217, 244, 255', 'indication_MeSH_txt_ss':'213, 241, 238', 'indication_OME_txt_ss':'213, 241, 238', 'indication_OME2_txt_ss':'213, 241, 238', 'indication_MeSH_orpha_txt_ss':'213, 241, 238', 'indication_MeSH_suppl_txt_ss':'213, 241, 238',
                              'indication_Treato_txt_ss':'213, 241, 238', 'target_ChemBL_txt_ss':'249, 204, 230', 'target_OME_txt_ss':'249, 204, 230', 'target_MeSH_txt_ss':'249, 204, 230'}
@@ -389,12 +398,20 @@ def get_row_string(keyword, keyword_count, full_keyword_list ,document_type, pat
 
     row_string = '<tr>'
     row_string += ('<td style="border-bottom:1px solid #000000;max-width:150px">' + keyword + " (" + str(keyword_count) + ")" + '</td>')
-    row_string += ('<td style="border-bottom:1px solid #000000;max-width:300px"><b>' + document_type.replace('_',' ').title() + '</b> | <a href="' +path.replace(" ", "%20").replace('ome_alert_document', 'curate_ome_alert_document_v2').replace('<user_name>', username) + '">' + str(title.encode('ascii','ignore').decode('utf-8')).strip("b\'").strip("\'").replace("\\", "").replace("\'", "").replace("xe2x80x99", "").replace("xc2xae", "").replace("``", "").replace("//", "").replace("’", '"').strip('"') + '</a><br><br>' + text[:1000] + '<br><br>') # CS added character limit, currently testing improvements
+    
+    if document_type not in link_exclusion:
+        row_string += ('<td style="border-bottom:1px solid #000000;max-width:300px"><b>' + document_type.replace('_',' ').title() + '</b> | <a href="' +path.replace(" ", "%20").replace('ome_alert_document', 'curate_ome_alert_document_v2').replace('<user_name>', username) + '">' + str(title.encode('ascii','ignore').decode('utf-8')).strip("b\'").strip("\'").replace("\\", "").replace("\'", "").replace("xe2x80x99", "").replace("xc2xae", "").replace("``", "").replace("//", "").replace("’", '"').strip('"') + '</a><br><br>' + text[:1000] + '<br><br>') # CS added character limit, currently testing improvements
+    else:
+        row_string += ('<td style="border-bottom:1px solid #000000;max-width:300px"><b>' + document_type.replace('_',' ').title() + '</b> | <a>' + str(title.encode('ascii','ignore').decode('utf-8')).strip("b\'").strip("\'").replace("\\", "").replace("\'", "").replace("xe2x80x99", "").replace("xc2xae", "").replace("``", "").replace("//", "").replace("’", '"').strip('"') + '</a><br><br>' + text[:1000] + '<br><br>') # CS added character limit, currently testing improvements
     
     summary_row_string = '<tr>'
     summary_row_string += ('<td style="border-bottom:1px solid #000000;max-width:150px">' + keyword + " (" + str(keyword_count) + ")" + '</td>')
-    summary_row_string += ('<td style="border-bottom:1px solid #000000;max-width:300px"><b>' + document_type.replace('_',' ').title() + '</b> | <a href="' +path.replace(" ", "%20").replace('ome_alert_document', 'curate_ome_alert_document_v2').replace('<user_name>', username) + '">' + str(title.encode('ascii','ignore').decode('utf-8')).strip("b\'").strip("\'").replace("\\", "").replace("\'", "").replace("xe2x80x99", "").replace("xc2xae", "").replace("``", "").replace("//", "").replace("’", '"').strip('"') + '</a>')
     
+    #exclude redirect link based on document type
+    if document_type not in link_exclusion:
+        summary_row_string += ('<td style="border-bottom:1px solid #000000;max-width:300px"><b>' + document_type.replace('_',' ').title() + '</b> | <a href="' +path.replace(" ", "%20").replace('ome_alert_document', 'curate_ome_alert_document_v2').replace('<user_name>', username) + '">' + str(title.encode('ascii','ignore').decode('utf-8')).strip("b\'").strip("\'").replace("\\", "").replace("\'", "").replace("xe2x80x99", "").replace("xc2xae", "").replace("``", "").replace("//", "").replace("’", '"').strip('"') + '</a>')
+    else:
+        summary_row_string += ('<td style="border-bottom:1px solid #000000;max-width:300px"><b>' + document_type.replace('_',' ').title() + '</b> | <a>' + str(title.encode('ascii','ignore').decode('utf-8')).strip("b\'").strip("\'").replace("\\", "").replace("\'", "").replace("xe2x80x99", "").replace("xc2xae", "").replace("``", "").replace("//", "").replace("’", '"').strip('"') + '</a>')
                 
     #row_string += ('<td style="border-bottom:1px solid #000000;max-width:400px">' + text + "<br><br>")
     for i in tags_ordered[:5]:
@@ -695,9 +712,9 @@ def source_filter(results):
         print(i, '--- these are the doc types')
         #print(type(i))
         cond1 = (len([x for x in doc_lists if x in i]) > 0) and ("Drug_Status_Changes_alert" in i) and ("full_email" in i) #generic cortellis filter but we don't want the non drug status changes alerts in the ome alert now
-        cond1a = len([x for x in doc_lists if x in i]) > 0
-        cond2 = "Drug_Status_Changes_alert" in i # we don't want the non drug status changes alerts in the ome alert now
-        cond3 = "full_email" in i  #We only want the non full htmls from the new improved cortellis parsing
+        #cond1a = len([x for x in doc_lists if x in i]) > 0
+        #cond2 = "Drug_Status_Changes_alert" in i # we don't want the non drug status changes alerts in the ome alert now
+        #cond3 = "full_email" in i  #We only want the non full htmls from the new improved cortellis parsing
         
         #print(cond1a, '--- is it a cortellis document')
         #print(cond2, 'condition2 ')
@@ -745,6 +762,7 @@ def send_ome_alerts_of_user(user):
     to_date = datetime.date.today()
     #to_date = datetime.date(2019,3,25)
     
+    link_exclusion_ls = ['Cortellis','cortellis']
     
     mail = 'not_initialized'
     
@@ -773,9 +791,9 @@ def send_ome_alerts_of_user(user):
                     #email_address = 'julia.gray@roivant.com'
                     email_subject = 'OME alert: ' + keyword_title + ' (' + str(to_date) + ')'
                     if user in internal_users:
-                        table_string, summary_table_string = table_string_results_internal(ome_alert_results, user, sumitovant_list)
+                        table_string, summary_table_string = table_string_results_internal(ome_alert_results, user, sumitovant_list, link_exclusion_ls)
                     else:
-                        table_string, summary_table_string = table_string_results(ome_alert_results, user, sumitovant_list)
+                        table_string, summary_table_string = table_string_results(ome_alert_results, user, sumitovant_list, link_exclusion_ls)
                     email_string = "<html><head></head><body><h4>Summary (" + str(len(ome_alert_results['keyword'])) + " results)</h4>" + summary_table_string + "<br><br><h4>Documents</h4>" + table_string + "</body></html>"
                     #email_string = "<html><head></head><body><h4>Testing email</h4></body></html>"
                     print(email_address)

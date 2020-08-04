@@ -338,6 +338,14 @@ def get_solr_results(keyword, search_url, journal_select='', author_select='', i
                         else:
                             indication_tag_list = []
 						
+                        
+                        
+                        #For the vant newsletter we only want to return the company tag list
+                        drug_tag_list = []
+                        target_tag_list = []
+                        indication_tag_list = []
+                        
+                        
                         document_tags = drug_tag_list + target_tag_list + company_tag_list + indication_tag_list
                         normalized_tags, document_tags_list = add_tagged_entities.parse_tag_lists(drug_tag_list, target_tag_list, company_tag_list, indication_tag_list)
                         tagged_document_text = add_tagged_entities.highlight_tags_from_list(tagged_document_text, normalized_tags)
