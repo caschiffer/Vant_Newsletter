@@ -982,21 +982,24 @@ ome_alert_results, url_query = get_documents.get_ome_alert_results(test_search_p
 #Source filtering
 ome_alert_results = source_filter(ome_alert_results)
 
+link_exclusion_ls = ['Cortellis','cortellis']
+
 ###
 ##Internal users
 #if user in internal_users:
+
 ome_alert_results = headlines_check(ome_alert_results, user)
-table_string_internal, summary_table_string_internal = table_string_results_internal(ome_alert_results, user, sumitovant_list)
+table_string_internal, summary_table_string_internal = table_string_results_internal(ome_alert_results, user, sumitovant_list, link_exclusion_ls)
 
 # #print(ome_alert_results)
 
-email_string_internal = "<html><head></head><body><h4>Summary (" + str(len(ome_alert_results['keyword'])) + " results)</h4>" + summary_table_string_internal + "<br><br><h4>Documents</h4>" + table_string_internal + "</body></html>"
+# email_string_internal = "<html><head></head><body><h4>Summary (" + str(len(ome_alert_results['keyword'])) + " results)</h4>" + summary_table_string_internal + "<br><br><h4>Documents</h4>" + table_string_internal + "</body></html>"
 
-mail = Outlook()
-mail.login('comp.res@sumitovant.com','Sumitovant$cr0220')
-#mail.login('comp.res@roivant.com','Roivant$cr0220!')
-mail.inbox()
-mail.sendEmail(email_address, email_subject, email_string_internal)
+# mail = Outlook()
+# mail.login('comp.res@sumitovant.com','Sumitovant$cr0220')
+# #mail.login('comp.res@roivant.com','Roivant$cr0220!')
+# mail.inbox()
+# mail.sendEmail(email_address, email_subject, email_string_internal)
  
 
 

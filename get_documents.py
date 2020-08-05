@@ -609,6 +609,26 @@ def get_ome_alert_results(search_params_list,from_date=datetime.date.today(), to
     
             ##Create if statement to handle granular filter parameters
             if (params['journal_select'] != '') or (params['author_select'] != '') or (params['institution_select'] != ''):
+                for j in range(0, len(solr_results['path'])):
+                    kw = solr_results['keyword'][j]
+                    path = solr_results['path'][j]
+                    
+                    #Kw_cnt comes out as a list of tuples. The tuple describes keyword mentions in the text
+                    #Take the length to find the number of mentions for that keyword
+                    kw_cnt = len(solr_results['keyword_count'][j])
+                    
+                    #print(kw, '---- this is the kw')
+                    #print(path, '--- this is the path')
+                    
+                    if path not in path_full_dict.keys():
+                        path_full_dict[path] = [(kw, kw_cnt)]
+                    elif path in path_full_dict.keys():
+                        path_full_dict[path].append((kw, kw_cnt))
+                    else:
+                        print('problem investigate line 644')
+                        pass
+                
+                
                 #print('we entered the filtering stage')
                 for j in range(0, len(solr_results['path'])):
                     if (solr_results['path'][j] not in ome_alert_results['path']) & (solr_results['document_id'][j] in jr_au_ins_filter_list):
@@ -631,6 +651,7 @@ def get_ome_alert_results(search_params_list,from_date=datetime.date.today(), to
                         ome_alert_results['shorter_sentences'].append(solr_results['shorter_sentences'][j])
                         ome_alert_results['keyword_count'].append(solr_results['keyword_count'][j])
             
+                
             ##CS alternative to filter statement where no granular filters in place (source select still functional though)
             ##This function removes redundant documents ---  to adjust listing for keywords make adjustments here
             else:
