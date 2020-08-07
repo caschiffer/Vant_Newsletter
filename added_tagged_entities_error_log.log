@@ -305,3 +305,75 @@ ERROR:root:name 'pd' is not defined | error in get_documents.get_ome_alert_resul
 ERROR:root:name 'pd' is not defined | error in get_documents.get_ome_alert_results 2020-08-02 17:13:46.142773
 ERROR:root:name 'pd' is not defined | error in get_documents.get_ome_alert_results 2020-08-02 17:15:36.436940
 ERROR:root:name 'pd' is not defined | error in get_documents.get_ome_alert_results 2020-08-02 17:16:25.506991
+ERROR:root:local variable 'journal_docid_list' referenced before assignment | error in get_documents.get_ome_alert_results 2020-08-06 21:45:00.456706
+ERROR:root:local variable 'journal_docid_list' referenced before assignment | error in get_documents.get_ome_alert_results 2020-08-06 21:52:10.542749
+ERROR:root:local variable 'journal_docid_list' referenced before assignment | error in get_documents.get_ome_alert_results 2020-08-06 21:57:54.778040
+ERROR:root:local variable 'journal_docid_list' referenced before assignment | error in get_documents.get_ome_alert_results 2020-08-06 22:04:07.682078
+ERROR:root:name 'keywords_found_dict' is not defined | error in get_documents.get_solr_results 2020-08-07 00:10:56.790730
+ERROR:root:name 'keywords_found_dict' is not defined | error in get_documents.get_solr_results 2020-08-07 00:11:00.706491
+ERROR:root:name 'keywords_found_dict' is not defined | error in get_documents.get_solr_results 2020-08-07 00:11:09.182461
+ERROR:root:name 'keywords_found_dict' is not defined | error in get_documents.get_solr_results 2020-08-07 00:11:12.830910
+ERROR:root:name 'keywords_found_dict' is not defined | error in get_documents.get_solr_results 2020-08-07 00:11:19.693492
+ERROR:root:name 'keywords_found_dict' is not defined | error in get_documents.get_solr_results 2020-08-07 00:11:22.242633
+ERROR:root:name 'keywords_found_dict' is not defined | error in get_documents.get_solr_results 2020-08-07 00:12:51.893866
+ERROR:root:name 'keywords_found_dict' is not defined | error in get_documents.get_solr_results 2020-08-07 00:12:55.967841
+ERROR:root:name 'keywords_found_dict' is not defined | error in get_documents.get_solr_results 2020-08-07 00:13:04.045051
+ERROR:root:name 'keywords_found_dict' is not defined | error in get_documents.get_solr_results 2020-08-07 00:13:07.527034
+ERROR:root:name 'keywords_found_dict' is not defined | error in get_documents.get_solr_results 2020-08-07 00:13:14.153571
+ERROR:root:name 'keywords_found_dict' is not defined | error in get_documents.get_solr_results 2020-08-07 00:13:16.584480
+ERROR:root:name 'keywords_found_dict' is not defined | error in get_documents.get_solr_results 2020-08-07 00:17:27.961044
+ERROR:root:name 'keywords_found_dict' is not defined | error in get_documents.get_solr_results 2020-08-07 00:17:32.154318
+ERROR:root:name 'keywords_found_dict' is not defined | error in get_documents.get_solr_results 2020-08-07 00:17:36.569368
+ERROR:root:name 'keywords_found_dict' is not defined | error in get_documents.get_solr_results 2020-08-07 00:17:43.526606
+ERROR:root:name 'keywords_found_dict' is not defined | error in get_documents.get_solr_results 2020-08-07 00:17:46.923240
+ERROR:root:name 'keywords_found_dict' is not defined | error in get_documents.get_solr_results 2020-08-07 00:17:52.218713
+ERROR:root:'>' not supported between instances of 'list' and 'int' | error in add_tagged_entities_error_log.log 2020-08-07 13:46:57.174097
+ERROR:root:local variable 'final_shorter_sentence' referenced before assignment | error in get_documents.get_solr_results 2020-08-07 13:46:57.175094
+ERROR:root:'>' not supported between instances of 'list' and 'int' | error in add_tagged_entities_error_log.log 2020-08-07 13:47:06.495822
+ERROR:root:local variable 'final_shorter_sentence' referenced before assignment | error in get_documents.get_solr_results 2020-08-07 13:47:06.495822
+ERROR:root:'>' not supported between instances of 'list' and 'int' | error in add_tagged_entities_error_log.log 2020-08-07 13:47:08.753688
+ERROR:root:local variable 'final_shorter_sentence' referenced before assignment | error in get_documents.get_solr_results 2020-08-07 13:47:08.754686
+ERROR:root:'>' not supported between instances of 'list' and 'int' | error in add_tagged_entities_error_log.log 2020-08-07 13:47:18.544827
+ERROR:root:local variable 'final_shorter_sentence' referenced before assignment | error in get_documents.get_solr_results 2020-08-07 13:47:18.544827
+ERROR:root:'mannitol' | error in get_documents.get_ome_alert_results 2020-08-07 14:00:02.521772
+ERROR:root:list index out of range | error in add_tagged_entities_error_log.log 2020-08-07 14:04:23.218551
+ERROR:root:local variable 'final_shorter_sentence' referenced before assignment | error in get_documents.get_solr_results 2020-08-07 14:04:23.219543
+ERROR:root:list index out of range | error in add_tagged_entities_error_log.log 2020-08-07 14:04:32.298039
+ERROR:root:local variable 'final_shorter_sentence' referenced before assignment | error in get_documents.get_solr_results 2020-08-07 14:04:32.298039
+ERROR:root:list index out of range | error in add_tagged_entities_error_log.log 2020-08-07 14:04:34.587310
+ERROR:root:local variable 'final_shorter_sentence' referenced before assignment | error in get_documents.get_solr_results 2020-08-07 14:04:34.587310
+ERROR:root:list index out of range | error in add_tagged_entities_error_log.log 2020-08-07 14:04:44.194492
+ERROR:root:local variable 'final_shorter_sentence' referenced before assignment | error in get_documents.get_solr_results 2020-08-07 14:04:44.194492
+ERROR:root:object of type 'NoneType' has no len() | error in get_documents.get_ome_alert_results 2020-08-07 14:23:31.054466
+ERROR:root:'int' object is not subscriptable | error in add_tagged_entities_error_log.log 2020-08-07 14:54:25.852073
+ERROR:root:local variable 'final_shorter_sentence' referenced before assignment | error in get_documents.get_solr_results 2020-08-07 14:54:25.853038
+ERROR:root:'int' object is not subscriptable | error in add_tagged_entities_error_log.log 2020-08-07 14:54:35.357433
+ERROR:root:local variable 'final_shorter_sentence' referenced before assignment | error in get_documents.get_solr_results 2020-08-07 14:54:35.357433
+ERROR:root:'int' object is not subscriptable | error in add_tagged_entities_error_log.log 2020-08-07 14:54:37.844588
+ERROR:root:local variable 'final_shorter_sentence' referenced before assignment | error in get_documents.get_solr_results 2020-08-07 14:54:37.844588
+ERROR:root:'int' object is not subscriptable | error in add_tagged_entities_error_log.log 2020-08-07 14:54:47.742083
+ERROR:root:local variable 'final_shorter_sentence' referenced before assignment | error in get_documents.get_solr_results 2020-08-07 14:54:47.742083
+ERROR:root:name 'shorter_sentence_list' is not defined | error in add_tagged_entities_error_log.log 2020-08-07 15:00:55.863257
+ERROR:root:local variable 'final_shorter_sentence' referenced before assignment | error in get_documents.get_solr_results 2020-08-07 15:00:55.863257
+ERROR:root:name 'shorter_sentence_list' is not defined | error in add_tagged_entities_error_log.log 2020-08-07 15:01:05.375826
+ERROR:root:local variable 'final_shorter_sentence' referenced before assignment | error in get_documents.get_solr_results 2020-08-07 15:01:05.376824
+ERROR:root:name 'shorter_sentence_list' is not defined | error in add_tagged_entities_error_log.log 2020-08-07 15:01:07.915458
+ERROR:root:local variable 'final_shorter_sentence' referenced before assignment | error in get_documents.get_solr_results 2020-08-07 15:01:07.915458
+ERROR:root:name 'shorter_sentence_list' is not defined | error in add_tagged_entities_error_log.log 2020-08-07 15:01:17.692179
+ERROR:root:local variable 'final_shorter_sentence' referenced before assignment | error in get_documents.get_solr_results 2020-08-07 15:01:17.692179
+ERROR:root:name 'shorter_sentence_list' is not defined | error in get_documents.get_solr_results 2020-08-07 15:05:43.130924
+ERROR:root:name 'shorter_sentence_list' is not defined | error in get_documents.get_solr_results 2020-08-07 15:05:52.592670
+ERROR:root:name 'shorter_sentence_list' is not defined | error in get_documents.get_solr_results 2020-08-07 15:05:55.157028
+ERROR:root:name 'shorter_sentence_list' is not defined | error in get_documents.get_solr_results 2020-08-07 15:06:04.897065
+ERROR:root:name 'shorter_sentence_list' is not defined | error in get_documents.get_solr_results 2020-08-07 15:07:19.826466
+ERROR:root:name 'shorter_sentence_list' is not defined | error in get_documents.get_solr_results 2020-08-07 15:07:29.252993
+ERROR:root:name 'shorter_sentence_list' is not defined | error in get_documents.get_solr_results 2020-08-07 15:07:31.781123
+ERROR:root:name 'shorter_sentence_list' is not defined | error in get_documents.get_solr_results 2020-08-07 15:07:41.451418
+ERROR:root:name 'shorter_sentence_list' is not defined | error in get_documents.get_solr_results 2020-08-07 15:09:38.122070
+ERROR:root:name 'shorter_sentence_list' is not defined | error in get_documents.get_solr_results 2020-08-07 15:09:47.691606
+ERROR:root:name 'shorter_sentence_list' is not defined | error in get_documents.get_solr_results 2020-08-07 15:09:50.376076
+ERROR:root:name 'shorter_sentence_list' is not defined | error in get_documents.get_solr_results 2020-08-07 15:10:00.104035
+ERROR:root:name 'shorter_sentence_list' is not defined | error in get_documents.get_solr_results 2020-08-07 15:13:19.800397
+ERROR:root:name 'shorter_sentence_list' is not defined | error in get_documents.get_solr_results 2020-08-07 15:13:22.140224
+ERROR:root:name 'shorter_sentence_list' is not defined | error in get_documents.get_solr_results 2020-08-07 15:13:25.313641
+ERROR:root:name 'shorter_sentence_list' is not defined | error in get_documents.get_solr_results 2020-08-07 15:13:36.016228

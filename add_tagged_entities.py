@@ -70,67 +70,91 @@ def solr_clean_special_char(string_to_mask, solr_specialchars='\+-&|!(){}[]^"~*?
 
 
 def get_keyword_sentences(document_text, all_keywords):
-    try:
-        """Return only sentences with keyword"""
-        
-        shorter_sentences_list = []
-        keyword_found_dict = {}
-        for keyword in all_keywords:
-        
-            keyword_processor = KeywordProcessor()
-            #keyword_fr_process = re.sub('[-/]', ' ', keyword) ## remove keyword special characters using regex
-            keyword_fr_process = solr_clean_special_char(keyword)
-            keyword_processor.add_keyword(keyword_fr_process.lower())
-            #document_text_copy = re.sub('[-/]', ' ', document_text) ## remove keyword special characters using regex
-            document_text_copy = solr_clean_special_char(document_text)
-            #print(document_text_copy,'--- cleaned documents')
-            keywords_found = keyword_processor.extract_keywords(document_text_copy.lower(), span_info=True) # for counting keywords w/o special characters
-            keyword_found_dict[keyword] = keywords_found
-            #print(keyword, '--- this is the keyword')
-            
-            # if keyword == 'Gonadotropin-releasing hormone':# or keyword == 'size exclusion':
-            #     #print(keyword,'---- the keywords found')
-            #     print(keyword_processor,'---- full processor')
+    #try:
+    """Return only sentences with keyword"""
     
-            #     print(keywords_found, '---- the keywords found')
-            #     #print(document_text_copy,'--- cleaned documents')
-            #     #print(keyword_processor,'---- full processor')
+    shorter_sentences_list = []
+    keywords_found_dict = {}
+    for keyword in all_keywords:
     
-            shorter_sentence = ""
+        keyword_processor = KeywordProcessor()
+        #keyword_fr_process = re.sub('[-/]', ' ', keyword) ## remove keyword special characters using regex
+        keyword_fr_process = solr_clean_special_char(keyword)
+        keyword_processor.add_keyword(keyword_fr_process.lower())
+        #document_text_copy = re.sub('[-/]', ' ', document_text) ## remove keyword special characters using regex
+        document_text_copy = solr_clean_special_char(document_text)
+        #print(document_text_copy,'--- cleaned documents')
+        keywords_found = keyword_processor.extract_keywords(document_text_copy.lower(), span_info=True) # for counting keywords w/o special characters
         
-            sentence_ls = text_to_sentences(document_text_copy)
-            last_sentence_index = 0    
-            
-            for i in range(0, len(sentence_ls)):
-                #keyword = re.sub('[^a-zA-Z0-9 \n\.]', '', keyword)
-                #print('this is the keyword --->' + str(keyword))
-                #sentence_ls[i] = re.sub('[-/]', ' ', sentence_ls[i])
-                #print('this is the sentence --->' + str(sentence_ls[i]))
-                if keyword_fr_process.lower() in sentence_ls[i].lower(): #<----- replace/remove all special characters
-                    if i == 0:
-                        shorter_sentence += sentence_ls[i]
-                    elif (i == last_sentence_index + 1) and (len(shorter_sentence) < 500):
-                        shorter_sentence += ' ' + sentence_ls[i]
-                    elif len(shorter_sentence) < 500:
-                        shorter_sentence += ' ... ' + sentence_ls[i]
-                    else:
-                        #shorter_sentence += ' ... ' + sentence_ls[i]
-                        pass
-                    last_sentence_index = i
-                    
-                    if shorter_sentence not in shorter_sentences_list:
-                        shorter_sentences_list.append(shorter_sentence)
-                    else:
-                        ##redundant sentence 
-                        pass
-                    
-        #We need to find the unique sentences in the shorter sentences list
-        final_shorter_sentence = ''.join(shorter_sentences_list)
-    except Exception as e:
-        error_string = '%s | error in add_tagged_entities_error_log.log %s'%(e, str(datetime.datetime.now()))
-        logging.error(error_string)
         
-    return keywords_found, final_shorter_sentence
+        if len(keywords_found) > 0:
+            print(keywords_found, '--- this is the keyword to add')
+            #keywords_found returns a tuple where only the first part is relevant (the keyword) for the dictionary construction
+            if keyword in keywords_found_dict.keys():
+                #print(we m)
+                for ki in keywords_found:
+                    keywords_found_dict[keyword].append(ki[0])
+            else:
+                keywords_found_dict[keyword] = []
+                for ki in keywords_found:
+                    keywords_found_dict[keyword].append(ki[0])
+
+
+        #print(keyword, '--- this is the keyword')
+        
+        # if keyword == 'Gonadotropin-releasing hormone':# or keyword == 'size exclusion':
+        #     #print(keyword,'---- the keywords found')
+        #     print(keyword_processor,'---- full processor')
+
+        #     print(keywords_found, '---- the keywords found')
+        #     #print(document_text_copy,'--- cleaned documents')
+        #     #print(keyword_processor,'---- full processor')
+
+        shorter_sentence = []
+    
+        sentence_ls = text_to_sentences(document_text_copy)
+        last_sentence_index = 0    
+        
+        #print(sentence_ls, '--- this is the sentence ls')
+        for i in range(0, len(sentence_ls)):
+            #keyword = re.sub('[^a-zA-Z0-9 \n\.]', '', keyword)
+            #print('this is the keyword --->' + str(keyword))
+            #sentence_ls[i] = re.sub('[-/]', ' ', sentence_ls[i])
+            #print('this is the sentence --->' + str(sentence_ls[i]))
+            if keyword_fr_process.lower() in sentence_ls[i].lower(): #<----- replace/remove all special characters
+                if i == 0:
+                    shorter_sentence.append(sentence_ls[i])
+                elif (i == last_sentence_index + 1) and (len(shorter_sentence) < 500):
+                    shorter_sentence.append(' ' + sentence_ls[i])
+                elif len(shorter_sentence) < 500:
+                    shorter_sentence.append(' ... ' + sentence_ls[i])
+                else:
+                    #shorter_sentence += ' ... ' + sentence_ls[i]
+                    pass
+                last_sentence_index = i
+                
+                if shorter_sentence not in shorter_sentences_list:
+                    shorter_sentences_list.append(shorter_sentence)
+                    #print(shorter_sentence, '--- this is the shorter sentence')
+                    #print(shorter_sentences_list,'---- list of ss')
+                else:
+                    ##redundant sentence 
+                    pass
+    #print(shorter_sentences_list)
+    flatten = lambda l: [item.lower() for sublist in l for item in sublist]
+    #We need to find the unique sentences in the shorter sentences list
+    print(shorter_sentences_list,'--- this is the list of shorter sentences')
+    
+    shorter_sentences_list = flatten(shorter_sentences_list)
+    
+    shorter_sentences_list = list(set(shorter_sentences_list))
+    print(shorter_sentences_list,'--- this is the list of shorter sentences')
+    final_shorter_sentence = ''.join(shorter_sentences_list)
+    # except Exception as e:
+    #     error_string = '%s | error in add_tagged_entities_error_log.log %s'%(e, str(datetime.datetime.now()))
+    #     logging.error(error_string)
+        
+    return keywords_found_dict, final_shorter_sentence
 
 
 def dictionary_matcher(text, limit=10000, tagger='all_labels_ss_tag', solr='http://10.115.1.195:8983/solr/', core='opensemanticsearch', core_entities='opensemanticsearch-entities'):
@@ -499,7 +523,22 @@ def get_keyword_sentences_subscriptions(document_text, all_keywords):
             document_text_copy = solr_clean_special_char_subscriptions(document_text)
             #print(document_text_copy,'--- cleaned documents')
             keywords_found = keyword_processor.extract_keywords(document_text_copy.lower(), span_info=True) # for counting keywords w/o special characters
-            keywords_found_dict[keyword] = keywords_found
+            
+            #keywords_found returns a tuple where only the first part is relevant (the keyword) for the dictionary construction
+            if len(keywords_found) > 0:
+                print(keywords_found, '--- this is the keyword to add')
+                #print(keywords_found[0], '--- this is the keyword to add')
+                #keywords_found returns a tuple where only the first part is relevant (the keyword) for the dictionary construction
+                if keyword in keywords_found_dict.keys():
+                    for ki in keywords_found:
+                        keywords_found_dict[keyword].append(ki[0])
+                else:
+                    keywords_found_dict[keyword] = []
+                    for ki in keywords_found:
+                        keywords_found_dict[keyword].append(ki[0])
+            #keywords_found returns a tuple where only the first part is relevant (the keyword) for the dictionary construction
+            
+            #keywords_found_dict[keyword] = keywords_found
             #print(keyword, '--- this is the keyword')
             
             # if keyword == 'Gonadotropin-releasing hormone':# or keyword == 'size exclusion':
@@ -514,7 +553,7 @@ def get_keyword_sentences_subscriptions(document_text, all_keywords):
         
             sentence_ls = text_to_sentences(document_text_copy)
             last_sentence_index = 0    
-            
+    
             for i in range(0, len(sentence_ls)):
                 #keyword = re.sub('[^a-zA-Z0-9 \n\.]', '', keyword)
                 #print('this is the keyword --->' + str(keyword))
@@ -531,9 +570,10 @@ def get_keyword_sentences_subscriptions(document_text, all_keywords):
                         #shorter_sentence += ' ... ' + sentence_ls[i]
                         pass
                     last_sentence_index = i
-                    
+                    #print(shorter_sentence_list,'---- list of ss')
                     if shorter_sentence not in shorter_sentence_list:
                         shorter_sentence_list.append(shorter_sentence)
+                        #print(shorter_sentence_list,'---- list of ss')
                     else:
                         ##redundant sentence
                         pass
@@ -545,7 +585,7 @@ def get_keyword_sentences_subscriptions(document_text, all_keywords):
         error_string = '%s | error in add_tagged_entities_error_log.log %s'%(e, str(datetime.datetime.now()))
         logging.error(error_string)
         
-    return keywords_found, final_shorter_sentence #final_shorter_sentence
+    return keywords_found_dict, final_shorter_sentence #final_shorter_sentence
 
 def highlight_keyword_tag(text, keyword, color="255, 255, 0", border_color="255, 255, 0", check_all_cases='yes'):
     try:

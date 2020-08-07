@@ -132,7 +132,7 @@ def construct_solr_search_url(search_terms, from_date=datetime.date.today(), to_
 
 
 ##CS get_solr_results function adjusted to accommodate new filters for journal_select, author_select, institutional_select, and the fuzzy match leeway
-def get_solr_results(all_keywords, keyword ,search_url, journal_select='', author_select='', institution_select='', filter_leeway=70, tags='tagged_entities_for_web', from_date=None, to_date=None):
+def get_solr_results(all_keywords, subscription_services ,keyword ,search_url, journal_select='', author_select='', institution_select='', filter_leeway=70, tags='tagged_entities_for_web', from_date=None, to_date=None):
     """Parse JSON result of search URL using re HTML. Add tags depending on parametes
     tagged_entities_for_web = tags are CSS classes 
     tagged_entities_for_web_new_moas_indications = tags are CSS classes + get MOA/Indication pairs not in DB
@@ -141,341 +141,341 @@ def get_solr_results(all_keywords, keyword ,search_url, journal_select='', autho
     
     doc_count = 0
     
+    #try:
+    keyword_fail_list = []
+    #print('KEYWORD: %s'%(keyword))
+    #print(search_url)
+    
+    
+    t0 = datetime.datetime.now()
+    solr_results = {'keyword':[], 'path':[], 'file_modified_date':[], 'title':[], 'tagged_document_text':[], 'document_text':[], 'document_type':[], 'detailed_type':[], 'document_tags':[], 'normalized_tags':[], 'normalized_tags_ordered':[], 'normalized_tags2':[], 'normalized_tags_ordered2':[], 'document_id':[], 'new_moa_indication_pairs':[], 'new_moas':[], 'shorter_sentences':[], 'keyword_count':[],'LDA_class':[]}
+    
+    if tags in ['tagged_entities_indication_moa_pairs', 'tagged_entities_for_web_new_moas_indications']:
+        path = '//rs-ny-nas/Roivant Sciences/Business Development/Computational Research/OME alerts/input data/' #YMR addition to load data - path redefined in get_documents.py ...
+        with open (path+'dict_MoA_indications_DB', 'rb') as fp:
+            dict_MoA_indications_DB = pickle.load(fp)
     try:
-        keyword_fail_list = []
-        #print('KEYWORD: %s'%(keyword))
-        #print(search_url)
-        
-        
-        t0 = datetime.datetime.now()
-        solr_results = {'keyword':[], 'path':[], 'file_modified_date':[], 'title':[], 'tagged_document_text':[], 'document_text':[], 'document_type':[], 'detailed_type':[], 'document_tags':[], 'normalized_tags':[], 'normalized_tags_ordered':[], 'normalized_tags2':[], 'normalized_tags_ordered2':[], 'document_id':[], 'new_moa_indication_pairs':[], 'new_moas':[], 'shorter_sentences':[], 'keyword_count':[],'LDA_class':[]}
-        
-        if tags in ['tagged_entities_indication_moa_pairs', 'tagged_entities_for_web_new_moas_indications']:
-            path = '//rs-ny-nas/Roivant Sciences/Business Development/Computational Research/OME alerts/input data/' #YMR addition to load data - path redefined in get_documents.py ...
-            with open (path+'dict_MoA_indications_DB', 'rb') as fp:
-                dict_MoA_indications_DB = pickle.load(fp)
-        try:
-            html = get_html(search_url)
-        except Exception as e:
-            print(e)
-        
-        if html:
-            #print('--- entering html document extraction---')
-            d = json.loads(html.decode('utf-8'))
-            #print(str(d['response']['numFound']) + ' documents found')
-            journal_docid_list = []
-            author_docid_list = []
-            institution_docid_list = []
-            
-            #print(d['response']['numFound'], 'number of documents found')
-            
-            for doc_idx, doc in enumerate(d['response']['docs']):
-                #print(doc['id'],'---- this is the document id')
-                #if doc_idx % 100 == 0:
-                #    print('DOC ' + str(doc_idx) + '/' + str(d['response']['numFound']))
-                #if (doc['id'] in solr_results['document_id']) or (doc['title'][0] in solr_results['title']):
-                #print(solr_results['title'],'---- lets check the solr _results title prior to filter')
-                #print(doc['title_txt'][0], '--- doc title before filter')
-                if (doc['id'] in solr_results['document_id']) or (doc['title_txt'][0] in solr_results['title']):
-                    #print(doc['id'],'--- doc id in id and title tiler')
-                    #print(doc['title_txt'][0], '--- in id and title filter')
-                    pass
-                elif doc['id'] == "":
-                    #print(doc['id'],'---- doc id in empty id filter')
-                    #print(doc['title_txt'][0], 'in no id filter')
-                    pass
-                elif 'cleaned_html_content_txt' not in doc:
-                    #print(doc['id'],'---- doc id in missing cleaned html content txt')
-                    #print(doc['title_txt'][0],'--- doc title_txt in missing cleaned html content txt filter')
-                    pass
-                elif 'flag_OME_alert_exclusion_ss' in doc:
-                    #print(doc['id'],'---- doc id in flag_OME_alert_exclusion_ss filter')
-                    #print(doc['title_txt'][0],'--- doc title_txt in flag_OME_alert_exclusion_ss filter')
-                    pass
-                else:
-                    #print(doc['title_txt'][0],'-- doc title text after filter')
-                    #print(doc)
-                    #if any(s in doc['id'] for s in ct_paths):
-                    #if doc['title'][0] not in clinical_trials['title']:
-                    document_type, detailed_type = get_document_type(doc['id'])
-                    #print(document_type, '--- this is the document type')
-                                    
-                    # document_text extraction should be contingent on tocument type for 
-                    #if (document_type == 'Cortellis') and ('Drug_Status_Changes_alert' in doc['id']):
-                    #    print(doc['id'] , '---- this is the doc id')
-                    #    file_to_read = doc['id']
-                    #    = codecs.open(file_to_read, "r", "utf-8")
-                    
-                    
-                    #document_text = text_to_sentences(doc['content'][0])
-                    document_text = ' '.join(add_tagged_entities.text_to_sentences(doc['cleaned_html_content_txt'][0]))
-                    #hs = highlight_sentences(t, keyword)
-                    
-                    # hss = insert_highlight("\n".join(hs), keyword)
-                    file_modified_date = doc['file_modified_dt'].split("T")[0]
-                    #file_path = 'http://ome.vant.com/test-app_ome/ome_alert_document/'+doc['id'].replace('/', '!!!').strip('!!!')
-                    file_path = 'http://52.23.161.54/redirect/<user_name>/' + doc['id'].replace('/', '!!!').strip('!!!')				
-    
-                    
-                    ##CS Implementing journal, author, and institution checks. These are a work in progress
-                    
-                    ##CS pubmed list pulled from get_document_type function
-                    pubmed_list= ['pubmed_abstract', 'pubmed_article']
-                    
-                    ## CS Journal filter
-                    if (journal_select != '') and (document_type in pubmed_list):
-                        journal_list = journal_select.split(', ')
-                        
-                        if 'Article_Journal_Title_ss' in doc:
-                            #print('----- we entered the first field check for journal check')
-                            for i in journal_list:
-                                #print(i, '----this is user submitted journal')
-                                fuzzy_journal_score = fuzz.ratio(i,doc['Article_Journal_Title_ss'][0])
-                                #print(fuzzy_journal_score)
-                                #print(doc['Article_Journal_Title_ss'])
-                                if fuzzy_journal_score > filter_leeway:
-                                    journal_docid_list.append(doc['id'])
-                                # CS append journals to filter list to only append these later
-                        
-                        elif 'journal_name_ss' in doc:
-                            #print('----- we have entered the second field check for journals')
-                            for i in journal_list:
-                                fuzzy_journal_score = fuzz.ratio(i,doc['journal_name_ss'][0])
-                                if fuzzy_journal_score > filter_leeway:
-                                    journal_docid_list.append(doc['id'])
-                                # CS append journals to filter list to only append these later
-                    
-                    ##CS Author Filter
-                    if (author_select != '') and (document_type in pubmed_list):
-                        author_list = author_select.split(', ')
-                        if 'Article_AuthorList_Author_Name_ss' in doc:
-                            for doc_author in doc['Article_AuthorList_Author_Name_ss']:
-                                for user_author in author_list:
-                                    #print(doc_author,'---- this is the doc_author')
-                                    #print(user_author, ' ---- this is the user_author')
-                                    fuzzy_author_score = fuzz.ratio(user_author,doc_author)
-                                    #print(fuzzy_author_score, '----- this is the fuzzy match score')
-                                    if fuzzy_author_score > filter_leeway:
-                                        #print(doc['id'],'----- append success!')
-                                        author_docid_list.append(doc['id'])
-                                # CS append authors to filter list to only append these later
-                                
-                                
-                    ##CS Institution filter
-                    if (institution_select != '') and (document_type in pubmed_list):
-                        institution_list = institution_select.split(', ')
-                        if 'company_OME_txt_ss' in doc:
-                            for doc_ins in doc['company_OME_txt_ss']:
-                                for user_ins in institution_list:
-                                    fuzzy_ins_score = fuzz.ratio(doc_ins, user_ins)
-                                    if fuzzy_ins_score > filter_leeway:
-                                        institution_docid_list.append(doc['id'])
-                            # CS append insititutions to filter list to only append these later
-                                
-                            
-                    if document_type in pubmed_list:
-                        if ('Article_Journal_Title_ss' in doc) and ('Article_ArticleTitle_ss' in doc):
-                            document_title = doc['Article_Journal_Title_ss'][0] + " | " + doc["Article_ArticleTitle_ss"][0]
-                        elif "Article_ArticleTitle_ss" in doc:
-                            document_title = doc["Article_ArticleTitle_ss"][0]
-                        elif ('Article_Journal_Title_ss' in doc) and ('article_title_ss' in doc):
-                            document_title = doc['Article_Journal_Title_ss'][0] + " | " + doc["article_title_ss"][0]
-                        elif "journal_name_ss" in doc:
-                            document_title = doc["journal_name_ss"][0] + " | " + doc["article_title_ss"][0]
-                        elif "article_title_ss" in doc:
-                            document_title = doc["article_title_ss"][0]
-                        else:
-                            document_title = doc["title_txt"][0]
-                        #document_title = doc['cleaned_html_content_txt'][0].split('\t')[3]
-                        
-                        try:
-                            if "DateCompleted_Year_ss" in doc:                            
-                                original_pub_date = datetime.date(int(doc["DateCompleted_Year_ss"][0]), int(doc["DateCompleted_Month_ss"][0]), int(doc["DateCompleted_Day_ss"][0]))                    
-                            elif "Article_Journal_JournalIssue_PubDate_dt" in doc:
-                                original_pub_date = datetime.date(int(doc["Article_Journal_JournalIssue_PubDate_dt"].split('T')[0].split('-')[0]), int(doc["Article_Journal_JournalIssue_PubDate_dt"].split('T')[0].split('-')[1]), int(doc["Article_Journal_JournalIssue_PubDate_dt"].split('T')[0].split('-')[2]))
-                            elif "Article_ArticleDate_Year_ss" in doc:
-                                original_pub_date = datetime.date(int(doc["Article_ArticleDate_Year_ss"][0]), int(doc["Article_ArticleDate_Month_ss"][0]), int(doc["Article_ArticleDate_Day_ss"][0]))
-                            elif "pub_date_dt" in doc:
-                                original_pub_date = datetime.date(int(doc["pub_date_dt"].split('T')[0].split('-')[0]), int(doc["pub_date_dt"].split('T')[0].split('-')[1]), int(doc["pub_date_dt"].split('T')[0].split('-')[2]))
-                            elif "History_PubMedPubDate_pubmed_ss" in doc:    
-                                original_pub_date = datetime.date(int(doc["History_PubMedPubDate_pubmed_ss"][0].split('-')[0]), int(doc["History_PubMedPubDate_pubmed_ss"][0].split('-')[1]), int(doc["History_PubMedPubDate_pubmed_ss"][0].split('-')[2]))
-                            elif "History_PubMedPubDate_pubmed_dt" in doc:
-                                original_pub_date = datetime.date(int(doc["History_PubMedPubDate_pubmed_dt"].split('T')[0].split('-')[0]), int(doc["History_PubMedPubDate_pubmed_dt"].split('T')[0].split('-')[1]), int(doc["History_PubMedPubDate_pubmed_dt"].split('T')[0].split('-')[2]))
-                            else:
-                                original_pub_date = datetime.date.today()
-                                #print(original_pub_date)
-                            if original_pub_date < from_date:
-                                #print('REVISED PUBMED ARTICLE')
-                                continue
-                        except:
-                            print('no pub date')
-                    
-                    else:
-                        document_title = doc['title_txt'][0]
-               
-                    #if doc['id'] == 'pmc_6516158.xml':
-                    #    print(document_text)
-                    #doc_count += 1
-                    #print(doc_count,'--- number of documents that are actually returned')
-                    
-                    #We are going to move the highlighting of the shorter sentences to after collection of all sentences for all keywords
-                    #This will enable us to highlight ONLY for those keywords returned and not risk incorrect highlighting
-                    if keyword != '':
-                        if document_type not in ['Adis Insight','Cortellis','GBD_email','Evaluate News']:
-                            keywords_found, shorter_sentences = add_tagged_entities.get_keyword_sentences(document_text, all_keywords)
-                            tagged_document_text = add_tagged_entities.highlight_keyword(document_text, all_keywords)
-                            #tagged_shorter_sentences = add_tagged_entities.highlight_keyword(shorter_sentences, all_keywords)
-                        else:
-                            keywords_found, shorter_sentences = add_tagged_entities.get_keyword_sentences_subscriptions(document_text, all_keywords)
-                            tagged_document_text = add_tagged_entities.highlight_keyword_subscriptions(document_text, all_keywords)
-                            #tagged_shorter_sentences = add_tagged_entities.highlight_keyword_subscriptions(shorter_sentences, all_keywords)
-                    else:
-                        tagged_document_text = document_text
-                        shorter_sentences = ''
-                        keywords_found = {}
-                        tagged_shorter_sentences = document_text
-                    
-                    if tags =='tagged_entities_for_web':
-                        #print(doc['id'])
-                        #normalized_tags, document_tags = add_tagged_entities.dictionary_matcher(document_text)
-                        #tagged_document_text = add_tagged_entities.highlight_tags(tagged_document_text, document_tags)
-                        #document_tags_list = sorted(normalized_tags.keys(), key=lambda x: normalized_tags[x]['result']['tag_count_cleaned'], reverse=True)
-                        #tagged_shorter_sentences = add_tagged_entities.highlight_tags(tagged_shorter_sentences, document_tags)
-                        new_indication_moa_pairs = []
-                        new_moas = []
-                        if 'drug_OME_txt_ss_matchtext_ss' in doc:
-                            drug_tag_list = doc['drug_OME_txt_ss_matchtext_ss']
-                        else:
-                            drug_tag_list = []
-					
-                        if 'target_OME_txt_ss_matchtext_ss' in doc:
-                            target_tag_list = doc['target_OME_txt_ss_matchtext_ss']
-                        else:
-                            target_tag_list = []
-						
-                        if 'company_OME_txt_ss_matchtext_ss' in doc:
-                            company_tag_list = doc['company_OME_txt_ss_matchtext_ss']
-                        else:
-                            company_tag_list = []
-					
-                        if 'indication_OME_txt_ss_matchtext_ss' in doc:
-                            indication_tag_list = doc['indication_OME_txt_ss_matchtext_ss']
-                        else:
-                            indication_tag_list = []
-						
-                        
-                        document_tags = drug_tag_list + target_tag_list + company_tag_list + indication_tag_list
-                        normalized_tags, document_tags_list = add_tagged_entities.parse_tag_lists(drug_tag_list, target_tag_list, company_tag_list, indication_tag_list)
-                        tagged_document_text = add_tagged_entities.highlight_tags_from_list(tagged_document_text, normalized_tags)
-                    elif tags =='tagged_entities_for_web_new_moas_indications':
-                        #print(doc['id'])
-                        normalized_tags, document_tags = add_tagged_entities.dictionary_matcher(document_text)
-                        tagged_document_text = add_tagged_entities.highlight_tags(tagged_document_text, document_tags)
-                        document_tags_list = sorted(normalized_tags.keys(), key=lambda x: normalized_tags[x]['result']['tag_count_cleaned'], reverse=True)
-                        tagged_shorter_sentences = add_tagged_entities.highlight_tags(tagged_shorter_sentences, document_tags)
-                        new_indication_moa_pairs, new_moas = add_tagged_entities.get_new_indication_moa_pairs(document_text, normalized_tags, dict_MoA_indications_DB)
-                    elif tags =='tagged_entities':
-                        #print(doc['id'])
-                        normalized_tags, document_tags = add_tagged_entities.dictionary_matcher(document_text)
-                        tagged_document_text = add_tagged_entities.highlight_tags(tagged_document_text, document_tags, for_web=False)
-                        document_tags_list = sorted(normalized_tags.keys(), key=lambda x: normalized_tags[x]['result']['tag_count_cleaned'], reverse=True)
-                        tagged_shorter_sentences = add_tagged_entities.highlight_tags(tagged_shorter_sentences, document_tags, for_web=False)
-                        new_indication_moa_pairs = []
-                        new_moas = []
-                    elif tags =='tagged_entities_for_email':
-                        #print(doc['id'])
-                        #normalized_tags, document_tags = add_tagged_entities.dictionary_matcher(document_text)
-                        #tagged_document_text = add_tagged_entities.highlight_tags(tagged_document_text, document_tags, for_web=False)
-                        #document_tags_list = sorted(normalized_tags.keys(), key=lambda x: normalized_tags[x]['result']['tag_count_cleaned'], reverse=True)
-                        #tagged_shorter_sentences = add_tagged_entities.highlight_tags(tagged_shorter_sentences, document_tags, for_web=False)
-                        new_indication_moa_pairs = []
-                        new_moas = []
-                        
-                        if 'drug_OME_txt_ss_matchtext_ss' in doc:
-                            drug_tag_list = doc['drug_OME_txt_ss_matchtext_ss']
-                        else:
-                            drug_tag_list = []
-                        
-                        if 'target_OME_txt_ss_matchtext_ss' in doc:
-                            target_tag_list = doc['target_OME_txt_ss_matchtext_ss']
-                        else:
-                            target_tag_list = []
-                            
-                        if 'company_OME_txt_ss_matchtext_ss' in doc:
-                            company_tag_list = doc['company_OME_txt_ss_matchtext_ss']
-                        else:
-                            company_tag_list = []
-                        
-                        if 'indication_OME_txt_ss_matchtext_ss' in doc:
-                            indication_tag_list = doc['indication_OME_txt_ss_matchtext_ss']
-                        else:
-                            indication_tag_list = []
-                        
-                        
-                        #For the vant newsletter and most ome alerts we only want to return the company tag list
-                        drug_tag_list = []
-                        target_tag_list = []
-                        indication_tag_list = []
-                        
-                        
-                        
-                        document_tags = drug_tag_list + target_tag_list + company_tag_list + indication_tag_list
-                        normalized_tags, document_tags_list = add_tagged_entities.parse_tag_lists(drug_tag_list, target_tag_list, company_tag_list, indication_tag_list)
-                    
-                    elif tags == 'tagged_entities_indication_moa_pairs':
-                        normalized_tags, document_tags = add_tagged_entities.dictionary_matcher(document_text)
-                        #tagged_document_text = add_tagged_entities.highlight_tags(tagged_document_text, document_tags)
-                        document_tags_list = sorted(normalized_tags.keys(), key=lambda x: normalized_tags[x]['result']['tag_count_cleaned'], reverse=True)
-                        new_indication_moa_pairs, new_moas = add_tagged_entities.get_new_indication_moa_pairs(document_text, normalized_tags, dict_MoA_indications_DB)
-                        
-                        
-                    
-                    else:
-                        document_tags = {}
-                        normalized_tags = {}
-                        document_tags_list = []
-                        new_indication_moa_pairs = []
-                        new_moas = []
-                        
-                    
-                    solr_results['document_id'].append(doc['id'])
-                    if 'lda_class_ss' in doc.keys():
-                        #print('this is -----', doc['lda_class_ss'][0])
-                        solr_results['LDA_class'].append(str(doc['lda_class_ss'][0]))
-                        #print('solr results here-----',solr_results['LDA_class'])
-                    else:
-                        solr_results['LDA_class'].append('Not Evaluated')
-                    solr_results['keyword'].append(keyword.strip())
-                    #print(keyword, '--- this is the keyword')
-                    #print(keyword.strip(),'--- this is the stripped keyword')
-                    solr_results['path'].append(file_path)
-                    #print(file_path, '--- this is the filepath to be returned')
-                    solr_results['file_modified_date'].append(file_modified_date)
-                    solr_results['title'].append(document_title)
-                    solr_results['tagged_document_text'].append(tagged_document_text)
-                    solr_results['document_type'].append(document_type)
-                    solr_results['detailed_type'].append(detailed_type)
-                    solr_results['document_text'].append(document_text)
-                    solr_results['normalized_tags'].append(normalized_tags)
-                    solr_results['document_tags'].append(document_tags)
-                    solr_results['normalized_tags_ordered'].append(document_tags_list)
-                    solr_results['new_moa_indication_pairs'].append(new_indication_moa_pairs)
-                    solr_results['new_moas'].append(new_moas)
-                    solr_results['shorter_sentences'].append(shorter_sentences)
-                    solr_results['keyword_count'].append(keywords_found)
-                
-                    
-                    #solr_results['normalized_tags2'].append(normalized_tags2)
-                    #solr_results['normalized_tags_ordered2'].append(document_tags2)
-                
-    
-    
-        tf = datetime.datetime.now()
-        #print('SOLR execution time: %s'%(str(tf-t0)))    
-        
-
+        html = get_html(search_url)
     except Exception as e:
-        logging.error('%s | error in get_documents.get_solr_results %s'%(e, str(datetime.datetime.now())))
+        print(e)
+    
+    if html:
+        #print('--- entering html document extraction---')
+        d = json.loads(html.decode('utf-8'))
+        #print(str(d['response']['numFound']) + ' documents found')
+        journal_docid_list = []
+        author_docid_list = []
+        institution_docid_list = []
+        
+        #print(d['response']['numFound'], 'number of documents found')
+        
+        for doc_idx, doc in enumerate(d['response']['docs']):
+            #print(doc['id'],'---- this is the document id')
+            #if doc_idx % 100 == 0:
+            #    print('DOC ' + str(doc_idx) + '/' + str(d['response']['numFound']))
+            #if (doc['id'] in solr_results['document_id']) or (doc['title'][0] in solr_results['title']):
+            #print(solr_results['title'],'---- lets check the solr _results title prior to filter')
+            #print(doc['title_txt'][0], '--- doc title before filter')
+            if (doc['id'] in solr_results['document_id']) or (doc['title_txt'][0] in solr_results['title']):
+                #print(doc['id'],'--- doc id in id and title tiler')
+                #print(doc['title_txt'][0], '--- in id and title filter')
+                pass
+            elif doc['id'] == "":
+                #print(doc['id'],'---- doc id in empty id filter')
+                #print(doc['title_txt'][0], 'in no id filter')
+                pass
+            elif 'cleaned_html_content_txt' not in doc:
+                #print(doc['id'],'---- doc id in missing cleaned html content txt')
+                #print(doc['title_txt'][0],'--- doc title_txt in missing cleaned html content txt filter')
+                pass
+            elif 'flag_OME_alert_exclusion_ss' in doc:
+                #print(doc['id'],'---- doc id in flag_OME_alert_exclusion_ss filter')
+                #print(doc['title_txt'][0],'--- doc title_txt in flag_OME_alert_exclusion_ss filter')
+                pass
+            else:
+                #print(doc['title_txt'][0],'-- doc title text after filter')
+                #print(doc)
+                #if any(s in doc['id'] for s in ct_paths):
+                #if doc['title'][0] not in clinical_trials['title']:
+                document_type, detailed_type = get_document_type(doc['id'])
+                #print(document_type, '--- this is the document type')
+                                
+                # document_text extraction should be contingent on tocument type for 
+                #if (document_type == 'Cortellis') and ('Drug_Status_Changes_alert' in doc['id']):
+                #    print(doc['id'] , '---- this is the doc id')
+                #    file_to_read = doc['id']
+                #    = codecs.open(file_to_read, "r", "utf-8")
+                
+                
+                #document_text = text_to_sentences(doc['content'][0])
+                document_text = ' '.join(add_tagged_entities.text_to_sentences(doc['cleaned_html_content_txt'][0]))
+                #hs = highlight_sentences(t, keyword)
+                
+                # hss = insert_highlight("\n".join(hs), keyword)
+                file_modified_date = doc['file_modified_dt'].split("T")[0]
+                #file_path = 'http://ome.vant.com/test-app_ome/ome_alert_document/'+doc['id'].replace('/', '!!!').strip('!!!')
+                file_path = 'http://52.23.161.54/redirect/<user_name>/' + doc['id'].replace('/', '!!!').strip('!!!')				
+
+                
+                ##CS Implementing journal, author, and institution checks. These are a work in progress
+                
+                ##CS pubmed list pulled from get_document_type function
+                pubmed_list= ['pubmed_abstract', 'pubmed_article']
+                
+                ## CS Journal filter
+                if (journal_select != '') and (document_type in pubmed_list):
+                    journal_list = journal_select.split(', ')
+                    
+                    if 'Article_Journal_Title_ss' in doc:
+                        #print('----- we entered the first field check for journal check')
+                        for i in journal_list:
+                            #print(i, '----this is user submitted journal')
+                            fuzzy_journal_score = fuzz.ratio(i,doc['Article_Journal_Title_ss'][0])
+                            #print(fuzzy_journal_score)
+                            #print(doc['Article_Journal_Title_ss'])
+                            if fuzzy_journal_score > filter_leeway:
+                                journal_docid_list.append(doc['id'])
+                            # CS append journals to filter list to only append these later
+                    
+                    elif 'journal_name_ss' in doc:
+                        #print('----- we have entered the second field check for journals')
+                        for i in journal_list:
+                            fuzzy_journal_score = fuzz.ratio(i,doc['journal_name_ss'][0])
+                            if fuzzy_journal_score > filter_leeway:
+                                journal_docid_list.append(doc['id'])
+                            # CS append journals to filter list to only append these later
+                
+                ##CS Author Filter
+                if (author_select != '') and (document_type in pubmed_list):
+                    author_list = author_select.split(', ')
+                    if 'Article_AuthorList_Author_Name_ss' in doc:
+                        for doc_author in doc['Article_AuthorList_Author_Name_ss']:
+                            for user_author in author_list:
+                                #print(doc_author,'---- this is the doc_author')
+                                #print(user_author, ' ---- this is the user_author')
+                                fuzzy_author_score = fuzz.ratio(user_author,doc_author)
+                                #print(fuzzy_author_score, '----- this is the fuzzy match score')
+                                if fuzzy_author_score > filter_leeway:
+                                    #print(doc['id'],'----- append success!')
+                                    author_docid_list.append(doc['id'])
+                            # CS append authors to filter list to only append these later
+                            
+                            
+                ##CS Institution filter
+                if (institution_select != '') and (document_type in pubmed_list):
+                    institution_list = institution_select.split(', ')
+                    if 'company_OME_txt_ss' in doc:
+                        for doc_ins in doc['company_OME_txt_ss']:
+                            for user_ins in institution_list:
+                                fuzzy_ins_score = fuzz.ratio(doc_ins, user_ins)
+                                if fuzzy_ins_score > filter_leeway:
+                                    institution_docid_list.append(doc['id'])
+                        # CS append insititutions to filter list to only append these later
+                            
+                        
+                if document_type in pubmed_list:
+                    if ('Article_Journal_Title_ss' in doc) and ('Article_ArticleTitle_ss' in doc):
+                        document_title = doc['Article_Journal_Title_ss'][0] + " | " + doc["Article_ArticleTitle_ss"][0]
+                    elif "Article_ArticleTitle_ss" in doc:
+                        document_title = doc["Article_ArticleTitle_ss"][0]
+                    elif ('Article_Journal_Title_ss' in doc) and ('article_title_ss' in doc):
+                        document_title = doc['Article_Journal_Title_ss'][0] + " | " + doc["article_title_ss"][0]
+                    elif "journal_name_ss" in doc:
+                        document_title = doc["journal_name_ss"][0] + " | " + doc["article_title_ss"][0]
+                    elif "article_title_ss" in doc:
+                        document_title = doc["article_title_ss"][0]
+                    else:
+                        document_title = doc["title_txt"][0]
+                    #document_title = doc['cleaned_html_content_txt'][0].split('\t')[3]
+                    
+                    try:
+                        if "DateCompleted_Year_ss" in doc:                            
+                            original_pub_date = datetime.date(int(doc["DateCompleted_Year_ss"][0]), int(doc["DateCompleted_Month_ss"][0]), int(doc["DateCompleted_Day_ss"][0]))                    
+                        elif "Article_Journal_JournalIssue_PubDate_dt" in doc:
+                            original_pub_date = datetime.date(int(doc["Article_Journal_JournalIssue_PubDate_dt"].split('T')[0].split('-')[0]), int(doc["Article_Journal_JournalIssue_PubDate_dt"].split('T')[0].split('-')[1]), int(doc["Article_Journal_JournalIssue_PubDate_dt"].split('T')[0].split('-')[2]))
+                        elif "Article_ArticleDate_Year_ss" in doc:
+                            original_pub_date = datetime.date(int(doc["Article_ArticleDate_Year_ss"][0]), int(doc["Article_ArticleDate_Month_ss"][0]), int(doc["Article_ArticleDate_Day_ss"][0]))
+                        elif "pub_date_dt" in doc:
+                            original_pub_date = datetime.date(int(doc["pub_date_dt"].split('T')[0].split('-')[0]), int(doc["pub_date_dt"].split('T')[0].split('-')[1]), int(doc["pub_date_dt"].split('T')[0].split('-')[2]))
+                        elif "History_PubMedPubDate_pubmed_ss" in doc:    
+                            original_pub_date = datetime.date(int(doc["History_PubMedPubDate_pubmed_ss"][0].split('-')[0]), int(doc["History_PubMedPubDate_pubmed_ss"][0].split('-')[1]), int(doc["History_PubMedPubDate_pubmed_ss"][0].split('-')[2]))
+                        elif "History_PubMedPubDate_pubmed_dt" in doc:
+                            original_pub_date = datetime.date(int(doc["History_PubMedPubDate_pubmed_dt"].split('T')[0].split('-')[0]), int(doc["History_PubMedPubDate_pubmed_dt"].split('T')[0].split('-')[1]), int(doc["History_PubMedPubDate_pubmed_dt"].split('T')[0].split('-')[2]))
+                        else:
+                            original_pub_date = datetime.date.today()
+                            #print(original_pub_date)
+                        if original_pub_date < from_date:
+                            #print('REVISED PUBMED ARTICLE')
+                            continue
+                    except:
+                        print('no pub date')
+                
+                else:
+                    document_title = doc['title_txt'][0]
+           
+                #if doc['id'] == 'pmc_6516158.xml':
+                #    print(document_text)
+                #doc_count += 1
+                #print(doc_count,'--- number of documents that are actually returned')
+                
+                #We are going to move the highlighting of the shorter sentences to after collection of all sentences for all keywords
+                #This will enable us to highlight ONLY for those keywords returned and not risk incorrect highlighting
+                if keyword != '':
+                    if document_type not in subscription_services:
+                        keywords_found, shorter_sentences = add_tagged_entities.get_keyword_sentences(document_text, all_keywords)
+                        tagged_document_text = add_tagged_entities.highlight_keyword(document_text, all_keywords)
+                        #tagged_shorter_sentences = add_tagged_entities.highlight_keyword(shorter_sentences, all_keywords)
+                    else:
+                        keywords_found, shorter_sentences = add_tagged_entities.get_keyword_sentences_subscriptions(document_text, all_keywords)
+                        tagged_document_text = add_tagged_entities.highlight_keyword_subscriptions(document_text, all_keywords)
+                        #tagged_shorter_sentences = add_tagged_entities.highlight_keyword_subscriptions(shorter_sentences, all_keywords)
+                else:
+                    tagged_document_text = document_text
+                    shorter_sentences = ''
+                    keywords_found = {}
+                    tagged_shorter_sentences = document_text
+                
+                if tags =='tagged_entities_for_web':
+                    #print(doc['id'])
+                    #normalized_tags, document_tags = add_tagged_entities.dictionary_matcher(document_text)
+                    #tagged_document_text = add_tagged_entities.highlight_tags(tagged_document_text, document_tags)
+                    #document_tags_list = sorted(normalized_tags.keys(), key=lambda x: normalized_tags[x]['result']['tag_count_cleaned'], reverse=True)
+                    #tagged_shorter_sentences = add_tagged_entities.highlight_tags(tagged_shorter_sentences, document_tags)
+                    new_indication_moa_pairs = []
+                    new_moas = []
+                    if 'drug_OME_txt_ss_matchtext_ss' in doc:
+                        drug_tag_list = doc['drug_OME_txt_ss_matchtext_ss']
+                    else:
+                        drug_tag_list = []
+					
+                    if 'target_OME_txt_ss_matchtext_ss' in doc:
+                        target_tag_list = doc['target_OME_txt_ss_matchtext_ss']
+                    else:
+                        target_tag_list = []
+						
+                    if 'company_OME_txt_ss_matchtext_ss' in doc:
+                        company_tag_list = doc['company_OME_txt_ss_matchtext_ss']
+                    else:
+                        company_tag_list = []
+					
+                    if 'indication_OME_txt_ss_matchtext_ss' in doc:
+                        indication_tag_list = doc['indication_OME_txt_ss_matchtext_ss']
+                    else:
+                        indication_tag_list = []
+						
+                    
+                    document_tags = drug_tag_list + target_tag_list + company_tag_list + indication_tag_list
+                    normalized_tags, document_tags_list = add_tagged_entities.parse_tag_lists(drug_tag_list, target_tag_list, company_tag_list, indication_tag_list)
+                    tagged_document_text = add_tagged_entities.highlight_tags_from_list(tagged_document_text, normalized_tags)
+                elif tags =='tagged_entities_for_web_new_moas_indications':
+                    #print(doc['id'])
+                    normalized_tags, document_tags = add_tagged_entities.dictionary_matcher(document_text)
+                    tagged_document_text = add_tagged_entities.highlight_tags(tagged_document_text, document_tags)
+                    document_tags_list = sorted(normalized_tags.keys(), key=lambda x: normalized_tags[x]['result']['tag_count_cleaned'], reverse=True)
+                    tagged_shorter_sentences = add_tagged_entities.highlight_tags(tagged_shorter_sentences, document_tags)
+                    new_indication_moa_pairs, new_moas = add_tagged_entities.get_new_indication_moa_pairs(document_text, normalized_tags, dict_MoA_indications_DB)
+                elif tags =='tagged_entities':
+                    #print(doc['id'])
+                    normalized_tags, document_tags = add_tagged_entities.dictionary_matcher(document_text)
+                    tagged_document_text = add_tagged_entities.highlight_tags(tagged_document_text, document_tags, for_web=False)
+                    document_tags_list = sorted(normalized_tags.keys(), key=lambda x: normalized_tags[x]['result']['tag_count_cleaned'], reverse=True)
+                    tagged_shorter_sentences = add_tagged_entities.highlight_tags(tagged_shorter_sentences, document_tags, for_web=False)
+                    new_indication_moa_pairs = []
+                    new_moas = []
+                elif tags =='tagged_entities_for_email':
+                    #print(doc['id'])
+                    #normalized_tags, document_tags = add_tagged_entities.dictionary_matcher(document_text)
+                    #tagged_document_text = add_tagged_entities.highlight_tags(tagged_document_text, document_tags, for_web=False)
+                    #document_tags_list = sorted(normalized_tags.keys(), key=lambda x: normalized_tags[x]['result']['tag_count_cleaned'], reverse=True)
+                    #tagged_shorter_sentences = add_tagged_entities.highlight_tags(tagged_shorter_sentences, document_tags, for_web=False)
+                    new_indication_moa_pairs = []
+                    new_moas = []
+                    
+                    if 'drug_OME_txt_ss_matchtext_ss' in doc:
+                        drug_tag_list = doc['drug_OME_txt_ss_matchtext_ss']
+                    else:
+                        drug_tag_list = []
+                    
+                    if 'target_OME_txt_ss_matchtext_ss' in doc:
+                        target_tag_list = doc['target_OME_txt_ss_matchtext_ss']
+                    else:
+                        target_tag_list = []
+                        
+                    if 'company_OME_txt_ss_matchtext_ss' in doc:
+                        company_tag_list = doc['company_OME_txt_ss_matchtext_ss']
+                    else:
+                        company_tag_list = []
+                    
+                    if 'indication_OME_txt_ss_matchtext_ss' in doc:
+                        indication_tag_list = doc['indication_OME_txt_ss_matchtext_ss']
+                    else:
+                        indication_tag_list = []
+                    
+                    
+                    #For the vant newsletter and most ome alerts we only want to return the company tag list
+                    drug_tag_list = []
+                    target_tag_list = []
+                    indication_tag_list = []
+                    
+                    
+                    
+                    document_tags = drug_tag_list + target_tag_list + company_tag_list + indication_tag_list
+                    normalized_tags, document_tags_list = add_tagged_entities.parse_tag_lists(drug_tag_list, target_tag_list, company_tag_list, indication_tag_list)
+                
+                elif tags == 'tagged_entities_indication_moa_pairs':
+                    normalized_tags, document_tags = add_tagged_entities.dictionary_matcher(document_text)
+                    #tagged_document_text = add_tagged_entities.highlight_tags(tagged_document_text, document_tags)
+                    document_tags_list = sorted(normalized_tags.keys(), key=lambda x: normalized_tags[x]['result']['tag_count_cleaned'], reverse=True)
+                    new_indication_moa_pairs, new_moas = add_tagged_entities.get_new_indication_moa_pairs(document_text, normalized_tags, dict_MoA_indications_DB)
+                    
+                    
+                
+                else:
+                    document_tags = {}
+                    normalized_tags = {}
+                    document_tags_list = []
+                    new_indication_moa_pairs = []
+                    new_moas = []
+                    
+                
+                solr_results['document_id'].append(doc['id'])
+                if 'lda_class_ss' in doc.keys():
+                    #print('this is -----', doc['lda_class_ss'][0])
+                    solr_results['LDA_class'].append(str(doc['lda_class_ss'][0]))
+                    #print('solr results here-----',solr_results['LDA_class'])
+                else:
+                    solr_results['LDA_class'].append('Not Evaluated')
+                solr_results['keyword'].append(keyword.strip())
+                #print(keyword, '--- this is the keyword')
+                #print(keyword.strip(),'--- this is the stripped keyword')
+                solr_results['path'].append(file_path)
+                #print(file_path, '--- this is the filepath to be returned')
+                solr_results['file_modified_date'].append(file_modified_date)
+                solr_results['title'].append(document_title)
+                solr_results['tagged_document_text'].append(tagged_document_text)
+                solr_results['document_type'].append(document_type)
+                solr_results['detailed_type'].append(detailed_type)
+                solr_results['document_text'].append(document_text)
+                solr_results['normalized_tags'].append(normalized_tags)
+                solr_results['document_tags'].append(document_tags)
+                solr_results['normalized_tags_ordered'].append(document_tags_list)
+                solr_results['new_moa_indication_pairs'].append(new_indication_moa_pairs)
+                solr_results['new_moas'].append(new_moas)
+                solr_results['shorter_sentences'].append(shorter_sentences)
+                solr_results['keyword_count'].append(keywords_found)
+            
+                
+                #solr_results['normalized_tags2'].append(normalized_tags2)
+                #solr_results['normalized_tags_ordered2'].append(document_tags2)
+            
+
+
+    tf = datetime.datetime.now()
+    #print('SOLR execution time: %s'%(str(tf-t0)))    
+    
+
+    # except Exception as e:
+    #     logging.error('%s | error in get_documents.get_solr_results %s'%(e, str(datetime.datetime.now())))
         
     ## CS edit returned function from get_solr_results function      
     return solr_results, journal_docid_list, author_docid_list, institution_docid_list
@@ -590,182 +590,190 @@ def get_document_type(doc_id):
     return document_type, detailed_type
 
 
-def get_ome_alert_results(search_params_list, all_keywords_list ,from_date=datetime.date.today(), to_date=datetime.date.today(), tags='tagged_entities_for_web'):
+def get_ome_alert_results(search_params_list, all_keywords_list, subscription_services, from_date=datetime.date.today(), to_date=datetime.date.today(), tags='tagged_entities_for_web'):
     """Execute multiple SOLR searches and return result as dictionary"""
-    try:
-        ome_alert_results = {'keyword':[], 'full_keyword_list':[] ,'path':[], 'file_modified_date':[], 'title':[], 'tagged_document_text':[], 'document_text':[], 'document_type':[], 'document_tags':[], 'normalized_tags':[], 'normalized_tags_ordered':[], 'document_id':[], 'shorter_sentences':[], 'keyword_count':[],'LDA_class':[]}
-        url_query = ''
-        
-        all_keywords_per_document = []
-        kw_storage_list = []
-        path_full_dict = {}
-        for params in search_params_list:
-            
-            ##CS filter_leeway parameter must always be set to be an integer, 
-            ##CS hide on front end until filters selected and edited. Then allow filter leeway editing
-            filter_type = params['filter_type']
-            filter_leeway = int(params['filter_leeway'])
-     
+    #try:
+    ome_alert_results = {'keyword':[], 'full_keyword_list':[] ,'path':[], 'file_modified_date':[], 'title':[], 'tagged_document_text':[], 'document_text':[], 'document_type':[], 'document_tags':[], 'normalized_tags':[], 'normalized_tags_ordered':[], 'document_id':[], 'shorter_sentences':[], 'keyword_count':[],'LDA_class':[]}
+    url_query = ''
     
-            ##CS Create and execute solr_query, print statements to help with debugging
-            ##CS note new returns from get_solr_results function
-            url_query = construct_solr_search_url(params, from_date, to_date)
-            #print('complete with url_query')
-            solr_results, journal_docid_list, author_docid_list, institution_docid_list = get_solr_results(all_keywords_list, params['keyword'] ,url_query, params['journal_select'], params['author_select'], params['institution_select'], filter_leeway, tags=tags, from_date=from_date, to_date=to_date) #CS included params['journal select]
-            #print('complete with getting solr_results')            
-            #print(journal_docid_list,'---- this is the journal docid list')
-            #print(author_docid_list, '---- this is the author docid list')
-            #print(institution_docid_list, '----- this is the institution_docid_list')
-            
-            
-            ##CS union or intersection parameters for filter type. Determined by user input
-            if filter_type == 'and':
-                journal_set = journal_set = set(journal_docid_list)
-                author_set = set(author_docid_list)
-                institution_set = set(institution_docid_list)
-                jr_au_ins_filter_set = journal_set & author_set & institution_set
-                jr_au_ins_filter_list = list(jr_au_ins_filter_set)
-            
-            else:
-                journal_set = set(journal_docid_list)
-                author_set = set(author_docid_list)
-                institution_set = set(institution_docid_list)
-                jr_au_ins_filter_set = journal_set | author_set | institution_set
-                jr_au_ins_filter_list = list(jr_au_ins_filter_set)
-                
-            
-            #print(jr_au_ins_filter_list, '------this is the final filtered list')
-            #print(solr_results.keys())
+    all_keywords_per_document = []
+    kw_storage_list = []
+    path_full_dict = {}
+    for params in search_params_list:
         
-            #print('we made it')
+        ##CS filter_leeway parameter must always be set to be an integer, 
+        ##CS hide on front end until filters selected and edited. Then allow filter leeway editing
+        filter_type = params['filter_type']
+        filter_leeway = int(params['filter_leeway'])
+ 
+
+        ##CS Create and execute solr_query, print statements to help with debugging
+        ##CS note new returns from get_solr_results function
+        url_query = construct_solr_search_url(params, from_date, to_date)
+        #print('complete with url_query')
+        solr_results, journal_docid_list, author_docid_list, institution_docid_list = get_solr_results(all_keywords_list,subscription_services ,params['keyword'] ,url_query, params['journal_select'], params['author_select'], params['institution_select'], filter_leeway, tags=tags, from_date=from_date, to_date=to_date) #CS included params['journal select]
+        #print(solr_results, '--- these are the solr results')
+        #print('complete with getting solr_results')            
+        #print(journal_docid_list,'---- this is the journal docid list')
+        #print(author_docid_list, '---- this is the author docid list')
+        #print(institution_docid_list, '----- this is the institution_docid_list')
+        
+        
+        ##CS union or intersection parameters for filter type. Determined by user input
+        if filter_type == 'and':
+            journal_set = journal_set = set(journal_docid_list)
+            author_set = set(author_docid_list)
+            institution_set = set(institution_docid_list)
+            jr_au_ins_filter_set = journal_set & author_set & institution_set
+            jr_au_ins_filter_list = list(jr_au_ins_filter_set)
+        
+        else:
+            journal_set = set(journal_docid_list)
+            author_set = set(author_docid_list)
+            institution_set = set(institution_docid_list)
+            jr_au_ins_filter_set = journal_set | author_set | institution_set
+            jr_au_ins_filter_list = list(jr_au_ins_filter_set)
+            
+        
+        #print(jr_au_ins_filter_list, '------this is the final filtered list')
+        #print(solr_results.keys())
     
-            ##Create if statement to handle granular filter parameters
-            if (params['journal_select'] != '') or (params['author_select'] != '') or (params['institution_select'] != ''):
-                for j in range(0, len(solr_results['path'])):
-                    kw = solr_results['keyword'][j]
-                    path = solr_results['path'][j]
-                    
-                    #Kw_cnt comes out as a list of tuples. The tuple describes keyword mentions in the text
-                    #Take the length to find the number of mentions for that keyword
-                    kw_cnt = len(solr_results['keyword_count'][j])
-                    
-                    #print(kw, '---- this is the kw')
-                    #print(path, '--- this is the path')
-                    
-                    if path not in path_full_dict.keys():
-                        path_full_dict[path] = [(kw, kw_cnt)]
-                    elif path in path_full_dict.keys():
-                        path_full_dict[path].append((kw, kw_cnt))
-                    else:
-                        print('problem investigate line 644')
-                        pass
+        #print('we made it')
+
+        ##Create if statement to handle granular filter parameters
+        if (params['journal_select'] != '') or (params['author_select'] != '') or (params['institution_select'] != ''):
+            for j in range(0, len(solr_results['path'])):
+                kw = solr_results['keyword'][j]
+                path = solr_results['path'][j]
                 
+                #Kw_cnt comes out as a list of tuples. The tuple describes keyword mentions in the text
+                #Take the length to find the number of mentions for that keyword
+                #print(solr_results['keyword_count'],'--- this is the keyword count')
+                kw_cnt = len(solr_results['keyword_count'][j][kw])
                 
-                #print('we entered the filtering stage')
-                for j in range(0, len(solr_results['path'])):
-                    if (solr_results['path'][j] not in ome_alert_results['path']) & (solr_results['document_id'][j] in jr_au_ins_filter_list):
-                        print('success for filters!!!!!!!')
-                        ome_alert_results['keyword'].append(solr_results['keyword'][j])
-                        ome_alert_results['path'].append(solr_results['path'][j])
-                        ome_alert_results['file_modified_date'].append(solr_results['file_modified_date'][j])
-                        ome_alert_results['title'].append(solr_results['title'][j])
-                        ome_alert_results['tagged_document_text'].append(solr_results['tagged_document_text'][j])
-                        ome_alert_results['document_text'].append(solr_results['document_text'][j])
-                        ome_alert_results['document_type'].append(solr_results['document_type'][j])
-                        ome_alert_results['document_tags'].append(solr_results['document_tags'][j])
-                        ome_alert_results['normalized_tags'].append(solr_results['normalized_tags'][j])
-                        ome_alert_results['normalized_tags_ordered'].append(solr_results['normalized_tags_ordered'][j])
-                        ome_alert_results['LDA_class'].append(solr_results['LDA_class'][j])
-                        #REMOVE AFTER CLEAWNED NORMALIZED TAGS
-                        #ome_alert_results['normalized_tags2'].append(solr_results['normalized_tags2'][j])
-                        #ome_alert_results['normalized_tags_ordered2'].append(solr_results['normalized_tags_ordered2'][j])
-                        ome_alert_results['document_id'].append(solr_results['document_id'][j])
-                        ome_alert_results['shorter_sentences'].append(solr_results['shorter_sentences'][j])
-                        ome_alert_results['keyword_count'].append(solr_results['keyword_count'])
-            
-
-            ##CS alternative to filter statement where no granular filters in place (source select still functional though)
-            ##This function removes redundant documents ---  to adjust listing for keywords make adjustments here
-            else:
-                for j in range(0, len(solr_results['path'])):
-                    kw = solr_results['keyword'][j]
-                    path = solr_results['path'][j]
-                    
-                    #Kw_cnt comes out as a list of tuples. The tuple describes keyword mentions in the text
-                    #Take the length to find the number of mentions for that keyword
-                    kw_cnt = len(solr_results['keyword_count'][j])
-                    
-                    #print(kw, '---- this is the kw')
-                    #print(path, '--- this is the path')
-                    
-                    if path not in path_full_dict.keys():
-                        path_full_dict[path] = [(kw, kw_cnt)]
-                    elif path in path_full_dict.keys():
-                        path_full_dict[path].append((kw, kw_cnt))
-                    else:
-                        print('problem investigate line 644')
-                        pass
-                    
-                    if (solr_results['path'][j] not in ome_alert_results['path']):
-                        ome_alert_results['keyword'].append(solr_results['keyword'][j])
-                        ome_alert_results['path'].append(solr_results['path'][j])
-                        ome_alert_results['file_modified_date'].append(solr_results['file_modified_date'][j])
-                        ome_alert_results['title'].append(solr_results['title'][j])
-                        ome_alert_results['tagged_document_text'].append(solr_results['tagged_document_text'][j])
-                        ome_alert_results['document_text'].append(solr_results['document_text'][j])
-                        ome_alert_results['document_type'].append(solr_results['document_type'][j])
-                        ome_alert_results['document_tags'].append(solr_results['document_tags'][j])
-                        ome_alert_results['normalized_tags'].append(solr_results['normalized_tags'][j])
-                        ome_alert_results['normalized_tags_ordered'].append(solr_results['normalized_tags_ordered'][j])
-                        #REMOVE AFTER CLEAWNED NORMALIZED TAGS
-                        #ome_alert_results['normalized_tags2'].append(solr_results['normalized_tags2'][j])
-                        #ome_alert_results['normalized_tags_ordered2'].append(solr_results['normalized_tags_ordered2'][j])
-                        ome_alert_results['document_id'].append(solr_results['document_id'][j])
-                        ome_alert_results['shorter_sentences'].append(solr_results['shorter_sentences'][j])
-                        ome_alert_results['keyword_count'].append(solr_results['keyword_count'][j])
-                        ome_alert_results['LDA_class'].append(solr_results['LDA_class'][j])
-            
-            
-        #Create new for loop to include the full keyword list per path. 
-        #print(path_full_dict,'--- this is the path to full dict')
-        for p in range(0, len(ome_alert_results['path'])):
-            path_to_inv = ome_alert_results['path'][p]
-            ome_alert_results['full_keyword_list'].append(path_full_dict[path_to_inv])
-        
-        #Order list of tuples in ome_alert_results['full_keyword_list']
-        for pos, kw_full_list in enumerate(ome_alert_results['full_keyword_list']):
-            if len(ome_alert_results['full_keyword_list'][pos]) > 0:
-                ome_alert_results['full_keyword_list'][pos] = sorted(ome_alert_results['full_keyword_list'][pos], key= lambda x:x[1], reverse = True)
-            else:
-                ome_alert_results['full_keyword_list'] = ome_alert_results['full_keyword_list']
-                pass
-        #ome_alert_results['full_keyword_list'] = [sorted(ome_alert_results['full_keyword_list'], key= lambda x:x[1], reverse = True)]
-
-
-        #This is where we clean tagged the shorter sentences so that we can only search for those keywords we are interested in
-        subscription_services = ['Adis Insight','Cortellis','GBD_email','Evaluate News']
-        for pos, path in enumerate(ome_alert_results['path']):
-            d_type = ome_alert_results['document_type'][pos]
-            d_path = ome_alert_results['path'][pos]
-            d_shorter_sentence = ome_alert_results['shorter_sentences'][pos]
-            d_all_keywords = ome_alert_results['full_keyword_list'][pos]
-            ls_d_all_keywords = []
-            for tup in d_all_keywords:
-                if tup[0] not in ls_d_all_keywords:
-                    ls_d_all_keywords.append(tup[0])
+                #print(kw, '---- this is the kw')
+                #print(path, '--- this is the path')
+                
+                if path not in path_full_dict.keys():
+                    path_full_dict[path] = [(kw, kw_cnt)]
+                elif path in path_full_dict.keys():
+                    path_full_dict[path].append((kw, kw_cnt))
                 else:
-                    ##redundant keyword entry, there shouldn't be any
+                    print('problem investigate line 644')
                     pass
-            if any(x in d_type for x in subscription_services):
-                ome_alert_results['tagged_shorter_sentences'][pos] = add_tagged_entities.highlight_keyword_subscriptions(d_shorter_sentence, ls_d_all_keywords)
+            
+            
+            #print('we entered the filtering stage')
+            for j in range(0, len(solr_results['path'])):
+                if (solr_results['path'][j] not in ome_alert_results['path']) & (solr_results['document_id'][j] in jr_au_ins_filter_list):
+                    print('success for filters!!!!!!!')
+                    ome_alert_results['keyword'].append(solr_results['keyword'][j])
+                    ome_alert_results['path'].append(solr_results['path'][j])
+                    ome_alert_results['file_modified_date'].append(solr_results['file_modified_date'][j])
+                    ome_alert_results['title'].append(solr_results['title'][j])
+                    ome_alert_results['tagged_document_text'].append(solr_results['tagged_document_text'][j])
+                    ome_alert_results['document_text'].append(solr_results['document_text'][j])
+                    ome_alert_results['document_type'].append(solr_results['document_type'][j])
+                    ome_alert_results['document_tags'].append(solr_results['document_tags'][j])
+                    ome_alert_results['normalized_tags'].append(solr_results['normalized_tags'][j])
+                    ome_alert_results['normalized_tags_ordered'].append(solr_results['normalized_tags_ordered'][j])
+                    ome_alert_results['LDA_class'].append(solr_results['LDA_class'][j])
+                    #REMOVE AFTER CLEAWNED NORMALIZED TAGS
+                    #ome_alert_results['normalized_tags2'].append(solr_results['normalized_tags2'][j])
+                    #ome_alert_results['normalized_tags_ordered2'].append(solr_results['normalized_tags_ordered2'][j])
+                    ome_alert_results['document_id'].append(solr_results['document_id'][j])
+                    ome_alert_results['shorter_sentences'].append(solr_results['shorter_sentences'][j])
+                    ome_alert_results['keyword_count'].append(solr_results['keyword_count'])
+        
+
+        ##CS alternative to filter statement where no granular filters in place (source select still functional though)
+        ##This function removes redundant documents ---  to adjust listing for keywords make adjustments here
+        else:
+            for j in range(0, len(solr_results['path'])):
+                kw = solr_results['keyword'][j]
+                path = solr_results['path'][j]
+                
+                #Kw_cnt comes out as a list of tuples. The tuple describes keyword mentions in the text
+                #Take the length to find the number of mentions for that keyword
+                #print(solr_results['keyword_count'],'--- this is the keyword count')
+                #print(solr_results['keyword_count'], '--- this is the keyword count')
+                kw_cnt = len(solr_results['keyword_count'][j][kw])
+                
+                #print(kw, '---- this is the kw')
+                #print(path, '--- this is the path')
+                
+                if path not in path_full_dict.keys():
+                    path_full_dict[path] = [(kw, kw_cnt)]
+                elif path in path_full_dict.keys():
+                    path_full_dict[path].append((kw, kw_cnt))
+                else:
+                    print('problem investigate line 644')
+                    pass
+                
+                if (solr_results['path'][j] not in ome_alert_results['path']):
+                    ome_alert_results['keyword'].append(solr_results['keyword'][j])
+                    ome_alert_results['path'].append(solr_results['path'][j])
+                    ome_alert_results['file_modified_date'].append(solr_results['file_modified_date'][j])
+                    ome_alert_results['title'].append(solr_results['title'][j])
+                    ome_alert_results['tagged_document_text'].append(solr_results['tagged_document_text'][j])
+                    ome_alert_results['document_text'].append(solr_results['document_text'][j])
+                    ome_alert_results['document_type'].append(solr_results['document_type'][j])
+                    ome_alert_results['document_tags'].append(solr_results['document_tags'][j])
+                    ome_alert_results['normalized_tags'].append(solr_results['normalized_tags'][j])
+                    ome_alert_results['normalized_tags_ordered'].append(solr_results['normalized_tags_ordered'][j])
+                    #REMOVE AFTER CLEAWNED NORMALIZED TAGS
+                    #ome_alert_results['normalized_tags2'].append(solr_results['normalized_tags2'][j])
+                    #ome_alert_results['normalized_tags_ordered2'].append(solr_results['normalized_tags_ordered2'][j])
+                    ome_alert_results['document_id'].append(solr_results['document_id'][j])
+                    ome_alert_results['shorter_sentences'].append(solr_results['shorter_sentences'][j])
+                
+                    ome_alert_results['keyword_count'].append(solr_results['keyword_count'][j])
+                    ome_alert_results['LDA_class'].append(solr_results['LDA_class'][j])
+        
+        
+    #Create new for loop to include the full keyword list per path. 
+    #print(path_full_dict,'--- this is the path to full dict')
+    for p in range(0, len(ome_alert_results['path'])):
+        path_to_inv = ome_alert_results['path'][p]
+        ome_alert_results['full_keyword_list'].append(path_full_dict[path_to_inv])
+    
+    #Order list of tuples in ome_alert_results['full_keyword_list']
+    for pos, kw_full_list in enumerate(ome_alert_results['full_keyword_list']):
+        if len(ome_alert_results['full_keyword_list'][pos]) > 0:
+            ome_alert_results['full_keyword_list'][pos] = sorted(ome_alert_results['full_keyword_list'][pos], key= lambda x:x[1], reverse = True)
+        else:
+            ome_alert_results['full_keyword_list'] = ome_alert_results['full_keyword_list']
+            pass
+    #ome_alert_results['full_keyword_list'] = [sorted(ome_alert_results['full_keyword_list'], key= lambda x:x[1], reverse = True)]
+
+
+    #Add new field for specifically tagged/highlighted shorter sentences
+    ome_alert_results['tagged_shorter_sentences'] = ome_alert_results['shorter_sentences']
+    #This is where we clean tagged the shorter sentences so that we can only search for those keywords we are interested in
+
+
+    for pos, path in enumerate(ome_alert_results['path']):
+        d_type = ome_alert_results['document_type'][pos]
+        d_path = ome_alert_results['path'][pos]
+        d_shorter_sentence = ome_alert_results['shorter_sentences'][pos]
+        d_all_keywords = ome_alert_results['full_keyword_list'][pos]
+        ls_d_all_keywords = []
+        for tup in d_all_keywords:
+            if tup[0] not in ls_d_all_keywords:
+                ls_d_all_keywords.append(tup[0])
             else:
-                #If not in the subscription services
-                ome_alert_results['tagged_shorter_sentences'][pos] = add_tagged_entities.highlight_keyword(d_shorter_sentence, ls_d_all_keywords)
+                ##redundant keyword entry, there shouldn't be any
+                pass
+        if any(x in d_type for x in subscription_services):
+            ome_alert_results['tagged_shorter_sentences'][pos] = add_tagged_entities.highlight_keyword_subscriptions(d_shorter_sentence, ls_d_all_keywords)
+        else:
+            #If not in the subscription services
+            ome_alert_results['tagged_shorter_sentences'][pos] = add_tagged_entities.highlight_keyword(d_shorter_sentence, ls_d_all_keywords)
 
 
-    except Exception as e:
-        print(e,'--- error in ome_alert_results')                
-        logging.error('%s | error in get_documents.get_ome_alert_results %s'%(e, str(datetime.datetime.now())))      
+    # except Exception as e:
+    #     print(e,'--- error in ome_alert_results')                
+    #     logging.error('%s | error in get_documents.get_ome_alert_results %s'%(e, str(datetime.datetime.now())))      
                 
     return ome_alert_results, url_query
         

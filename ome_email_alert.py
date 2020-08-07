@@ -118,7 +118,7 @@ def table_string_results_internal(results, username, sumitovant_list, link_exclu
         row_string, summary_row_string = get_row_string_internal(results['keyword'][row_index], len(results['keyword_count'][row_index]),
                                             results['full_keyword_list'][row_index], results['document_type'][row_index],
                                             results['path'][row_index], results['title'][row_index],
-                                            results['shorter_sentences'][row_index], results['normalized_tags_ordered'][row_index],
+                                            results['tagged_shorter_sentences'][row_index], results['normalized_tags_ordered'][row_index],
                                             results['normalized_tags'][row_index],results['Relevant_Check'][row_index],
                                             results['LDA_class'][row_index],results['correct_button_list'][row_index],
                                             results['wrong_button_list'][row_index] ,username, link_exclusion)
@@ -336,7 +336,7 @@ def table_string_results(results, username,sumitovant_list, link_exclusion):
     table_summary_strings = {'press_release':[], 'clinical_trials':[], 'pubmed_abstract':[], 'pubmed_article':[], 'GBD_email': [], 'Cortellis': [], 'IPD':[], 'fda_guidance':[], 'FDA_Medical_reviews':[] ,'newswire':[], 'pr_newswire':[], 'streetaccount':[], 'google_news':[], 'SEC_filing':[]}
     
     for row_index in range(0, len(results['keyword'])):
-        row_string, summary_row_string = get_row_string(results['keyword'][row_index], len(results['keyword_count'][row_index]),results['full_keyword_list'][row_index] ,results['document_type'][row_index], results['path'][row_index], results['title'][row_index], results['shorter_sentences'][row_index], results['normalized_tags_ordered'][row_index], results['normalized_tags'][row_index], username, link_exclusion)
+        row_string, summary_row_string = get_row_string(results['keyword'][row_index], len(results['keyword_count'][row_index]),results['full_keyword_list'][row_index] ,results['document_type'][row_index], results['path'][row_index], results['title'][row_index], results['tagged_shorter_sentences'][row_index], results['normalized_tags_ordered'][row_index], results['normalized_tags'][row_index], username, link_exclusion)
         #print(row_string, '---- row string with fixed shorter_sentences list')
         if results['document_type'][row_index] in table_strings.keys(): #determine if source is in table_strings dictionary
             table_strings[results['document_type'][row_index]].append(row_string)
