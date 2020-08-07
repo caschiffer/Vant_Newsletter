@@ -700,19 +700,20 @@ def headlines_check(ome_alert_results, user):
 
 def source_filter(results):
     
-    doc_types = results['document_id']
+    doc_ids = results['document_id']
     
-    doc_lists = ['Cortellis','cortellis']
+    doc_lists = ['Cortellis','cortellis']#,'clinical_trials']
     
+    doc_types = results['document_type']
     #print('we are in source filter')
     
     elems_to_rm = []
     #print(type(doc_types), '--- these are the doc types')
-    for pos, i in enumerate(doc_types):
-        print(i, '--- these are the doc types')
+    for pos, i in enumerate(doc_ids):
+        #print(i, '--- these are the doc types')
         #print(type(i))
         cond1 = (len([x for x in doc_lists if x in i]) > 0) and ("Drug_Status_Changes_alert" in i) and ("full_email" in i) #generic cortellis filter but we don't want the non drug status changes alerts in the ome alert now
-        #cond1a = len([x for x in doc_lists if x in i]) > 0
+        cond2 = ("clinical_trials" in doc_types[pos])
         #cond2 = "Drug_Status_Changes_alert" in i # we don't want the non drug status changes alerts in the ome alert now
         #cond3 = "full_email" in i  #We only want the non full htmls from the new improved cortellis parsing
         
@@ -720,10 +721,10 @@ def source_filter(results):
         #print(cond2, 'condition2 ')
         #print(cond3, 'condition3')
         
-        print(cond1, '---- did all conditions pass?')
+        #print(cond1, '---- did all conditions pass?')
         
-        if cond1 == True: #and cond3 == True:
-            print(i, '--- conditional allows this')
+        if cond1 == True or cond2 == True: #and cond3 == True:
+            #print(i, '--- conditional allows this')
             elems_to_rm.append(pos)
     
     elems_to_rm = sorted(elems_to_rm, reverse = True)
@@ -731,7 +732,7 @@ def source_filter(results):
     for key in results.keys():
         section = results[key]
         for d in elems_to_rm:
-            print(d, '--- element to remove')
+            #print(d, '--- element to remove')
             del section[d]
         
     return results 
@@ -762,7 +763,7 @@ def send_ome_alerts_of_user(user):
     to_date = datetime.date.today()
     #to_date = datetime.date(2019,3,25)
     
-    link_exclusion_ls = ['Cortellis','cortellis']
+    link_exclusion_ls = ['Cortellis','cortellis', 'Adis','evaluate_email', 'GBD_email']
     
     mail = 'not_initialized'
     
@@ -955,9 +956,9 @@ def send_successful_search(user):
 #print('second debug')
 
 #DEBUGGING FUNCTIONS --------------
-from_date = datetime.date(2020,7,31)
+from_date = datetime.date(2020,8,6)
 #from_date = datetime.date.today() - datetime.timedelta(days=1)
-to_date = datetime.date(2020,7,31)
+to_date = datetime.date(2020,8,6)
 #to_date = datetime.date.today()
 #internal_users = ['cody.schiffer']
 internal_users = ['']
@@ -969,7 +970,10 @@ sumitovant_list = ['julia.gray','bill.mcmahon','cody.schiffer',
 email_address = 'cody.schiffer@sumitovant.com'
 email_subject = 'DEBUGDEBUGDEBUG'
 
-test_search_params, test_alert_title = get_documents.get_search_params_list('495')
+
+sub_services = ['Adis Insight','Cortellis','GBD_email','Evaluate News']
+
+test_search_params, test_alert_title, search_list = get_documents.get_search_params_list('485')
 #print(test_search_params,'---- these are the test params')
 
 
@@ -977,12 +981,14 @@ test_search_params, test_alert_title = get_documents.get_search_params_list('495
 #ome_alert_results = source_filter(ome_alert_results)
 
 # ##test_search_params = [{'search_type': 'standard', 'keyphrase1': 'Trace amine associated receptor 1', 'keyword': 'Trace amine associated receptor 1', 'source_select': 'all', 'alert_title': 'TAAR1_Sunovion_OME_Alert', 'filter_type': 'or', 'journal_select': '', 'author_select': '', 'institution_select': '', 'filter_leeway': 70}, {'search_type': 'standard', 'keyphrase1': 'Trace amine-associated receptor 1', 'keyword': 'Trace amine-associated receptor 1', 'source_select': 'all', 'alert_title': 'TAAR1_Sunovion_OME_Alert', 'filter_type': 'or', 'journal_select': '', 'author_select': '', 'institution_select': '', 'filter_leeway': 70}, {'search_type': 'standard', 'keyphrase1': 'TaR-1', 'keyword': 'TaR-1', 'source_select': 'all', 'alert_title': 'TAAR1_Sunovion_OME_Alert', 'filter_type': 'or', 'journal_select': '', 'author_select': '', 'institution_select': '', 'filter_leeway': 70}, {'search_type': 'standard', 'keyphrase1': 'Trace amine receptor 1', 'keyword': 'Trace amine receptor 1', 'source_select': 'all', 'alert_title': 'TAAR1_Sunovion_OME_Alert', 'filter_type': 'or', 'journal_select': '', 'author_select': '', 'institution_select': '', 'filter_leeway': 70}, {'search_type': 'standard', 'keyphrase1': 'TAAR1', 'keyword': 'TAAR1', 'source_select': 'all', 'alert_title': 'TAAR1_Sunovion_OME_Alert', 'filter_type': 'or', 'journal_select': '', 'author_select': '', 'institution_select': '', 'filter_leeway': 70}, {'search_type': 'standard', 'keyphrase1': 'Taar-1', 'keyword': 'Taar-1', 'source_select': 'all', 'alert_title': 'TAAR1_Sunovion_OME_Alert', 'filter_type': 'or', 'journal_select': '', 'author_select': '', 'institution_select': '', 'filter_leeway': 70}, {'search_type': 'standard', 'keyphrase1': 'TAR-1', 'keyword': 'TAR-1', 'source_select': 'all', 'alert_title': 'TAAR1_Sunovion_OME_Alert', 'filter_type': 'or', 'journal_select': '', 'author_select': '', 'institution_select': '', 'filter_leeway': 70}]
-ome_alert_results, url_query = get_documents.get_ome_alert_results(test_search_params, from_date=from_date, to_date=to_date, tags='tagged_entities_for_email')
+ome_alert_results, url_query = get_documents.get_ome_alert_results(test_search_params, search_list, sub_services ,from_date=from_date, to_date=to_date, tags='tagged_entities_for_email')
 
 #Source filtering
 ome_alert_results = source_filter(ome_alert_results)
 
-link_exclusion_ls = ['Cortellis','cortellis']
+link_exclusion_ls = ['Cortellis','cortellis', 'Adis Insight','Evaluate News', 'GBD_email']
+
+#link_exclusion_ls = []
 
 ###
 ##Internal users
@@ -993,13 +999,13 @@ table_string_internal, summary_table_string_internal = table_string_results_inte
 
 # #print(ome_alert_results)
 
-# email_string_internal = "<html><head></head><body><h4>Summary (" + str(len(ome_alert_results['keyword'])) + " results)</h4>" + summary_table_string_internal + "<br><br><h4>Documents</h4>" + table_string_internal + "</body></html>"
+email_string_internal = "<html><head></head><body><h4>Summary (" + str(len(ome_alert_results['keyword'])) + " results)</h4>" + summary_table_string_internal + "<br><br><h4>Documents</h4>" + table_string_internal + "</body></html>"
 
-# mail = Outlook()
-# mail.login('comp.res@sumitovant.com','Sumitovant$cr0220')
-# #mail.login('comp.res@roivant.com','Roivant$cr0220!')
-# mail.inbox()
-# mail.sendEmail(email_address, email_subject, email_string_internal)
+mail = Outlook()
+mail.login('comp.res@sumitovant.com','Sumitovant$cr0220')
+#mail.login('comp.res@roivant.com','Roivant$cr0220!')
+mail.inbox()
+mail.sendEmail(email_address, email_subject, email_string_internal)
  
 
 

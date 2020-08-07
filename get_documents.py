@@ -132,12 +132,15 @@ def construct_solr_search_url(search_terms, from_date=datetime.date.today(), to_
 
 
 ##CS get_solr_results function adjusted to accommodate new filters for journal_select, author_select, institutional_select, and the fuzzy match leeway
-def get_solr_results(keyword, search_url, journal_select='', author_select='', institution_select='', filter_leeway=70, tags='tagged_entities_for_web', from_date=None, to_date=None):
+def get_solr_results(all_keywords, keyword ,search_url, journal_select='', author_select='', institution_select='', filter_leeway=70, tags='tagged_entities_for_web', from_date=None, to_date=None):
     """Parse JSON result of search URL using re HTML. Add tags depending on parametes
     tagged_entities_for_web = tags are CSS classes 
     tagged_entities_for_web_new_moas_indications = tags are CSS classes + get MOA/Indication pairs not in DB
     tagged_entities = inline CSS for HTML email string
     """
+    
+    doc_count = 0
+    
     try:
         keyword_fail_list = []
         #print('KEYWORD: %s'%(keyword))
@@ -163,25 +166,39 @@ def get_solr_results(keyword, search_url, journal_select='', author_select='', i
             journal_docid_list = []
             author_docid_list = []
             institution_docid_list = []
+            
+            #print(d['response']['numFound'], 'number of documents found')
+            
             for doc_idx, doc in enumerate(d['response']['docs']):
                 #print(doc['id'],'---- this is the document id')
                 #if doc_idx % 100 == 0:
                 #    print('DOC ' + str(doc_idx) + '/' + str(d['response']['numFound']))
                 #if (doc['id'] in solr_results['document_id']) or (doc['title'][0] in solr_results['title']):
+                #print(solr_results['title'],'---- lets check the solr _results title prior to filter')
+                #print(doc['title_txt'][0], '--- doc title before filter')
                 if (doc['id'] in solr_results['document_id']) or (doc['title_txt'][0] in solr_results['title']):
+                    #print(doc['id'],'--- doc id in id and title tiler')
+                    #print(doc['title_txt'][0], '--- in id and title filter')
                     pass
                 elif doc['id'] == "":
+                    #print(doc['id'],'---- doc id in empty id filter')
+                    #print(doc['title_txt'][0], 'in no id filter')
                     pass
                 elif 'cleaned_html_content_txt' not in doc:
+                    #print(doc['id'],'---- doc id in missing cleaned html content txt')
+                    #print(doc['title_txt'][0],'--- doc title_txt in missing cleaned html content txt filter')
                     pass
                 elif 'flag_OME_alert_exclusion_ss' in doc:
+                    #print(doc['id'],'---- doc id in flag_OME_alert_exclusion_ss filter')
+                    #print(doc['title_txt'][0],'--- doc title_txt in flag_OME_alert_exclusion_ss filter')
                     pass
                 else:
+                    #print(doc['title_txt'][0],'-- doc title text after filter')
                     #print(doc)
                     #if any(s in doc['id'] for s in ct_paths):
                     #if doc['title'][0] not in clinical_trials['title']:
                     document_type, detailed_type = get_document_type(doc['id'])
-                    print(document_type, '--- this is the document type')
+                    #print(document_type, '--- this is the document type')
                                     
                     # document_text extraction should be contingent on tocument type for 
                     #if (document_type == 'Cortellis') and ('Drug_Status_Changes_alert' in doc['id']):
@@ -298,16 +315,24 @@ def get_solr_results(keyword, search_url, journal_select='', author_select='', i
                
                     #if doc['id'] == 'pmc_6516158.xml':
                     #    print(document_text)
+                    #doc_count += 1
+                    #print(doc_count,'--- number of documents that are actually returned')
                     
+                    #We are going to move the highlighting of the shorter sentences to after collection of all sentences for all keywords
+                    #This will enable us to highlight ONLY for those keywords returned and not risk incorrect highlighting
                     if keyword != '':
-                        keywords_found, shorter_sentences = add_tagged_entities.get_keyword_sentences(document_text, keyword)
-                        tagged_document_text = add_tagged_entities.highlight_keyword(document_text, keyword)
-                        tagged_shorter_sentences = add_tagged_entities.highlight_keyword(shorter_sentences, keyword)
-                        #
+                        if document_type not in ['Adis Insight','Cortellis','GBD_email','Evaluate News']:
+                            keywords_found, shorter_sentences = add_tagged_entities.get_keyword_sentences(document_text, all_keywords)
+                            tagged_document_text = add_tagged_entities.highlight_keyword(document_text, all_keywords)
+                            #tagged_shorter_sentences = add_tagged_entities.highlight_keyword(shorter_sentences, all_keywords)
+                        else:
+                            keywords_found, shorter_sentences = add_tagged_entities.get_keyword_sentences_subscriptions(document_text, all_keywords)
+                            tagged_document_text = add_tagged_entities.highlight_keyword_subscriptions(document_text, all_keywords)
+                            #tagged_shorter_sentences = add_tagged_entities.highlight_keyword_subscriptions(shorter_sentences, all_keywords)
                     else:
                         tagged_document_text = document_text
                         shorter_sentences = ''
-                        keywords_found = []
+                        keywords_found = {}
                         tagged_shorter_sentences = document_text
                     
                     if tags =='tagged_entities_for_web':
@@ -338,13 +363,6 @@ def get_solr_results(keyword, search_url, journal_select='', author_select='', i
                         else:
                             indication_tag_list = []
 						
-                        
-                        
-                        #For the vant newsletter we only want to return the company tag list
-                        drug_tag_list = []
-                        target_tag_list = []
-                        indication_tag_list = []
-                        
                         
                         document_tags = drug_tag_list + target_tag_list + company_tag_list + indication_tag_list
                         normalized_tags, document_tags_list = add_tagged_entities.parse_tag_lists(drug_tag_list, target_tag_list, company_tag_list, indication_tag_list)
@@ -392,7 +410,15 @@ def get_solr_results(keyword, search_url, journal_select='', author_select='', i
                             indication_tag_list = doc['indication_OME_txt_ss_matchtext_ss']
                         else:
                             indication_tag_list = []
-                            
+                        
+                        
+                        #For the vant newsletter and most ome alerts we only want to return the company tag list
+                        drug_tag_list = []
+                        target_tag_list = []
+                        indication_tag_list = []
+                        
+                        
+                        
                         document_tags = drug_tag_list + target_tag_list + company_tag_list + indication_tag_list
                         normalized_tags, document_tags_list = add_tagged_entities.parse_tag_lists(drug_tag_list, target_tag_list, company_tag_list, indication_tag_list)
                     
@@ -423,6 +449,7 @@ def get_solr_results(keyword, search_url, journal_select='', author_select='', i
                     #print(keyword, '--- this is the keyword')
                     #print(keyword.strip(),'--- this is the stripped keyword')
                     solr_results['path'].append(file_path)
+                    #print(file_path, '--- this is the filepath to be returned')
                     solr_results['file_modified_date'].append(file_modified_date)
                     solr_results['title'].append(document_title)
                     solr_results['tagged_document_text'].append(tagged_document_text)
@@ -434,7 +461,7 @@ def get_solr_results(keyword, search_url, journal_select='', author_select='', i
                     solr_results['normalized_tags_ordered'].append(document_tags_list)
                     solr_results['new_moa_indication_pairs'].append(new_indication_moa_pairs)
                     solr_results['new_moas'].append(new_moas)
-                    solr_results['shorter_sentences'].append(tagged_shorter_sentences)
+                    solr_results['shorter_sentences'].append(shorter_sentences)
                     solr_results['keyword_count'].append(keywords_found)
                 
                     
@@ -487,6 +514,12 @@ def get_document_type(doc_id):
         elif 'EU_CT' in doc_id:
             document_type = 'clinical_trials'
             detailed_type = 'EU_CT'
+        elif 'Adis' in doc_id:
+            document_type = 'Adis Insight'
+            detailed_type = 'Adis Insight'
+        elif 'evaluate' in doc_id: 
+            document_type = 'Evaluate News'
+            detailed_type = 'Evaluate News'
         elif 'PMDA' in doc_id:
             document_type = 'clinical_trials'
             detailed_type = 'PMDA'
@@ -557,8 +590,7 @@ def get_document_type(doc_id):
     return document_type, detailed_type
 
 
-
-def get_ome_alert_results(search_params_list,from_date=datetime.date.today(), to_date=datetime.date.today(), tags='tagged_entities_for_web'):
+def get_ome_alert_results(search_params_list, all_keywords_list ,from_date=datetime.date.today(), to_date=datetime.date.today(), tags='tagged_entities_for_web'):
     """Execute multiple SOLR searches and return result as dictionary"""
     try:
         ome_alert_results = {'keyword':[], 'full_keyword_list':[] ,'path':[], 'file_modified_date':[], 'title':[], 'tagged_document_text':[], 'document_text':[], 'document_type':[], 'document_tags':[], 'normalized_tags':[], 'normalized_tags_ordered':[], 'document_id':[], 'shorter_sentences':[], 'keyword_count':[],'LDA_class':[]}
@@ -579,7 +611,7 @@ def get_ome_alert_results(search_params_list,from_date=datetime.date.today(), to
             ##CS note new returns from get_solr_results function
             url_query = construct_solr_search_url(params, from_date, to_date)
             #print('complete with url_query')
-            solr_results, journal_docid_list, author_docid_list, institution_docid_list = get_solr_results(params['keyword'], url_query, params['journal_select'], params['author_select'], params['institution_select'], filter_leeway, tags=tags, from_date=from_date, to_date=to_date) #CS included params['journal select]
+            solr_results, journal_docid_list, author_docid_list, institution_docid_list = get_solr_results(all_keywords_list, params['keyword'] ,url_query, params['journal_select'], params['author_select'], params['institution_select'], filter_leeway, tags=tags, from_date=from_date, to_date=to_date) #CS included params['journal select]
             #print('complete with getting solr_results')            
             #print(journal_docid_list,'---- this is the journal docid list')
             #print(author_docid_list, '---- this is the author docid list')
@@ -649,9 +681,9 @@ def get_ome_alert_results(search_params_list,from_date=datetime.date.today(), to
                         #ome_alert_results['normalized_tags_ordered2'].append(solr_results['normalized_tags_ordered2'][j])
                         ome_alert_results['document_id'].append(solr_results['document_id'][j])
                         ome_alert_results['shorter_sentences'].append(solr_results['shorter_sentences'][j])
-                        ome_alert_results['keyword_count'].append(solr_results['keyword_count'][j])
+                        ome_alert_results['keyword_count'].append(solr_results['keyword_count'])
             
-                
+
             ##CS alternative to filter statement where no granular filters in place (source select still functional though)
             ##This function removes redundant documents ---  to adjust listing for keywords make adjustments here
             else:
@@ -695,15 +727,44 @@ def get_ome_alert_results(search_params_list,from_date=datetime.date.today(), to
             
             
         #Create new for loop to include the full keyword list per path. 
-        print(path_full_dict,'--- this is the path to full dict')
+        #print(path_full_dict,'--- this is the path to full dict')
         for p in range(0, len(ome_alert_results['path'])):
             path_to_inv = ome_alert_results['path'][p]
             ome_alert_results['full_keyword_list'].append(path_full_dict[path_to_inv])
         
         #Order list of tuples in ome_alert_results['full_keyword_list']
-        ome_alert_results['full_keyword_list'] = [sorted(ome_alert_results['full_keyword_list'][0], key= lambda x:x[1], reverse = True)]
+        for pos, kw_full_list in enumerate(ome_alert_results['full_keyword_list']):
+            if len(ome_alert_results['full_keyword_list'][pos]) > 0:
+                ome_alert_results['full_keyword_list'][pos] = sorted(ome_alert_results['full_keyword_list'][pos], key= lambda x:x[1], reverse = True)
+            else:
+                ome_alert_results['full_keyword_list'] = ome_alert_results['full_keyword_list']
+                pass
+        #ome_alert_results['full_keyword_list'] = [sorted(ome_alert_results['full_keyword_list'], key= lambda x:x[1], reverse = True)]
 
-    except Exception as e:                
+
+        #This is where we clean tagged the shorter sentences so that we can only search for those keywords we are interested in
+        subscription_services = ['Adis Insight','Cortellis','GBD_email','Evaluate News']
+        for pos, path in enumerate(ome_alert_results['path']):
+            d_type = ome_alert_results['document_type'][pos]
+            d_path = ome_alert_results['path'][pos]
+            d_shorter_sentence = ome_alert_results['shorter_sentences'][pos]
+            d_all_keywords = ome_alert_results['full_keyword_list'][pos]
+            ls_d_all_keywords = []
+            for tup in d_all_keywords:
+                if tup[0] not in ls_d_all_keywords:
+                    ls_d_all_keywords.append(tup[0])
+                else:
+                    ##redundant keyword entry, there shouldn't be any
+                    pass
+            if any(x in d_type for x in subscription_services):
+                ome_alert_results['tagged_shorter_sentences'][pos] = add_tagged_entities.highlight_keyword_subscriptions(d_shorter_sentence, ls_d_all_keywords)
+            else:
+                #If not in the subscription services
+                ome_alert_results['tagged_shorter_sentences'][pos] = add_tagged_entities.highlight_keyword(d_shorter_sentence, ls_d_all_keywords)
+
+
+    except Exception as e:
+        print(e,'--- error in ome_alert_results')                
         logging.error('%s | error in get_documents.get_ome_alert_results %s'%(e, str(datetime.datetime.now())))      
                 
     return ome_alert_results, url_query
@@ -818,7 +879,7 @@ def get_search_params_list(ome_alert_id):
                         #^^^CS adjusted search_params_list to include new filter columns 
     except Exception as e:        
         logging.error('%s | error in get_documents.get_search_params_list %s'%(e, str(datetime.datetime.now())))       
-    return search_params_list, alert_title
+    return search_params_list, alert_title, search_list
         
                 
                 
@@ -878,9 +939,17 @@ def get_company_pr_solr_url(company_string, from_date=None, to_date=None):
 #print('')
 #print('------------------------------------')
 #print('')
+#from_date = datetime.date(2020,8,6)
+#from_date = datetime.date.today() - datetime.timedelta(days=1)
+#to_date = datetime.date(2020,8,6)
+#to_date = datetime.date.today()
+#internal_users = ['cody.schiffer']
+#test_search_term_list, test_alert_title, search_list = get_search_params_list('485')
+#test_ome_alert_results, test_url_query = get_ome_alert_results(test_search_term_list,search_list ,from_date=from_date, to_date=to_date, tags='tagged_entities_for_email')
 
-#test_search_term_list, test_alert_title = get_search_params_list('39')
-#test_ome_alert_results, test_url_query = new_get_ome_alert_results(test_search_term_list, from_date=from_date, to_date=to_date, tags='tagged_entities_for_email')
+
+
+#get_solr_results(all_keywords_list, params['keyword'] ,url_query, params['journal_select'], params['author_select'], params['institution_select'], filter_leeway, tags=tags, from_date=from_date, to_date=to_date)
 
 #test_search_terms = {'keyphrase1':'multiple sclerosis', 'keyphrase2':'efficacy', 'source_select':'Press releases'}
 #test_url = construct_solr_search_url('psoriasis', from_date=from_date)

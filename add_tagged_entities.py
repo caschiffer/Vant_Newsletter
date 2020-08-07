@@ -67,57 +67,70 @@ def solr_clean_special_char(string_to_mask, solr_specialchars='\+-&|!(){}[]^"~*?
     masked = re.sub(' +', ' ', masked)  # remove consecutive spaces
     return masked
 
-def get_keyword_sentences(document_text, keyword):
+
+
+def get_keyword_sentences(document_text, all_keywords):
     try:
         """Return only sentences with keyword"""
         
+        shorter_sentences_list = []
+        keyword_found_dict = {}
+        for keyword in all_keywords:
         
-        keyword_processor = KeywordProcessor()
-        #keyword_fr_process = re.sub('[-/]', ' ', keyword) ## remove keyword special characters using regex
-        keyword_fr_process = solr_clean_special_char(keyword)
-        keyword_processor.add_keyword(keyword_fr_process.lower())
-        #document_text_copy = re.sub('[-/]', ' ', document_text) ## remove keyword special characters using regex
-        document_text_copy = solr_clean_special_char(document_text)
-        #print(document_text_copy,'--- cleaned documents')
-        keywords_found = keyword_processor.extract_keywords(document_text_copy.lower(), span_info=True) # for counting keywords w/o special characters
-        
-        #print(keyword, '--- this is the keyword')
-        
-        # if keyword == 'Gonadotropin-releasing hormone':# or keyword == 'size exclusion':
-        #     #print(keyword,'---- the keywords found')
-        #     print(keyword_processor,'---- full processor')
-
-        #     print(keywords_found, '---- the keywords found')
-        #     #print(document_text_copy,'--- cleaned documents')
-        #     #print(keyword_processor,'---- full processor')
-
-        shorter_sentence = ""
+            keyword_processor = KeywordProcessor()
+            #keyword_fr_process = re.sub('[-/]', ' ', keyword) ## remove keyword special characters using regex
+            keyword_fr_process = solr_clean_special_char(keyword)
+            keyword_processor.add_keyword(keyword_fr_process.lower())
+            #document_text_copy = re.sub('[-/]', ' ', document_text) ## remove keyword special characters using regex
+            document_text_copy = solr_clean_special_char(document_text)
+            #print(document_text_copy,'--- cleaned documents')
+            keywords_found = keyword_processor.extract_keywords(document_text_copy.lower(), span_info=True) # for counting keywords w/o special characters
+            keyword_found_dict[keyword] = keywords_found
+            #print(keyword, '--- this is the keyword')
+            
+            # if keyword == 'Gonadotropin-releasing hormone':# or keyword == 'size exclusion':
+            #     #print(keyword,'---- the keywords found')
+            #     print(keyword_processor,'---- full processor')
     
-        sentence_ls = text_to_sentences(document_text_copy)
-        last_sentence_index = 0    
+            #     print(keywords_found, '---- the keywords found')
+            #     #print(document_text_copy,'--- cleaned documents')
+            #     #print(keyword_processor,'---- full processor')
+    
+            shorter_sentence = ""
         
-        for i in range(0, len(sentence_ls)):
-            #keyword = re.sub('[^a-zA-Z0-9 \n\.]', '', keyword)
-            #print('this is the keyword --->' + str(keyword))
-            #sentence_ls[i] = re.sub('[-/]', ' ', sentence_ls[i])
-            #print('this is the sentence --->' + str(sentence_ls[i]))
-            if keyword_fr_process.lower() in sentence_ls[i].lower(): #<----- replace/remove all special characters
-                if i == 0:
-                    shorter_sentence += sentence_ls[i]
-                elif (i == last_sentence_index + 1) and (len(shorter_sentence) < 500):
-                    shorter_sentence += ' ' + sentence_ls[i]
-                elif len(shorter_sentence) < 500:
-                    shorter_sentence += ' ... ' + sentence_ls[i]
-                else:
-                    #shorter_sentence += ' ... ' + sentence_ls[i]
-                    pass
-                last_sentence_index = i  
-                
+            sentence_ls = text_to_sentences(document_text_copy)
+            last_sentence_index = 0    
+            
+            for i in range(0, len(sentence_ls)):
+                #keyword = re.sub('[^a-zA-Z0-9 \n\.]', '', keyword)
+                #print('this is the keyword --->' + str(keyword))
+                #sentence_ls[i] = re.sub('[-/]', ' ', sentence_ls[i])
+                #print('this is the sentence --->' + str(sentence_ls[i]))
+                if keyword_fr_process.lower() in sentence_ls[i].lower(): #<----- replace/remove all special characters
+                    if i == 0:
+                        shorter_sentence += sentence_ls[i]
+                    elif (i == last_sentence_index + 1) and (len(shorter_sentence) < 500):
+                        shorter_sentence += ' ' + sentence_ls[i]
+                    elif len(shorter_sentence) < 500:
+                        shorter_sentence += ' ... ' + sentence_ls[i]
+                    else:
+                        #shorter_sentence += ' ... ' + sentence_ls[i]
+                        pass
+                    last_sentence_index = i
+                    
+                    if shorter_sentence not in shorter_sentences_list:
+                        shorter_sentences_list.append(shorter_sentence)
+                    else:
+                        ##redundant sentence 
+                        pass
+                    
+        #We need to find the unique sentences in the shorter sentences list
+        final_shorter_sentence = ''.join(shorter_sentences_list)
     except Exception as e:
         error_string = '%s | error in add_tagged_entities_error_log.log %s'%(e, str(datetime.datetime.now()))
         logging.error(error_string)
         
-    return keywords_found, shorter_sentence
+    return keywords_found, final_shorter_sentence
 
 
 def dictionary_matcher(text, limit=10000, tagger='all_labels_ss_tag', solr='http://10.115.1.195:8983/solr/', core='opensemanticsearch', core_entities='opensemanticsearch-entities'):
@@ -338,40 +351,201 @@ def get_overall_tag_type(tag_type_list):
     return overall_type
 
 
-
-def highlight_keyword(text, keyword, color="#FFFF00", check_all_cases='yes'):
+def highlight_keyword(text, all_keywords, color="#FFFF00", check_all_cases='yes'):
     try:
-        #remove special characters from keyword and text in order to compare and highlight
-        #keyword = re.sub('[-/]', ' ', keyword)
-        keyword = solr_clean_special_char(keyword)
-        #text = re.sub('[-/]', ' ', text)
+        text_collect = []
         text = solr_clean_special_char(text)
-    
-        if check_all_cases == 'no':
-            (keyword in text) and (text[text.index(keyword) - 1] != '>')
-            #(print(keyword + '<---- this is the keyword in highlight_keyword_func'))
-            text = text.replace(keyword, '<span style="background-color: %s">{}</span>'.format(keyword)%(color))
-            #(print(text + '<---- this is the text in highlight_keyword_func'))
-    
-        if check_all_cases == 'yes':
-            if (keyword.lower() in text.lower()) and (text.lower()[text.lower().index(keyword.lower()) - 1] != '>'):
-                #print(keyword + '<---- this is the keyword in highlight_keyword_func')
-                text = text.lower().replace(keyword.lower(), '<span style="background-color: %s">{}</span>'.format(keyword.lower())%(color))
-                #(print(text + '<---- this is the text in highlight_keyword_func'))
-            if (keyword.upper() in text.upper()) and (text.upper()[text.upper().index(keyword.upper()) - 1] != '>'):
+        for keyword in all_keywords:
+            #remove special characters from keyword and text in order to compare and highlight
+            #keyword = re.sub('[-/]', ' ', keyword)
+            keyword = solr_clean_special_char(keyword)
+            #text = re.sub('[-/]', ' ', text)
+        
+            if check_all_cases == 'no':
+                (keyword in text) and (text[text.index(keyword) - 1] != '>')
                 #(print(keyword + '<---- this is the keyword in highlight_keyword_func'))
-                text = text.upper().replace(keyword.upper(), '<span style="background-color: %s">{}</span>'.format(keyword.upper())%(color))
+                text = text.replace(keyword, '<span style="background-color: %s">{}</span>'.format(keyword)%(color))
                 #(print(text + '<---- this is the text in highlight_keyword_func'))
-            if (keyword.title() in text) and (text[text.index(keyword.title()) - 1] != '>'):
-                #(print(keyword + '<---- this is the keyword in highlight_keyword_func'))
-                text = text.replace(keyword.title(), '<span style="background-color: %s">{}</span>'.format(keyword.title())%(color))
-                #(print(text + '<---- this is the text in highlight_keyword_func'))
+        
+            if check_all_cases == 'yes':
+                if (keyword.lower() in text.lower()) and (text.lower()[text.lower().index(keyword.lower()) - 1] != '>'):
+                    #print(keyword + '<---- this is the keyword in highlight_keyword_func')
+                    text = text.lower().replace(keyword.lower(), '<span style="background-color: %s">{}</span>'.format(keyword.lower())%(color))
+                    #(print(text + '<---- this is the text in highlight_keyword_func'))
+                if (keyword.upper() in text.upper()) and (text.upper()[text.upper().index(keyword.upper()) - 1] != '>'):
+                    #(print(keyword + '<---- this is the keyword in highlight_keyword_func'))
+                    text = text.upper().replace(keyword.upper(), '<span style="background-color: %s">{}</span>'.format(keyword.upper())%(color))
+                    #(print(text + '<---- this is the text in highlight_keyword_func'))
+                if (keyword.title() in text) and (text[text.index(keyword.title()) - 1] != '>'):
+                    #(print(keyword + '<---- this is the keyword in highlight_keyword_func'))
+                    text = text.replace(keyword.title(), '<span style="background-color: %s">{}</span>'.format(keyword.title())%(color))
+                    #(print(text + '<---- this is the text in highlight_keyword_func'))
+            
+            #text_collect.append(text)
+        #final_text = ' '.join(text_collect)
     
+    except Exception as e:
+        print(e, '--- this is the exception')
+        error_string = '%s | error in add_tagged_entities_error_log.highlight_keyword.log %s'%(e, str(datetime.datetime.now())) 
+        logging.error(error_string)
+
+    return text
+
+def subscription_scrape_section_designation(sentence):
+    scraped_section_headers = ['link:', 'text:', 'content:', 'type:', 'compnay:'
+                               'date:', 'headline:', 'source:', 'Link:',
+                               'Text:', 'Content:', 'Type:', 'Date:', 'Headline:', 'Source:', 'Company:']
+    for section in scraped_section_headers:
+        #print(section, '--- this is the section being replaced')
+        #print(sentence, '--- this is the sentence being replaced')
+        sentence = sentence.replace(section, ' || ' + str(section))
+        #print(sentence, '---this is the cleaned sentence')
+    return sentence
+
+def solr_clean_special_char_subscriptions(string_to_mask, solr_specialchars='\+-&|!(){}[]^"~*?/'):
+    masked = string_to_mask
+    # mask every special char with leading \
+    for char in solr_specialchars:
+        if char == ':':  # need an exception when the next char is a letter and not a digit
+            colon_start = masked.find(':', 0, len(masked))
+            # "skin lump:" ending with ":" fails otherwise
+            if colon_start < len(masked)-1:
+                try:
+                    # if it doesn't fail, it's a number
+                    int(masked[colon_start+1])
+                    masked = masked.replace(char, " ")
+                except Exception:  # if it fails, it's not a number so keep the ':'
+                    if masked[colon_start+1] == ' ':
+                        masked = masked.replace(char, " ")
+        else:
+            masked = masked.replace(char, " ")
+    masked = masked.strip()  # remove trailing spaces
+    masked = re.sub(' +', ' ', masked)  # remove consecutive spaces
+    return masked
+
+
+
+def highlight_keyword_subscriptions(text, all_keywords, color="#FFFF00", check_all_cases='yes'):
+    try:
+        text = solr_clean_special_char(text)
+        for keyword in all_keywords:
+            #remove special characters from keyword and text in order to compare and highlight
+            #keyword = re.sub('[-/]', ' ', keyword)
+            keyword = solr_clean_special_char_subscriptions(keyword)
+            #text = re.sub('[-/]', ' ', text)
+        
+            if check_all_cases == 'no':
+                (keyword in text) and (text[text.index(keyword) - 1] != '>')
+                #(print(keyword + '<---- this is the keyword in highlight_keyword_func'))
+                text = text.replace(keyword, '<span style="background-color: %s">{}</span>'.format(keyword)%(color))
+                #(print(text + '<---- this is the text in highlight_keyword_func'))
+        
+            if check_all_cases == 'yes':
+                if (keyword.lower() in text.lower()) and (text.lower()[text.lower().index(keyword.lower()) - 1] != '>'):
+                    #print(keyword + '<---- this is the keyword in highlight_keyword_func')
+                    text = text.lower().replace(keyword.lower(), '<span style="background-color: %s">{}</span>'.format(keyword.lower())%(color))
+                    #(print(text + '<---- this is the text in highlight_keyword_func'))
+                if (keyword.upper() in text.upper()) and (text.upper()[text.upper().index(keyword.upper()) - 1] != '>'):
+                    #(print(keyword + '<---- this is the keyword in highlight_keyword_func'))
+                    text = text.upper().replace(keyword.upper(), '<span style="background-color: %s">{}</span>'.format(keyword.upper())%(color))
+                    #(print(text + '<---- this is the text in highlight_keyword_func'))
+                if (keyword.title() in text) and (text[text.index(keyword.title()) - 1] != '>'):
+                    #(print(keyword + '<---- this is the keyword in highlight_keyword_func'))
+                    text = text.replace(keyword.title(), '<span style="background-color: %s">{}</span>'.format(keyword.title())%(color))
+                    #(print(text + '<---- this is the text in highlight_keyword_func'))
+            
+            text = subscription_scrape_section_designation(text)
+    
+            #For those shorter sentences returned, split and only take list entries with desired headers:
+            desired_headers = ['text:','content:','type:',
+                                'date:','headline:','source:','Company:','company:'
+                                'Text:','Content:','Type:','Date:','Headline:','Source:']
+            
+            #Split and check if relevant section header is in split lsit item,
+            #  if it is append to new string and  use that as text
+            text_ls = text.split(' || ')
+            #print(text_ls, '--- splitting text_ls')
+            curated_text = []
+            for pos, t in enumerate(text_ls):
+                #print(t,'--- this is the t to add')
+                if any(dx in t for dx in desired_headers):
+                    #print(t,'--- this is the t to add')
+                    curated_text.append(t) #.replace(' || ',' ')
+    
+            #print(curated_text, '--- this is the curated text')
+            text = ''.join(curated_text) 
+
     except Exception as e:
         error_string = '%s | error in add_tagged_entities_error_log.highlight_keyword.log %s'%(e, str(datetime.datetime.now())) 
         logging.error(error_string)
 
     return text
+
+def get_keyword_sentences_subscriptions(document_text, all_keywords):
+
+    try:
+        
+        shorter_sentence_list = []
+        keywords_found_dict = {}
+        for keyword in all_keywords:
+            """Return only sentences with keyword"""
+            
+            
+            keyword_processor = KeywordProcessor()
+            #keyword_fr_process = re.sub('[-/]', ' ', keyword) ## remove keyword special characters using regex
+            keyword_fr_process = solr_clean_special_char_subscriptions(keyword)
+            keyword_processor.add_keyword(keyword_fr_process.lower())
+            #document_text_copy = re.sub('[-/]', ' ', document_text) ## remove keyword special characters using regex
+            document_text_copy = solr_clean_special_char_subscriptions(document_text)
+            #print(document_text_copy,'--- cleaned documents')
+            keywords_found = keyword_processor.extract_keywords(document_text_copy.lower(), span_info=True) # for counting keywords w/o special characters
+            keywords_found_dict[keyword] = keywords_found
+            #print(keyword, '--- this is the keyword')
+            
+            # if keyword == 'Gonadotropin-releasing hormone':# or keyword == 'size exclusion':
+            #     #print(keyword,'---- the keywords found')
+            #     print(keyword_processor,'---- full processor')
+    
+            #     print(keywords_found, '---- the keywords found')
+            #     #print(document_text_copy,'--- cleaned documents')
+            #     #print(keyword_processor,'---- full processor')
+    
+            shorter_sentence = ""
+        
+            sentence_ls = text_to_sentences(document_text_copy)
+            last_sentence_index = 0    
+            
+            for i in range(0, len(sentence_ls)):
+                #keyword = re.sub('[^a-zA-Z0-9 \n\.]', '', keyword)
+                #print('this is the keyword --->' + str(keyword))
+                #sentence_ls[i] = re.sub('[-/]', ' ', sentence_ls[i])
+                #print('this is the sentence --->' + str(sentence_ls[i]))
+                if keyword_fr_process.lower() in sentence_ls[i].lower(): #<----- replace/remove all special characters
+                    if i == 0:
+                        shorter_sentence += subscription_scrape_section_designation(sentence_ls[i])
+                    elif (i == last_sentence_index + 1) and (len(shorter_sentence) < 500):
+                        shorter_sentence += ' ' + subscription_scrape_section_designation(sentence_ls[i])
+                    elif len(shorter_sentence) < 500:
+                        shorter_sentence += ' ... ' + subscription_scrape_section_designation(sentence_ls[i])
+                    else:
+                        #shorter_sentence += ' ... ' + sentence_ls[i]
+                        pass
+                    last_sentence_index = i
+                    
+                    if shorter_sentence not in shorter_sentence_list:
+                        shorter_sentence_list.append(shorter_sentence)
+                    else:
+                        ##redundant sentence
+                        pass
+        
+        final_shorter_sentence = ''.join(shorter_sentence_list)
+        
+        
+    except Exception as e:
+        error_string = '%s | error in add_tagged_entities_error_log.log %s'%(e, str(datetime.datetime.now()))
+        logging.error(error_string)
+        
+    return keywords_found, final_shorter_sentence #final_shorter_sentence
 
 def highlight_keyword_tag(text, keyword, color="255, 255, 0", border_color="255, 255, 0", check_all_cases='yes'):
     try:
