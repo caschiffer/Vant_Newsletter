@@ -17,6 +17,8 @@ from fuzzywuzzy import fuzz
 import os
 import codecs
 import pandas as pd
+from flashtext import KeywordProcessor
+import re
 
 from google.modules.utils import get_html
 
@@ -36,6 +38,48 @@ def start_db():
     except Exception as e:
         logging.error('%s | error in get_documents.start_db %s'%(e, str(datetime.datetime.now())))
     return db
+
+def solr_clean_special_char(string_to_mask, solr_specialchars='\+-&|!(){}[]^"~*?:/'):
+    masked = string_to_mask
+    # mask every special char with leading \
+    for char in solr_specialchars:
+        if char == ':':  # need an exception when the next char is a letter and not a digit
+            colon_start = masked.find(':', 0, len(masked))
+            if colon_start < len(masked)-1: #"skin lump:" ending with ":" fails otherwise
+                try:
+                    int(masked[colon_start+1])  # if it doesn't fail, it's a number
+                    masked = masked.replace(char, " ")
+                except Exception:  # if it fails, it's not a number so keep the ':'
+                    if masked[colon_start+1] == ' ':
+                        masked = masked.replace(char, " ")
+        else:
+            masked = masked.replace(char, " ")
+    masked = masked.strip()  # remove trailing spaces
+    masked = re.sub(' +', ' ', masked)  # remove consecutive spaces
+    return masked
+
+def solr_clean_special_char_subscriptions(string_to_mask, solr_specialchars='\+-&|!(){}[]^"~*?/'):
+    masked = string_to_mask
+    # mask every special char with leading \
+    for char in solr_specialchars:
+        if char == ':':  # need an exception when the next char is a letter and not a digit
+            colon_start = masked.find(':', 0, len(masked))
+            # "skin lump:" ending with ":" fails otherwise
+            if colon_start < len(masked)-1:
+                try:
+                    # if it doesn't fail, it's a number
+                    int(masked[colon_start+1])
+                    masked = masked.replace(char, " ")
+                except Exception:  # if it fails, it's not a number so keep the ':'
+                    if masked[colon_start+1] == ' ':
+                        masked = masked.replace(char, " ")
+        else:
+            masked = masked.replace(char, " ")
+    masked = masked.strip()  # remove trailing spaces
+    masked = re.sub(' +', ' ', masked)  # remove consecutive spaces
+    return masked
+
+
 
 
 def get_solr_search_url(keyword_list, from_date=datetime.date.today(), to_date=datetime.date.today(), search_params='standard'):
@@ -327,6 +371,8 @@ def get_solr_results(all_keywords, subscription_services ,keyword ,search_url, j
                         #tagged_shorter_sentences = add_tagged_entities.highlight_keyword(shorter_sentences, all_keywords)
                     else:
                         keywords_found, shorter_sentences = add_tagged_entities.get_keyword_sentences_subscriptions(document_text, all_keywords)
+                        #if len(shorter_sentences) > 0:
+                            #print(shorter_sentences, '--- these are the shorter sentences')
                         tagged_document_text = add_tagged_entities.highlight_keyword_subscriptions(document_text, all_keywords)
                         #tagged_shorter_sentences = add_tagged_entities.highlight_keyword_subscriptions(shorter_sentences, all_keywords)
                 else:
@@ -589,11 +635,37 @@ def get_document_type(doc_id):
         logging.error('%s | error in get_documents.get_document_type %t', (e, str(datetime.datetime.now())))        
     return document_type, detailed_type
 
+def keyword_counting(keyword, short_sentences_text, subscription_type):
+    
+    if subscription_type == True:
+        keyword_processor = KeywordProcessor()
+        #keyword_fr_process = re.sub('[-/]', ' ', keyword) ## remove keyword special characters using regex
+        keyword_fr_process = solr_clean_special_char(keyword)
+        keyword_processor.add_keyword(keyword_fr_process.lower())
+        #document_text_copy = re.sub('[-/]', ' ', document_text) ## remove keyword special characters using regex
+        document_text_copy = solr_clean_special_char(short_sentences_text)
+        #print(document_text_copy,'--- cleaned documents')
+        keywords_found = keyword_processor.extract_keywords(short_sentences_text.lower(), span_info=True)
+    
+    else:
+        keyword_processor = KeywordProcessor()
+        #keyword_fr_process = re.sub('[-/]', ' ', keyword) ## remove keyword special characters using regex
+        keyword_fr_process = solr_clean_special_char_subscriptions(keyword)
+        keyword_processor.add_keyword(keyword_fr_process.lower())
+        #document_text_copy = re.sub('[-/]', ' ', document_text) ## remove keyword special characters using regex
+        document_text_copy = solr_clean_special_char_subscriptions(short_sentences_text)
+        #print(document_text_copy,'--- cleaned documents')
+        keywords_found = keyword_processor.extract_keywords(short_sentences_text.lower(), span_info=True)
+    
+    
+    return keywords_found
+
+
 
 def get_ome_alert_results(search_params_list, all_keywords_list, subscription_services, from_date=datetime.date.today(), to_date=datetime.date.today(), tags='tagged_entities_for_web'):
     """Execute multiple SOLR searches and return result as dictionary"""
     #try:
-    ome_alert_results = {'keyword':[], 'full_keyword_list':[] ,'path':[], 'file_modified_date':[], 'title':[], 'tagged_document_text':[], 'document_text':[], 'document_type':[], 'document_tags':[], 'normalized_tags':[], 'normalized_tags_ordered':[], 'document_id':[], 'shorter_sentences':[], 'keyword_count':[],'LDA_class':[]}
+    ome_alert_results = {'keyword':[], 'full_keyword_list':[] ,'path':[], 'file_modified_date':[], 'title':[], 'tagged_document_text':[], 'document_text':[], 'document_type':[], 'document_tags':[], 'normalized_tags':[], 'normalized_tags_ordered':[], 'document_id':[], 'shorter_sentences':[], 'keyword_count':[],'LDA_class':[],'tagged_shorter_sentences' : []}
     url_query = ''
     
     all_keywords_per_document = []
@@ -689,28 +761,68 @@ def get_ome_alert_results(search_params_list, all_keywords_list, subscription_se
         ##CS alternative to filter statement where no granular filters in place (source select still functional though)
         ##This function removes redundant documents ---  to adjust listing for keywords make adjustments here
         else:
+            # if len(solr_results['keyword_count']) > 0:
+            #     print(solr_results['keyword_count'],'----- comparing keyword count from 8/4/20 to 8/6/20')
+            # if len(solr_results['path']) > 0:
+            #     print(solr_results['path'],'--- comparing path from alert 8/4/20 and 8/6/20')
+            # if len(solr_results['shorter_sentences']) > 0:
+            #     print(solr_results['shorter_sentences'],'--- comparing shorter sentences from alert 8/4/20 and 8/6/20')
+            #print(solr_results['path'],'--- all paths')
             for j in range(0, len(solr_results['path'])):
                 kw = solr_results['keyword'][j]
                 path = solr_results['path'][j]
-                
+                #print(path, '--- this is the path used')
+                shorter_sentences = solr_results['shorter_sentences'][j]
+                #print(shorter_sentences, '--- these are the shorter sentences for the document')
+                doctype = solr_results['document_type'][j]
                 #Kw_cnt comes out as a list of tuples. The tuple describes keyword mentions in the text
                 #Take the length to find the number of mentions for that keyword
                 #print(solr_results['keyword_count'],'--- this is the keyword count')
                 #print(solr_results['keyword_count'], '--- this is the keyword count')
-                kw_cnt = len(solr_results['keyword_count'][j][kw])
+                all_keywords_found = solr_results['keyword_count'][j]
+                #print(all_keywords_found, '---- these are all the keywords found')
                 
+                if doctype in subscription_services:
+                #if doctype == 'swagswagswag':
+                    for akf in all_keywords_found:
+                        #print(path_full_dict,'--- this is the path full dict in subscriptions')
+                        list_kw_found = keyword_counting(akf, shorter_sentences, False)
+                        #print(list_kw_found, '--- actual list from keyword counting')
+                        if path not in path_full_dict.keys():
+                           path_full_dict[path] = [(akf, len(list_kw_found))]
+                        elif path in path_full_dict.keys() and (akf, len(list_kw_found)) not in path_full_dict[path]:
+                            path_full_dict[path].append((akf, len(list_kw_found)))
+                        else:
+                            print('redundant')
+                            #print(path, '--- this is the path in path_full_dict')
+                            pass
+                else:
+                    for akf in all_keywords_found:
+                        #print(path_full_dict,'--- this is the path full dict in subscriptions')
+                        list_kw_found = keyword_counting(akf, shorter_sentences, False)
+                        #print(list_kw_found,'--- actual list from keyword counting')
+                        if path not in path_full_dict.keys():
+                           path_full_dict[path] = [(akf, len(list_kw_found))]
+                        elif path in path_full_dict.keys() and (akf, len(list_kw_found)) not in path_full_dict[path]:
+                            path_full_dict[path].append((akf, len(list_kw_found)))
+                        else:
+                            print('redundant')
+                            #print(path, '--- this is the path')
+                            pass
+                    
                 #print(kw, '---- this is the kw')
                 #print(path, '--- this is the path')
                 
-                if path not in path_full_dict.keys():
-                    path_full_dict[path] = [(kw, kw_cnt)]
-                elif path in path_full_dict.keys():
-                    path_full_dict[path].append((kw, kw_cnt))
-                else:
-                    print('problem investigate line 644')
-                    pass
+                # if path not in path_full_dict.keys():
+                #     path_full_dict[path] = [(akf, kw_cnt)]
+                # elif path in path_full_dict.keys():
+                #     path_full_dict[path].append((akf, kw_cnt))
+                # else:
+                #     print('problem investigate line 644')
+                #     pass
                 
                 if (solr_results['path'][j] not in ome_alert_results['path']):
+                    #print('are we entering the loop?')
                     ome_alert_results['keyword'].append(solr_results['keyword'][j])
                     ome_alert_results['path'].append(solr_results['path'][j])
                     ome_alert_results['file_modified_date'].append(solr_results['file_modified_date'][j])
@@ -725,12 +837,14 @@ def get_ome_alert_results(search_params_list, all_keywords_list, subscription_se
                     #ome_alert_results['normalized_tags2'].append(solr_results['normalized_tags2'][j])
                     #ome_alert_results['normalized_tags_ordered2'].append(solr_results['normalized_tags_ordered2'][j])
                     ome_alert_results['document_id'].append(solr_results['document_id'][j])
+                    #print(solr_results['shorter_sentences'][j],'--- this is the shorter sentence as it is being appended')
                     ome_alert_results['shorter_sentences'].append(solr_results['shorter_sentences'][j])
-                
+                    ome_alert_results['tagged_shorter_sentences'].append(solr_results['shorter_sentences'][j])
                     ome_alert_results['keyword_count'].append(solr_results['keyword_count'][j])
                     ome_alert_results['LDA_class'].append(solr_results['LDA_class'][j])
         
-        
+    
+    #print(path_full_dict,'--- this is the dictionary')
     #Create new for loop to include the full keyword list per path. 
     #print(path_full_dict,'--- this is the path to full dict')
     for p in range(0, len(ome_alert_results['path'])):
@@ -748,14 +862,15 @@ def get_ome_alert_results(search_params_list, all_keywords_list, subscription_se
 
 
     #Add new field for specifically tagged/highlighted shorter sentences
-    ome_alert_results['tagged_shorter_sentences'] = ome_alert_results['shorter_sentences']
+    
+    #ome_alert_results['tagged_shorter_sentences'] = []
     #This is where we clean tagged the shorter sentences so that we can only search for those keywords we are interested in
 
 
     for pos, path in enumerate(ome_alert_results['path']):
         d_type = ome_alert_results['document_type'][pos]
         d_path = ome_alert_results['path'][pos]
-        d_shorter_sentence = ome_alert_results['shorter_sentences'][pos]
+        d_shorter_sentence = ome_alert_results['tagged_shorter_sentences'][pos]
         d_all_keywords = ome_alert_results['full_keyword_list'][pos]
         ls_d_all_keywords = []
         for tup in d_all_keywords:
@@ -764,7 +879,7 @@ def get_ome_alert_results(search_params_list, all_keywords_list, subscription_se
             else:
                 ##redundant keyword entry, there shouldn't be any
                 pass
-        if any(x in d_type for x in subscription_services):
+        if d_type in subscription_services:
             ome_alert_results['tagged_shorter_sentences'][pos] = add_tagged_entities.highlight_keyword_subscriptions(d_shorter_sentence, ls_d_all_keywords)
         else:
             #If not in the subscription services
