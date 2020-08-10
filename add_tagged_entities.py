@@ -47,8 +47,8 @@ def text_to_sentences(text_content):
         logging.error(error_string)
     
     return sentence_ls
-
-def solr_clean_special_char(string_to_mask, solr_specialchars='\+-&|!(){}[]^"~*?:/'):
+                                            #solr_specialchars = '\+-&|!(){}[]^"~*?:/'
+def solr_clean_special_char(string_to_mask, solr_specialchars = '\+-&|!(){}[]^"~*?:/'):
     masked = string_to_mask
     # mask every special char with leading \
     for char in solr_specialchars:
@@ -373,7 +373,11 @@ def highlight_keyword(text, all_keywords, color="#FFFF00", check_all_cases='yes'
     try:
         text_collect = []
         text = solr_clean_special_char(text)
-        for keyword in all_keywords:
+        
+        #Sort all keywords to avoid overlap!
+        sorted_all_keywords = sorted(all_keywords, key=lambda s: len(s), reverse = True)
+        
+        for keyword in sorted_all_keywords:
             #remove special characters from keyword and text in order to compare and highlight
             #keyword = re.sub('[-/]', ' ', keyword)
             keyword = solr_clean_special_char(keyword)
@@ -382,21 +386,25 @@ def highlight_keyword(text, all_keywords, color="#FFFF00", check_all_cases='yes'
             if check_all_cases == 'no':
                 (keyword in text) and (text[text.index(keyword) - 1] != '>')
                 #(print(keyword + '<---- this is the keyword in highlight_keyword_func'))
-                text = text.replace(keyword, '<span style="background-color: %s">{}</span>'.format(keyword)%(color))
+                #text = text.replace(keyword, '<span style="background-color: %s">{}</span>'.format(keyword)%(color))
+                text = re.sub(r'(?<!\S){}(?!\S)'.format(keyword),'<span style="background-color: %s">{}</span>'.format(keyword)%(color), text)
                 #(print(text + '<---- this is the text in highlight_keyword_func'))
         
             if check_all_cases == 'yes':
                 if (keyword.lower() in text.lower()) and (text.lower()[text.lower().index(keyword.lower()) - 1] != '>'):
                     #print(keyword + '<---- this is the keyword in highlight_keyword_func')
-                    text = text.lower().replace(keyword.lower(), '<span style="background-color: %s">{}</span>'.format(keyword.lower())%(color))
+                    #text = text.lower().replace(keyword.lower(), '<span style="background-color: %s">{}</span>'.format(keyword.lower())%(color))
+                    text = re.sub(r'(?<!\S){}(?!\S)'.format(keyword.lower()),'<span style="background-color: %s">{}</span>'.format(keyword)%(color), text)
                     #(print(text + '<---- this is the text in highlight_keyword_func'))
                 if (keyword.upper() in text.upper()) and (text.upper()[text.upper().index(keyword.upper()) - 1] != '>'):
                     #(print(keyword + '<---- this is the keyword in highlight_keyword_func'))
-                    text = text.upper().replace(keyword.upper(), '<span style="background-color: %s">{}</span>'.format(keyword.upper())%(color))
+                    #text = text.upper().replace(keyword.upper(), '<span style="background-color: %s">{}</span>'.format(keyword.upper())%(color))
+                    text = re.sub(r'(?<!\S){}(?!\S)'.format(keyword.upper()),'<span style="background-color: %s">{}</span>'.format(keyword)%(color), text)
                     #(print(text + '<---- this is the text in highlight_keyword_func'))
                 if (keyword.title() in text) and (text[text.index(keyword.title()) - 1] != '>'):
                     #(print(keyword + '<---- this is the keyword in highlight_keyword_func'))
-                    text = text.replace(keyword.title(), '<span style="background-color: %s">{}</span>'.format(keyword.title())%(color))
+                    #text = text.replace(keyword.title(), '<span style="background-color: %s">{}</span>'.format(keyword.title())%(color))
+                    text = re.sub(r'(?<!\S){}(?!\S)'.format(keyword.title()),'<span style="background-color: %s">{}</span>'.format(keyword)%(color), text)
                     #(print(text + '<---- this is the text in highlight_keyword_func'))
             
             #text_collect.append(text)
@@ -446,33 +454,43 @@ def solr_clean_special_char_subscriptions(string_to_mask, solr_specialchars='\+-
 
 def highlight_keyword_subscriptions(text, all_keywords, color="#FFFF00", check_all_cases='yes'):
     text = solr_clean_special_char_subscriptions(text)
-    for keyword in all_keywords:
+    #print(text, '--- this is the text')
+    
+    sorted_all_keywords = sorted(all_keywords, key=lambda s: len(s), reverse = True)
+    
+    for keyword in sorted_all_keywords:
         #remove special characters from keyword and text in order to compare and highlight
         #keyword = re.sub('[-/]', ' ', keyword)
         keyword = solr_clean_special_char_subscriptions(keyword)
+        #print(keyword, '--- this is the keyword')
         #text = re.sub('[-/]', ' ', text)
     
         if check_all_cases == 'no':
             (keyword in text) and (text[text.index(keyword) - 1] != '>')
             #(print(keyword + '<---- this is the keyword in highlight_keyword_func'))
-            text = text.replace(keyword, '<span style="background-color: %s">{}</span>'.format(keyword)%(color))
+            text = re.sub(r'(?<!\S){}(?!\S)'.format(keyword),'<span style="background-color: %s">{}</span>'.format(keyword)%(color), text)
+            #text = text.replace(keyword, '<span style="background-color: %s">{}</span>'.format(keyword)%(color))
             #(print(text + '<---- this is the text in highlight_keyword_func'))
     
         if check_all_cases == 'yes':
             if (keyword.lower() in text.lower()) and (text.lower()[text.lower().index(keyword.lower()) - 1] != '>'):
                 #print(keyword + '<---- this is the keyword in highlight_keyword_func')
-                text = text.lower().replace(keyword.lower(), '<span style="background-color: %s">{}</span>'.format(keyword.lower())%(color))
+                #text = text.lower().replace(keyword.lower(), '<span style="background-color: %s">{}</span>'.format(keyword.lower())%(color))
+                text = re.sub(r'(?<!\S){}(?!\S)'.format(keyword.lower()),'<span style="background-color: %s">{}</span>'.format(keyword)%(color), text)
                 #(print(text + '<---- this is the text in highlight_keyword_func'))
             if (keyword.upper() in text.upper()) and (text.upper()[text.upper().index(keyword.upper()) - 1] != '>'):
                 #(print(keyword + '<---- this is the keyword in highlight_keyword_func'))
-                text = text.upper().replace(keyword.upper(), '<span style="background-color: %s">{}</span>'.format(keyword.upper())%(color))
+                #text = text.upper().replace(keyword.upper(), '<span style="background-color: %s">{}</span>'.format(keyword.upper())%(color))
+                text = re.sub(r'(?<!\S){}(?!\S)'.format(keyword.upper()),'<span style="background-color: %s">{}</span>'.format(keyword)%(color), text)
                 #(print(text + '<---- this is the text in highlight_keyword_func'))
             if (keyword.title() in text) and (text[text.index(keyword.title()) - 1] != '>'):
                 #(print(keyword + '<---- this is the keyword in highlight_keyword_func'))
-                text = text.replace(keyword.title(), '<span style="background-color: %s">{}</span>'.format(keyword.title())%(color))
+                #text = text.replace(keyword.title(), '<span style="background-color: %s">{}</span>'.format(keyword.title())%(color))
+                text = re.sub(r'(?<!\S){}(?!\S)'.format(keyword.title),'<span style="background-color: %s">{}</span>'.format(keyword)%(color), text)
                 #(print(text + '<---- this is the text in highlight_keyword_func'))
         
         text = subscription_scrape_section_designation(text)
+        #print(text, '--- this is the full text')
         #if " || " in text:
         #    print(text,'--- correctly formatted subscription text!')
 
@@ -484,8 +502,8 @@ def highlight_keyword_subscriptions(text, all_keywords, color="#FFFF00", check_a
         #Split and check if relevant section header is in split lsit item,
         #  if it is append to new string and  use that as text
         text_ls = text.split(' || ')
-        if len(text_ls) > 1:
-            print(text_ls, '--- this is the text ls')
+        #if len(text_ls) > 1:
+        #    print(text_ls, '--- this is the text ls')
         #print(text_ls, '--- splitting text_ls')
         curated_text = []
         for pos, t in enumerate(text_ls):
@@ -804,7 +822,12 @@ def get_new_indication_moa_pairs(document_text, normalized_tags, dict_MoA_indica
 
 
 
-#test_text = "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nReviewing Kodiak Sciences Inc. (KOD)'s and Neurocrine Biosciences Inc. (NASDAQ:NBIX)'s results | YomiBlog\n\n\n\n\t\n\n \t\t\n\n\t\t\t\n\n \t\t\t\t\n \n\t\n\n\n\n\n\n \t\t\t\t\n\n\t\t\t\t\t\n\t\t\t\t\n \n  \t\t\t\t\n\n\n\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\t\tYomiBlog\t\t\t\t\t\n\n\n\n\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t\n\n\n\n\t\t\t\t\n\n\t\t\t\t\n\n\t\t\t\t\t\tHeadlines\n\tBusiness\n\tEconomy\n\tFinance\n\tAbout US\n\tOur Team\n\tContact\n\n\n\t\t\t\t\n \n\n\t\t\t\n \n\t\t\t\n\n\n \t\t\t\n\n\n\t\t\t\t\n \t\t\n\n\t\t\t\t\t\t\n\t\t\tReviewing Kodiak Sciences Inc. (KOD)’s and Neurocrine Biosciences Inc. (NASDAQ:NBIX)’s results\n\n\n\t\t\t\n\n\t\t\t\tPosted by Joseph Shaffer\n\t\t\t\ton March 2, 2019 at 1:18 pm\n\t\t\t\t\t\t\t\n\t\t\t\n\t\t\t\n\t\t\t\n\n\t\t\t\n\n\n\n\n\n\n\nKodiak Sciences Inc. (NASDAQ:KOD) and Neurocrine Biosciences Inc. (NASDAQ:NBIX) compete against each other in the Biotechnology sector.  We will contrast them and contrast their risk, analyst recommendations, profitability, dividends, institutional ownership, earnings and valuation. \n\nEarnings & Valuation\n\n\t\tGross Revenue\tPrice/Sales Ratio\tNet Income\tEarnings Per Share\tPrice/Earnings Ratio\n\tKodiak Sciences Inc.\tN/A\t0.00\t38.35M\t-1.07\t0.00\n\tNeurocrine Biosciences Inc.\t451.24M\t15.93\t21.11M\t0.07\t1243.62\n\n\n We can see in table 1 the earnings per share, gross revenue and valuation of Kodiak Sciences Inc. and Neurocrine Biosciences Inc.    \n\nProfitability\n\n Table 2 demonstrates the return on assets, net margins and return on equity of Kodiak Sciences Inc. and Neurocrine Biosciences Inc. \n\n\t\tNet Margins\tReturn on Equity\tReturn on Assets\n\tKodiak Sciences Inc.\t0.00%\t0%\t0%\n\tNeurocrine Biosciences Inc.\t4.68%\t2.5%\t1.2%\n\n\nLiquidity\n\n 2.3 and 2.3 are the respective Current Ratio and a Quick Ratio of Kodiak Sciences Inc. Its rival Neurocrine Biosciences Inc.’s Current and Quick Ratios are 1.6 and 1.6 respectively. Kodiak Sciences Inc. has a better chance of clearing its pay short and long-term debts than Neurocrine Biosciences Inc.     \n\nAnalyst Ratings\n\n The Recommendations and Ratings for Kodiak Sciences Inc. and Neurocrine Biosciences Inc. are featured in the next table. \n\n\t\tSell Ratings\tHold Ratings\tBuy Ratings\tRating Score\n\tKodiak Sciences Inc.\t0\t0\t1\t3.00\n\tNeurocrine Biosciences Inc.\t0\t3\t4\t2.57\n\n\n Kodiak Sciences Inc.’s average target price is $22.5, while its potential upside is 218.25%. Competitively the average target price of Neurocrine Biosciences Inc. is $116.83, which is potential 47.64% upside. Based on the data delivered earlier, Kodiak Sciences Inc. is looking more favorable than Neurocrine Biosciences Inc., analysts belief. \n\nInsider and Institutional Ownership\n\n The shares of both Kodiak Sciences Inc. and Neurocrine Biosciences Inc. are owned by institutional investors at 13.6% and 0% respectively. About 11.6% of Kodiak Sciences Inc.’s share are held by insiders. Competitively, Neurocrine Biosciences Inc. has 1.2% of it’s share held by insiders. \n\nPerformance\n\n Here are the Weekly, Monthly, Quarterly, Half Yearly, Yearly and YTD Performance of both pretenders. \n\n\t\tPerformance (W)\tPerformance (M)\tPerformance (Q)\tPerformance (HY)\tPerformance (Y)\tPerformance (YTD)\n\tKodiak Sciences Inc.\t-8.65%\t-4.2%\t0%\t0%\t0%\t-16.83%\n\tNeurocrine Biosciences Inc.\t-2.79%\t-20.91%\t-27.61%\t-13.46%\t18.36%\t10.59%\n\n\n  For the past year Kodiak Sciences Inc. has -16.83% weaker performance while Neurocrine Biosciences Inc. has 10.59% stronger performance. \n\nSummary\n\n Neurocrine Biosciences Inc. beats on 9 of the 12 factors Kodiak Sciences Inc. \n\nKodiak Sciences Inc., a clinical stage biopharmaceutical company, provides novel therapeutics to treat ophthalmic diseases. The company's lead product candidate is KSI-301, a vascular endothelial growth factor (VEGF)-biologic that is in Phase I clinical study to treat wet age-related macular degeneration (AMD) and diabetic retinopathy. Its preclinical stage product candidates include KSI-501, a bispecific anti-interleukin 6/VEGF bioconjugate to target inflammation and abnormal angiogenesis in the pathogenesis of retinal vascular diseases; KSI-201, a recombinant mammalian cell expressed dual inhibitor antibody biopolymer bioconjugate for the treatment of wet AMD; and KSI-401, a recombinant mammalian cell expressed antibody biopolymer conjugate for the treatment of dry AMD. The company was formerly known as Oligasis, LLC and changed its name to Kodiak Sciences Inc. in September 2015. Kodiak Sciences Inc. was founded in 2009 and is headquartered in Palo Alto, California.\n\nNeurocrine Biosciences, Inc. discovers and develops pharmaceuticals for the treatment of neurological and endocrine-related diseases and disorders in the United States and internationally. The companyÂ’s lead products include INGREZZA (valbenazine), a vesicular monoamine transporter 2 inhibitor (VMAT2) used for the treatment of movement disorders; elagolix, a gonadotropin-releasing hormone (GnRH) antagonist that is in Phase III clinical trials used for womenÂ’s health; and opicapone, a catechol-O-methyltransferase inhibitor, which is in Phase III clinical trials used for in adjunct therapy and preparations of levodopa/DOPA decarboxylase inhibitors for adult patients with ParkinsonÂ’s disease. It is also developing NBI-640756 that is in Phase I clinical trials used for the treatment of essential tremor; and NBI-74788, which is in Phase I clinical trials used for the treatment of classic congenital adrenal hyperplasia. In addition, the companyÂ’s research programs comprise VMAT2 Inhibitors for movement disorders, bipolar disorders, and schizophrenia; and G Protein-Coupled Receptors and Ion Channels for epilepsy, essential tremor, pain, and other Indications. It has collaborations with AbbVie Inc. to develop and commercialize elagolix and GnRH antagonists for womenÂ’s and menÂ’s health; Mitsubishi Tanabe Pharma Corporation to develop and commercialize INGREZZA for movement disorders; and BIAL Â– Portela & Ca, S.A. to develop and commercialize opicapone for the treatment of human diseases and conditions, including ParkinsonÂ’s disease. Neurocrine Biosciences, Inc. was founded in 1992 and is headquartered in San Diego, California.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\t\t\t\t\t\t\n\n\n\n\n\n\n\t\t\t\t\n\t\n\t\t\t\t\n\t\t\t\t\n\t\t\t\t\n\n\n \t\t\t\t\n\t\t\t\t\n\n\t\t\t\n\t\t\t\n\n\t\t\t\n\n\n\t\t\t\n\t\t\t\n\n\n\t\t\t\n\t\t\t\n\t\t\n\n\n\n\t\t\t\t\n\t\t\n\n\n\n\n\n\t\t\t\t\n\n\n\n\n\n\n\n\t\t\n\t\t\t\n\n\n\n\t\t\n\n\n\n\n \n\t\t\n\n\t\t\n \n\n\t\n\n\t\n \n\n\t\n\n\t\t\n\n\t\t\t\n\t\t\t\t\t\t\t\n\n\n\t\t\t\n\t\t\t\t\t\t\t\n\n\n\t\t\t\n\t\t\t\t\t\t\t\n\n\n\t\t\t\n\n\t\t\n\n\t\t\n\n\n\n\t\t\n\t\t\t\tAbout US\n\tOur Team\n\tContact US\n\tPrivacy Policy\n\tComment Policy\n\n\n\t\t\tDesigned by WPZOOM\n\n\t\t\tCopyright © 2019 — YomiBlog. All Rights Reserved.\t\t\n\n\n\t\n \n\n\t\n\n\n\n \n\n\n\n\n\n\n\n\n\n\n"
+#test_text = 'Headline: Positive Phase 3 Study Results for TRIKAFTA (elexacaftor/tezacaftor/ivacaftor and ivacaftor) in People Ages 12 and Older With Cystic Fibrosis Who Have One Copy of the F508del Mutation and One Gating or Residual Function Mutation Source: News Company: European Medicines Agency, Vertex Pharmaceuticals Date: July 20, 2020 Content: -Phase 3 study met primary endpoint and all secondary endpoints- -Study is a U.S. post-marketing commitment and will be submitted to FDA- -Data also will be submitted to the European Medicines Agency to support indication expansion of the EU label following triple combination approval- Vertex Pharmaceuticals Incorporated (Nasdaq: VRTX) today announced results of a global Phase 3 study of TRIKAFTA (elexacaftor/tezacaftor/ivacaftor and ivacaftor) in people with cystic fibrosis (CF) ages 12 years and older who have one copy of the F508del mutation and one gating mutation (F/G) or one copy of the F508del mutation and one residual function mutation (F/RF). The study met its primary endpoint of mean absolute within-group change in percent predicted forced expiratory volume in 1 second (ppFEV1) from baseline through 8 weeks of treatment, demonstrating a statistically significant 3.7 percentage point (p<0.0001)improvement in ppFEV1 in patients treated with TRIKAFTA compared to their baseline after a 4-week run-in of treatment on ivacaftor or tezacaftor/ivacaftor. The study met all secondary endpoints, including a statistically significant mean within-group reduction of 22.3 mmol/L from baseline in sweat chloride (p<0.0001). The regimen was generally well-tolerated, and safety data were consistent with those observed in previous Phase 3 studies with TRIKAFTA. The study is a post-marketing commitment in the U.S. and the results will be submitted to the U.S. Food and Drug Administration. In the U.S., TRIKAFTA is already approved for use in people with CF ages 12 years and older who have at least one copy of the F508del mutation, which includes the populations evaluated in this study. In June, Vertex received a positive opinion from the Committee for Medicinal Products for Human Use (CHMP) for the initial triple combination regimen application for people with CF ages 12 years and older with one F508del mutation and one minimal function mutation (F/MF) or two F508del mutations (F/F). Data announced today from this study will be submitted to the European Medicines Agency to support a potential indication expansion of the EU label, once European Commission approval has been granted for the initial triple combination application. Full study results will be submitted for presentation at a future medical meeting and/or publication.'
+
+#all_keywords = ['elexacaftor tezacaftor ivacaftor','ivacaftor']
+#sorted_all_keywords = sorted(all_keywords, key=lambda s: len(s), reverse = True)
+
+#sample = highlight_keyword_subscriptions(test_text, ['elexacaftor tezacaftor ivacaftor','ivacaftor'])
 #sentence_ls = text_to_sentences(test_text)
 
 
