@@ -767,16 +767,23 @@ def send_ome_alerts_of_user(user):
     to_date = datetime.date.today()
     #to_date = datetime.date(2019,3,25)
     
-    link_exclusion_ls = ['Cortellis','cortellis', 'Adis','evaluate_email', 'GBD_email']
+    #link_exclusion_ls = ['Cortellis','cortellis', 'Adis','evaluate_email', 'GBD_email']
     
+    sub_services = ['Adis Insight','Cortellis','GBD_email','Evaluate News']
+    
+    link_exclusion_ls = ['Cortellis','cortellis', 'Adis Insight','Evaluate News', 'GBD_email']
+
     mail = 'not_initialized'
     
     for i in range(0, len(user_alert_ids)):
         if (user_alerts['email'][i] == 'yes'): #and (user_alerts['alert_type'][i] in ['standard', 'standard_title']):
             try:
-                search_params_list, keyword_title = get_documents.get_search_params_list(str(user_alert_ids[i]))
+                search_params_list, keyword_title, search_list = get_documents.get_search_params_list(str(user_alert_ids[i]))
                 #print(search_params_list,'----- this is the search params list')
-                ome_alert_results, url_query = get_documents.get_ome_alert_results(search_params_list, from_date=from_date, to_date=to_date, tags='tagged_entities_for_email')
+                #ome_alert_results, url_query = get_documents.get_ome_alert_results(search_params_list, from_date=from_date, to_date=to_date, tags='tagged_entities_for_email')
+                
+                ome_alert_results, url_query = get_documents.get_ome_alert_results(search_params_list, search_list, sub_services ,from_date=from_date, to_date=to_date, tags='tagged_entities_for_email')
+                
                 #print(ome_alert_results.keys(), '---- these are the ome alerts results')
                 #print(np.array(ome_alert_results['keyword']), '---- keyword per document found')
                 if user in internal_users:
@@ -945,71 +952,71 @@ def send_successful_search(user):
 #archits_alert_ids = send_ome_alerts_of_user('archit.sheth-shah')
 #emirs_alert_ids = send_ome_alerts_of_user('emir.haskovic')
 #anythonys_alert_ids = send_ome_alerts_of_user('anthony.bogachev')
-# send_ome_alerts()
-# time.sleep(120)
-# codys_alert_completion = send_completion_notification('cody.schiffer')
-# codys_search_completion = send_successful_search('cody.schiffer')
-# time.sleep(120)
-# yoanns_alert_completion = send_completion_notification('yoann.randriamihaja')
-# time.sleep(120)
-# aymans_search_completion = send_successful_search('ayman.mohammad')
-# time.sleep(120)
-# andrews_search_completion = send_successful_search('andrew.bogorad')
+send_ome_alerts()
+time.sleep(120)
+codys_alert_completion = send_completion_notification('cody.schiffer')
+codys_search_completion = send_successful_search('cody.schiffer')
+time.sleep(120)
+yoanns_alert_completion = send_completion_notification('yoann.randriamihaja')
+time.sleep(120)
+aymans_search_completion = send_successful_search('ayman.mohammad')
+time.sleep(120)
+andrews_search_completion = send_successful_search('andrew.bogorad')
 
 # #print('done')
 #print('second debug')
 
-#DEBUGGING FUNCTIONS --------------
-from_date = datetime.date(2020,8,6)
-#from_date = datetime.date.today() - datetime.timedelta(days=1)
-to_date = datetime.date(2020,8,6)
-#to_date = datetime.date.today()
-#internal_users = ['cody.schiffer']
-internal_users = ['']
-user = 'cody.schiffer'
-sumitovant_list = ['julia.gray','bill.mcmahon','cody.schiffer',
-                      'isabel.metzger','yoann.randriamihaja', 'samuel.croset', 
-                      'houston.warren', 'rajat.chandra', 'natasha.zalzinyak','justin.dimartino','sam.azoulay','carson.tao']
+# #DEBUGGING FUNCTIONS --------------
+# from_date = datetime.date(2020,8,6)
+# #from_date = datetime.date.today() - datetime.timedelta(days=1)
+# to_date = datetime.date(2020,8,6)
+# #to_date = datetime.date.today()
+# #internal_users = ['cody.schiffer']
+# internal_users = ['']
+# user = 'cody.schiffer'
+# sumitovant_list = ['julia.gray','bill.mcmahon','cody.schiffer',
+#                       'isabel.metzger','yoann.randriamihaja', 'samuel.croset', 
+#                       'houston.warren', 'rajat.chandra', 'natasha.zalzinyak','justin.dimartino','sam.azoulay','carson.tao']
 
-email_address = 'cody.schiffer@sumitovant.com'
-email_subject = 'DEBUGDEBUGDEBUG'
-
-
-sub_services = ['Adis Insight','Cortellis','GBD_email','Evaluate News']
-
-test_search_params, test_alert_title, search_list = get_documents.get_search_params_list('485')
-#print(test_search_params,'---- these are the test params')
+# email_address = 'cody.schiffer@sumitovant.com'
+# email_subject = 'DEBUGDEBUGDEBUG'
 
 
-##test_url = get_documents.construct_solr_search_url(test_search_params, from_date=from_date)
-#ome_alert_results = source_filter(ome_alert_results)
+# sub_services = ['Adis Insight','Cortellis','GBD_email','Evaluate News']
 
-# ##test_search_params = [{'search_type': 'standard', 'keyphrase1': 'Trace amine associated receptor 1', 'keyword': 'Trace amine associated receptor 1', 'source_select': 'all', 'alert_title': 'TAAR1_Sunovion_OME_Alert', 'filter_type': 'or', 'journal_select': '', 'author_select': '', 'institution_select': '', 'filter_leeway': 70}, {'search_type': 'standard', 'keyphrase1': 'Trace amine-associated receptor 1', 'keyword': 'Trace amine-associated receptor 1', 'source_select': 'all', 'alert_title': 'TAAR1_Sunovion_OME_Alert', 'filter_type': 'or', 'journal_select': '', 'author_select': '', 'institution_select': '', 'filter_leeway': 70}, {'search_type': 'standard', 'keyphrase1': 'TaR-1', 'keyword': 'TaR-1', 'source_select': 'all', 'alert_title': 'TAAR1_Sunovion_OME_Alert', 'filter_type': 'or', 'journal_select': '', 'author_select': '', 'institution_select': '', 'filter_leeway': 70}, {'search_type': 'standard', 'keyphrase1': 'Trace amine receptor 1', 'keyword': 'Trace amine receptor 1', 'source_select': 'all', 'alert_title': 'TAAR1_Sunovion_OME_Alert', 'filter_type': 'or', 'journal_select': '', 'author_select': '', 'institution_select': '', 'filter_leeway': 70}, {'search_type': 'standard', 'keyphrase1': 'TAAR1', 'keyword': 'TAAR1', 'source_select': 'all', 'alert_title': 'TAAR1_Sunovion_OME_Alert', 'filter_type': 'or', 'journal_select': '', 'author_select': '', 'institution_select': '', 'filter_leeway': 70}, {'search_type': 'standard', 'keyphrase1': 'Taar-1', 'keyword': 'Taar-1', 'source_select': 'all', 'alert_title': 'TAAR1_Sunovion_OME_Alert', 'filter_type': 'or', 'journal_select': '', 'author_select': '', 'institution_select': '', 'filter_leeway': 70}, {'search_type': 'standard', 'keyphrase1': 'TAR-1', 'keyword': 'TAR-1', 'source_select': 'all', 'alert_title': 'TAAR1_Sunovion_OME_Alert', 'filter_type': 'or', 'journal_select': '', 'author_select': '', 'institution_select': '', 'filter_leeway': 70}]
-ome_alert_results, url_query = get_documents.get_ome_alert_results(test_search_params, search_list, sub_services ,from_date=from_date, to_date=to_date, tags='tagged_entities_for_email')
+# test_search_params, test_alert_title, search_list = get_documents.get_search_params_list('485')
+# #print(test_search_params,'---- these are the test params')
 
-#Source filtering
-ome_alert_results = source_filter(ome_alert_results)
 
-link_exclusion_ls = ['Cortellis','cortellis', 'Adis Insight','Evaluate News', 'GBD_email']
+# ##test_url = get_documents.construct_solr_search_url(test_search_params, from_date=from_date)
+# #ome_alert_results = source_filter(ome_alert_results)
 
-#link_exclusion_ls = []
+# # ##test_search_params = [{'search_type': 'standard', 'keyphrase1': 'Trace amine associated receptor 1', 'keyword': 'Trace amine associated receptor 1', 'source_select': 'all', 'alert_title': 'TAAR1_Sunovion_OME_Alert', 'filter_type': 'or', 'journal_select': '', 'author_select': '', 'institution_select': '', 'filter_leeway': 70}, {'search_type': 'standard', 'keyphrase1': 'Trace amine-associated receptor 1', 'keyword': 'Trace amine-associated receptor 1', 'source_select': 'all', 'alert_title': 'TAAR1_Sunovion_OME_Alert', 'filter_type': 'or', 'journal_select': '', 'author_select': '', 'institution_select': '', 'filter_leeway': 70}, {'search_type': 'standard', 'keyphrase1': 'TaR-1', 'keyword': 'TaR-1', 'source_select': 'all', 'alert_title': 'TAAR1_Sunovion_OME_Alert', 'filter_type': 'or', 'journal_select': '', 'author_select': '', 'institution_select': '', 'filter_leeway': 70}, {'search_type': 'standard', 'keyphrase1': 'Trace amine receptor 1', 'keyword': 'Trace amine receptor 1', 'source_select': 'all', 'alert_title': 'TAAR1_Sunovion_OME_Alert', 'filter_type': 'or', 'journal_select': '', 'author_select': '', 'institution_select': '', 'filter_leeway': 70}, {'search_type': 'standard', 'keyphrase1': 'TAAR1', 'keyword': 'TAAR1', 'source_select': 'all', 'alert_title': 'TAAR1_Sunovion_OME_Alert', 'filter_type': 'or', 'journal_select': '', 'author_select': '', 'institution_select': '', 'filter_leeway': 70}, {'search_type': 'standard', 'keyphrase1': 'Taar-1', 'keyword': 'Taar-1', 'source_select': 'all', 'alert_title': 'TAAR1_Sunovion_OME_Alert', 'filter_type': 'or', 'journal_select': '', 'author_select': '', 'institution_select': '', 'filter_leeway': 70}, {'search_type': 'standard', 'keyphrase1': 'TAR-1', 'keyword': 'TAR-1', 'source_select': 'all', 'alert_title': 'TAAR1_Sunovion_OME_Alert', 'filter_type': 'or', 'journal_select': '', 'author_select': '', 'institution_select': '', 'filter_leeway': 70}]
+# ome_alert_results, url_query = get_documents.get_ome_alert_results(test_search_params, search_list, sub_services ,from_date=from_date, to_date=to_date, tags='tagged_entities_for_email')
 
-###
-##Internal users
-#if user in internal_users:
+# #Source filtering
+# ome_alert_results = source_filter(ome_alert_results)
 
-ome_alert_results = headlines_check(ome_alert_results, user)
-table_string_internal, summary_table_string_internal = table_string_results_internal(ome_alert_results, user, sumitovant_list, link_exclusion_ls)
+# link_exclusion_ls = ['Cortellis','cortellis', 'Adis Insight','Evaluate News', 'GBD_email']
 
-# #print(ome_alert_results)
+# #link_exclusion_ls = []
 
-email_string_internal = "<html><head></head><body><h4>Summary (" + str(len(ome_alert_results['keyword'])) + " results)</h4>" + summary_table_string_internal + "<br><br><h4>Documents</h4>" + table_string_internal + "</body></html>"
+# ###
+# ##Internal users
+# #if user in internal_users:
 
-mail = Outlook()
-mail.login('comp.res@sumitovant.com','Sumitovant$cr0220')
-#mail.login('comp.res@roivant.com','Roivant$cr0220!')
-mail.inbox()
-mail.sendEmail(email_address, email_subject, email_string_internal)
+# ome_alert_results = headlines_check(ome_alert_results, user)
+# table_string_internal, summary_table_string_internal = table_string_results_internal(ome_alert_results, user, sumitovant_list, link_exclusion_ls)
+
+# # #print(ome_alert_results)
+
+# email_string_internal = "<html><head></head><body><h4>Summary (" + str(len(ome_alert_results['keyword'])) + " results)</h4>" + summary_table_string_internal + "<br><br><h4>Documents</h4>" + table_string_internal + "</body></html>"
+
+# mail = Outlook()
+# mail.login('comp.res@sumitovant.com','Sumitovant$cr0220')
+# #mail.login('comp.res@roivant.com','Roivant$cr0220!')
+# mail.inbox()
+# mail.sendEmail(email_address, email_subject, email_string_internal)
  
 
 
