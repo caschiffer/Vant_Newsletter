@@ -967,9 +967,9 @@ andrews_search_completion = send_successful_search('andrew.bogorad')
 #print('second debug')
 
 # #DEBUGGING FUNCTIONS --------------
-# from_date = datetime.date(2020,8,6)
+# from_date = datetime.date(2020,8,10)
 # #from_date = datetime.date.today() - datetime.timedelta(days=1)
-# to_date = datetime.date(2020,8,6)
+# to_date = datetime.date(2020,8,10)
 # #to_date = datetime.date.today()
 # #internal_users = ['cody.schiffer']
 # internal_users = ['']
@@ -979,13 +979,13 @@ andrews_search_completion = send_successful_search('andrew.bogorad')
 #                       'houston.warren', 'rajat.chandra', 'natasha.zalzinyak','justin.dimartino','sam.azoulay','carson.tao']
 
 # email_address = 'cody.schiffer@sumitovant.com'
-# #email_subject = "DEBUGDEBUGDEBUGDEBUG"
-# email_subject = 'Sample Newsletter content PAH {}'.format(from_date)
+# email_subject = "DEBUGDEBUGDEBUGDEBUG"
+# #email_subject = 'Sample Newsletter content PAH {}'.format(from_date)
 
 
 # sub_services = ['Adis Insight','Cortellis','GBD_email','Evaluate News']
 
-# test_search_params, test_alert_title, search_list = get_documents.get_search_params_list('481')
+# test_search_params, test_alert_title, search_list = get_documents.get_search_params_list('485')
 # #print(test_search_params,'---- these are the test params')
 
 
@@ -1000,11 +1000,10 @@ andrews_search_completion = send_successful_search('andrew.bogorad')
 
 # link_exclusion_ls = ['Cortellis','cortellis', 'Adis Insight','Evaluate News', 'GBD_email']
 
-#link_exclusion_ls = []
 
-###
-##Internal users
-#if user in internal_users:
+# ##
+# ##Internal users
+# ##if user in internal_users:
 
 # ome_alert_results = headlines_check(ome_alert_results, user)
 # table_string_internal, summary_table_string_internal = table_string_results_internal(ome_alert_results, user, sumitovant_list, link_exclusion_ls)

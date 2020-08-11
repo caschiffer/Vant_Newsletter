@@ -372,11 +372,13 @@ def get_overall_tag_type(tag_type_list):
 def highlight_keyword(text, all_keywords, color="#FFFF00", check_all_cases='yes'):
     try:
         text_collect = []
+        print(text, '--- text pre cleaning')
         text = solr_clean_special_char(text)
+        print(text, '--- text post cleaning')
         
         #Sort all keywords to avoid overlap!
         sorted_all_keywords = sorted(all_keywords, key=lambda s: len(s), reverse = True)
-        
+        #print(sorted_all_keywords, '---- these are the keywords')
         for keyword in sorted_all_keywords:
             #remove special characters from keyword and text in order to compare and highlight
             #keyword = re.sub('[-/]', ' ', keyword)
@@ -387,24 +389,24 @@ def highlight_keyword(text, all_keywords, color="#FFFF00", check_all_cases='yes'
                 (keyword in text) and (text[text.index(keyword) - 1] != '>')
                 #(print(keyword + '<---- this is the keyword in highlight_keyword_func'))
                 #text = text.replace(keyword, '<span style="background-color: %s">{}</span>'.format(keyword)%(color))
-                text = re.sub(r'(?<!\S){}(?!\S)'.format(keyword),'<span style="background-color: %s">{}</span>'.format(keyword)%(color), text)
+                text = re.sub(r'(\s|.|\,|\?|\!|\%|\+|\-|\_){}(\s|.|\,|\?|\!|\%|\+|\-|\_)'.format(keyword),' <span style="background-color: %s">{}</span> '.format(keyword)%(color), text)
                 #(print(text + '<---- this is the text in highlight_keyword_func'))
         
             if check_all_cases == 'yes':
                 if (keyword.lower() in text.lower()) and (text.lower()[text.lower().index(keyword.lower()) - 1] != '>'):
                     #print(keyword + '<---- this is the keyword in highlight_keyword_func')
                     #text = text.lower().replace(keyword.lower(), '<span style="background-color: %s">{}</span>'.format(keyword.lower())%(color))
-                    text = re.sub(r'(?<!\S){}(?!\S)'.format(keyword.lower()),'<span style="background-color: %s">{}</span>'.format(keyword)%(color), text)
+                    text = re.sub(r'(\s|.|\,|\?|\!|\%|\+|\-|\_){}(\s|.|\,|\?|\!|\%|\+|\-|\_)'.format(keyword.lower()),' <span style="background-color: %s">{}</span> '.format(keyword)%(color), text)
                     #(print(text + '<---- this is the text in highlight_keyword_func'))
                 if (keyword.upper() in text.upper()) and (text.upper()[text.upper().index(keyword.upper()) - 1] != '>'):
                     #(print(keyword + '<---- this is the keyword in highlight_keyword_func'))
                     #text = text.upper().replace(keyword.upper(), '<span style="background-color: %s">{}</span>'.format(keyword.upper())%(color))
-                    text = re.sub(r'(?<!\S){}(?!\S)'.format(keyword.upper()),'<span style="background-color: %s">{}</span>'.format(keyword)%(color), text)
+                    text = re.sub(r'(\s|.|\,|\?|\!|\%|\+|\-|\_){}(\s|.|\,|\?|\!|\%|\+|\-|\_)'.format(keyword.upper()),' <span style="background-color: %s">{}</span> '.format(keyword)%(color), text)
                     #(print(text + '<---- this is the text in highlight_keyword_func'))
                 if (keyword.title() in text) and (text[text.index(keyword.title()) - 1] != '>'):
                     #(print(keyword + '<---- this is the keyword in highlight_keyword_func'))
                     #text = text.replace(keyword.title(), '<span style="background-color: %s">{}</span>'.format(keyword.title())%(color))
-                    text = re.sub(r'(?<!\S){}(?!\S)'.format(keyword.title()),'<span style="background-color: %s">{}</span>'.format(keyword)%(color), text)
+                    text = re.sub(r'(\s|.|\,|\?|\!|\%|\+|\-|\_){}(\s|.|\,|\?|\!|\%|\+|\-|\_)'.format(keyword.title()),' <span style="background-color: %s">{}</span> '.format(keyword)%(color), text)
                     #(print(text + '<---- this is the text in highlight_keyword_func'))
             
             #text_collect.append(text)
@@ -468,7 +470,7 @@ def highlight_keyword_subscriptions(text, all_keywords, color="#FFFF00", check_a
         if check_all_cases == 'no':
             (keyword in text) and (text[text.index(keyword) - 1] != '>')
             #(print(keyword + '<---- this is the keyword in highlight_keyword_func'))
-            text = re.sub(r'(?<!\S){}(?!\S)'.format(keyword),'<span style="background-color: %s">{}</span>'.format(keyword)%(color), text)
+            text = re.sub(r'(\s|.|\,|\?|\!|\%|\+|\-|\_){}(\s|.|\,|\?|\!|\%|\+|\-|\_)'.format(keyword),' <span style="background-color: %s">{}</span> '.format(keyword)%(color), text)
             #text = text.replace(keyword, '<span style="background-color: %s">{}</span>'.format(keyword)%(color))
             #(print(text + '<---- this is the text in highlight_keyword_func'))
     
@@ -476,17 +478,17 @@ def highlight_keyword_subscriptions(text, all_keywords, color="#FFFF00", check_a
             if (keyword.lower() in text.lower()) and (text.lower()[text.lower().index(keyword.lower()) - 1] != '>'):
                 #print(keyword + '<---- this is the keyword in highlight_keyword_func')
                 #text = text.lower().replace(keyword.lower(), '<span style="background-color: %s">{}</span>'.format(keyword.lower())%(color))
-                text = re.sub(r'(?<!\S){}(?!\S)'.format(keyword.lower()),'<span style="background-color: %s">{}</span>'.format(keyword)%(color), text)
+                text = re.sub(r'(\s|.|\,|\?|\!|\%|\+|\-|\_){}(\s|.|\,|\?|\!|\%|\+|\-|\_)'.format(keyword.lower()),' <span style="background-color: %s">{}</span> '.format(keyword)%(color), text)
                 #(print(text + '<---- this is the text in highlight_keyword_func'))
             if (keyword.upper() in text.upper()) and (text.upper()[text.upper().index(keyword.upper()) - 1] != '>'):
                 #(print(keyword + '<---- this is the keyword in highlight_keyword_func'))
                 #text = text.upper().replace(keyword.upper(), '<span style="background-color: %s">{}</span>'.format(keyword.upper())%(color))
-                text = re.sub(r'(?<!\S){}(?!\S)'.format(keyword.upper()),'<span style="background-color: %s">{}</span>'.format(keyword)%(color), text)
+                text = re.sub(r'(\s|.|\,|\?|\!|\%|\+|\-|\_){}(\s|.|\,|\?|\!|\%|\+|\-|\_)'.format(keyword.upper()),' <span style="background-color: %s">{}</span> '.format(keyword)%(color), text)
                 #(print(text + '<---- this is the text in highlight_keyword_func'))
             if (keyword.title() in text) and (text[text.index(keyword.title()) - 1] != '>'):
                 #(print(keyword + '<---- this is the keyword in highlight_keyword_func'))
                 #text = text.replace(keyword.title(), '<span style="background-color: %s">{}</span>'.format(keyword.title())%(color))
-                text = re.sub(r'(?<!\S){}(?!\S)'.format(keyword.title),'<span style="background-color: %s">{}</span>'.format(keyword)%(color), text)
+                text = re.sub(r'(\s|.|\,|\?|\!|\%|\+|\-|\_){}(\s|.|\,|\?|\!|\%|\+|\-|\_)'.format(keyword.title),' <span style="background-color: %s">{}</span> '.format(keyword)%(color), text)
                 #(print(text + '<---- this is the text in highlight_keyword_func'))
         
         text = subscription_scrape_section_designation(text)
